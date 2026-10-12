@@ -5,7 +5,7 @@ romaji: "Skjarnish Territory"
 type: overview
 nation: skjarnland
 authors: [skjarnland]
-coords: "23.43°N 25.47°E"
+coords: "23.43°NW 25.47°NE"
 infobox:
   - { image: "https://i.imgur.com/pEjG7sK.png", caption: "Location of Spetsbergen" }
   - label: "Motto"

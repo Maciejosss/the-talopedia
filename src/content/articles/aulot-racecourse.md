@@ -3,7 +3,7 @@ title: "Åulot Racecourse"
 nativeTitle: "Äulon Kilparata"
 type: racecourse
 nation: karjania
-coords: "15.88°N 21.60°E"
+coords: "15.88°NW 21.60°NE"
 infobox:
   - { image: "https://files.catbox.moe/jqdqwc.png", caption: "Bird's eye view of Åulot Racecourse (1932)" }
   - { label: "Founded", value: "1879" }

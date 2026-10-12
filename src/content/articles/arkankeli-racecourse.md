@@ -3,7 +3,7 @@ title: "Arkankeli Racecourse"
 nativeTitle: "Arkankelin Kilparata"
 type: racecourse
 nation: karjania
-coords: "15.88°N 21.60°E"
+coords: "15.88°NW 21.60°NE"
 infobox:
   - { image: "https://files.catbox.moe/2x1h3h.png", caption: "Bird's eye view of Arkankeli Racecourse (1929)" }
   - { label: "Founded", value: "1907" }

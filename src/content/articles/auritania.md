@@ -185,7 +185,7 @@ The Auritane labor force is characterized by state-controlled employment. The go
 
 ### Topography
 
-Auritania is located between latitudes 19° and 38°S, and the longitudes 41° and 59°W in the southern portion of Elysia, with a total area of 2,931,723 km² (1,131,945 sq mi), is the 6th largest country in the world by land area. It has coastlines on the Western Panthalassan Ocean, the [Bay of Anahuac](https://en.wikipedia.org/wiki/Bay_of_Campeche), the Terranova Gulf and the Sea of Auritania. Almost all of Auritania lies on the Elysian plate, with small parts on the Western Panthalassan plates.
+Auritania is located between latitudes 19° and 38°SE, and the longitudes 41° and 59°SW in the southern portion of Elysia, with a total area of 2,931,723 km² (1,131,945 sq mi), is the 6th largest country in the world by land area. It has coastlines on the Western Panthalassan Ocean, the [Bay of Anahuac](https://en.wikipedia.org/wiki/Bay_of_Campeche), the Terranova Gulf and the Sea of Auritania. Almost all of Auritania lies on the Elysian plate, with small parts on the Western Panthalassan plates.
 
 <div class="imgrid">
 <figure style="flex:1.333"><img src="/assets/old-media/media/auritania-6.jpg" alt="Yuma River created the natural eastern border between Western and Eastern Auritania, along with Hollosend, and is its longest river."><figcaption>Yuma River created the natural eastern border between Western and Eastern Auritania, along with Hollosend, and is its longest river.</figcaption></figure>

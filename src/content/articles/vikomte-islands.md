@@ -5,7 +5,7 @@ romaji: "Skjarnish Territory"
 type: overview
 nation: skjarnland
 authors: [skjarnland]
-coords: "37.53°S 154.17°W"
+coords: "37.53°SE 154.17°SW"
 infobox:
   - { image: "https://i.imgur.com/3n65MUW.png", caption: "Location of the Vikomte Islands" }
   - label: "Motto"
