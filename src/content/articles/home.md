@@ -5,7 +5,7 @@ navbox: site
 ---
 ## Introduction
 
-The Talopedia is a collaborative, Google Docs-based encyclopedia for [[avium]], Talonia's worldbuilding-centered, narrative-driven nation roleplay. It contains Wikipedia-style articles that function as reference material for the roleplay's nations, locations, characters, concepts, and historical developments.
+The Talopedia is a collaborative encyclopedia for [[avium]], Talonia's worldbuilding-centered, narrative-driven nation roleplay. It contains Wikipedia-style articles that function as reference material for the roleplay's nations, locations, characters, concepts, and historical developments.
 
 ## Featured Article
 

@@ -147,8 +147,8 @@ const headings = (rendered?.metadata?.headings ?? []).filter((h) => h.slug !== '
 ---
 <Base title={home?.data.title ?? 'The Talopedia'} headings={headings} chrome={false}>
   <div class="article home" data-pagefind-body>
+    <img class="home-banner" src={url('/assets/talopedia-banner.png')} alt="The Talopedia" />
     <section class="hbox home-hero">
-      <img class="home-banner" src={url('/assets/talopedia-banner.png')} alt="The Talopedia" />
       <div class="home-count">
         <p class="home-stats">
           {stats.map((s) => (
