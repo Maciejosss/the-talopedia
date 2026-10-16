@@ -13,6 +13,7 @@
     "sync-pickem": "node scripts/sync-pickem.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^5.1.1",
     "yaml": "^2.6.1"
   },

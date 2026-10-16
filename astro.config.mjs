@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import remarkTalopedia from './src/lib/remark-talopedia.mjs';
 import { sync } from './scripts/sync.mjs';
 
@@ -247,5 +248,10 @@ export default defineConfig({
     remarkPlugins: [remarkTalopedia],
     smartypants: false,
   },
+  // Every page a reader would search for. The editor, the page histories, sources and
+  // connections, raw JSON and the search and random pages are tools, not entries.
+  integrations: [sitemap({
+    filter: (page) => !/\/(edit|history|source|connections|raw|search|random|wanted)(\/|$)/.test(new URL(page).pathname),
+  })],
   vite: { plugins: [autoPull(), devSave(), devSearch()] },
 });
