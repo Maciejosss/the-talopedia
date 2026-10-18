@@ -51,9 +51,9 @@ Pit dwellings first appeared in the Initial subperiod, in clusters of three to t
 
 Threshold burial, the interment of infants and young children in jars beneath the entrances of dwellings, is recorded in 312 instances at 47 sites. Older members of Middle and Late villages were buried in the central plaza. Communities also deposited whole vessels, polished axes, and red-pigmented stones at river fords. At [[futagawa]], the largest of the eleven such deposits recovered on the rivers of the northern seaboard, the deposit held 214 vessels.
 
-## Hyperborean sites
-
 <figure class="float float-right" style="width:300px"><img src="https://lh3.googleusercontent.com/pw/AP1GczN1UIlXduzUDu_kytdScEd_xSwjwkCzsECUlTUVDA0-od5g4YzaNI4CiIfZD5f2G6yHZr7JWA0ePubO5uzd3if1-FPkkBqP9BvlxMrud0NUzkldXjvHQ6bQBH1eJstTitVdxkxoEg55N4DkKCR89mmH=w2000" alt="The Hyperborean midden during excavation by researchers from Forward Operating Base Keter, 1931"><figcaption>The Hyperborean midden during excavation by researchers from Forward Operating Base Keter, 1931</figcaption></figure>
+
+## Hyperborean sites
 
 In 1931, researchers from [[forward-operating-base-keter]] collected cord-marked sherds from a shell midden on a raised beach of the coastal plain. The material, published by Kirihara in 1933, comprises 63 sherds of Early type, 2 obsidian blades, and the faunal remains of seal, walrus, and seabirds. The obsidian has been matched to the island sources that supplied mainland Early assemblages. No dwellings were identified, and the midden has been interpreted as a seasonal sealing camp. Kirihara proposed that voyages to Hyperborea began after the Ko-Sōten eruption had displaced the population of the central coastal plain.
 
