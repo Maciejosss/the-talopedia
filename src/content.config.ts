@@ -58,6 +58,7 @@ const articles = defineCollection({
     ooc: z.boolean().default(false),
     coords: z.string().optional(),   // overrides the map lookup
     infobox: z.array(row).default([]),
+    movedFrom: z.array(z.string()).optional(),          // addresses it had before, which forward here
   }),
 });
 

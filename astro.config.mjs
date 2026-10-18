@@ -240,6 +240,11 @@ function devSearch() {
 }
 
 // BASE_PATH is '/' for a user site (<name>.github.io) and '/<repo>/' for a project site.
+// Addresses a page has moved away from. They forward to it, and are not pages to list.
+const MOVED = new Set(fs.readdirSync('src/content/articles').filter((f) => f.endsWith('.md'))
+  .flatMap((f) => (fs.readFileSync(`src/content/articles/${f}`, 'utf8').match(/^movedFrom:\s*\[([^\]]*)\]/m)?.[1] || '')
+    .split(',').map((x) => x.trim()).filter(Boolean)));
+
 export default defineConfig({
   site: process.env.SITE_URL || 'https://example.github.io',
   base: process.env.BASE_PATH || '/',
@@ -251,7 +256,11 @@ export default defineConfig({
   // Every page a reader would search for. The editor, the page histories, sources and
   // connections, raw JSON and the search and random pages are tools, not entries.
   integrations: [sitemap({
-    filter: (page) => !/\/(edit|history|source|connections|raw|search|random|wanted)(\/|$)/.test(new URL(page).pathname),
+    filter: (page) => {
+      const where = new URL(page).pathname;
+      return !/\/(edit|history|source|connections|raw|search|random|wanted)(\/|$)/.test(where)
+        && !MOVED.has(where.replace(/\/$/, '').split('/').pop());
+    },
   })],
   vite: { plugins: [autoPull(), devSave(), devSearch()] },
 });

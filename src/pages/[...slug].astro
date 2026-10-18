@@ -10,11 +10,18 @@ import { firstImage } from '../lib/featured.mjs';
 
 export async function getStaticPaths() {
   const all = await getCollection('articles');
+  const taken = new Set(all.map((e) => e.id));
   // `home` is served at / by index.astro.
-  return all.filter((e) => e.id !== 'home').map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  return [
+    ...all.filter((e) => e.id !== 'home').map((entry) => ({ params: { slug: entry.id }, props: { entry } })),
+    // A moved page's old addresses forward to it, unless a page has since taken one.
+    ...all.flatMap((entry) => (entry.data.movedFrom || []).filter((old) => !taken.has(old))
+      .map((old) => ({ params: { slug: old }, props: { entry, moved: true } }))),
+  ];
 }
 
-const { entry } = Astro.props;
+const { entry, moved } = Astro.props;
+if (moved) return Astro.redirect(url(`/${entry.id}`), 301);
 const d = entry.data;
 const headings = entry.rendered?.metadata?.headings ?? [];
 const html = resolveHtml(entry.rendered?.html ?? '');

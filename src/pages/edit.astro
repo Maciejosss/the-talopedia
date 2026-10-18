@@ -61,11 +61,6 @@ const ADMIN = REPO.split('/')[0];
           <button id="duplicate" type="button">Duplicate as a new page…</button>
           <input id="open-file-input" type="file" accept=".md,.markdown,.yaml,.yml" hidden />
           <div class="menu-sep"></div>
-          <div id="draft-box" hidden>
-            <div class="mp-group">Drafts</div>
-            <div class="menu-list" id="draft-list"></div>
-            <div class="menu-sep"></div>
-          </div>
           <input id="file-q" type="search" placeholder="Search articles" autocomplete="off" />
           <div class="menu-list" id="file-list"></div>
         </div>
@@ -99,77 +94,8 @@ const ADMIN = REPO.split('/')[0];
           <button data-add="section"><span class="sty sty-section">Heading</span></button>
           <button data-add="subsection"><span class="sty sty-subsection">Sub-heading</span></button>
           <button data-add="subsubsection"><span class="sty sty-subsubsection">Sub-sub-heading</span></button>
-          <button data-add="list"><span class="sty sty-list">Bulleted list</span></button>
         </div>
       </div>
-      <div class="drop">
-        <button id="insert" type="button" title="Insert media">
-          <svg viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" rx="1.5"/><circle cx="5.6" cy="6.4" r="1.1"/><path d="m2.6 11.4 3.2-3 2.4 2.2 2.6-2.5 3.2 3"/></svg>
-          Media <span class="caret">▾</span>
-        </button>
-        <div class="drop-menu wide" id="insert-menu" hidden>
-          <div class="mp-tabs">
-            <button type="button" class="on" data-pane="images">Images</button>
-            <button type="button" data-pane="icons">Icons</button>
-          </div>
-
-          <div class="mp-pane" id="pane-images">
-            <div class="mp-row">
-              <span class="mp-lbl">Insert as</span>
-              <span class="mp-seg">
-                <button type="button" class="on" data-as="image">Static</button>
-                <button type="button" data-as="float">Floating</button>
-                <button type="button" data-as="grid">Grid</button>
-                <button type="button" data-as="icon">Icon</button>
-              </span>
-            </div>
-            <div class="mp-row" id="mp-outline-row" hidden>
-              <span class="mp-lbl" title="The white outline a flag gets against the page">Outline</span>
-              <span class="mp-seg" id="mp-outline">
-                <button type="button" class="on" data-outline="1">Yes</button>
-                <button type="button" data-outline="0">No</button>
-              </span>
-            </div>
-            <div class="mp-row">
-              <span class="mp-lbl">Shape</span>
-              <span class="mp-seg" id="mp-ratio">
-                <button type="button" class="on" data-ratio="">Original</button>
-                <button type="button" data-ratio="16x9">16:9</button>
-                <button type="button" data-ratio="3x2">3:2</button>
-                <button type="button" data-ratio="4x3">4:3</button>
-                <button type="button" data-ratio="1x1">1:1</button>
-                <button type="button" data-ratio="3x4">3:4</button>
-              </span>
-            </div>
-            <div class="mp-row mp-link-row">
-              <span class="mp-lbl">Link</span>
-              <input id="mp-link" type="url" placeholder="https://i.ibb.co/…" autocomplete="off" />
-              <button id="mp-link-go" type="button">Insert</button>
-            </div>
-            <p class="mp-hint" id="mp-link-note"></p>
-            {DEV && (
-              <Fragment>
-                <div class="mp-row">
-                  <span class="mp-lbl">Upload</span>
-                  <button id="mp-add" type="button" class="mp-file-btn">Choose files…</button>
-                  <input id="mp-file" type="file" accept="image/*" multiple hidden />
-                </div>
-                <div class="mp-queue" id="mp-queue" hidden>
-                  <div id="mp-queue-list"></div>
-                  <button id="mp-upload" type="button" class="primary" disabled>Upload</button>
-                </div>
-              </Fragment>
-            )}
-          </div>
-
-          <div class="mp-pane" id="pane-icons" hidden>
-            <input id="mp-iq" type="search" placeholder="Search icons" autocomplete="off" />
-            <div class="mp-body" id="mp-icons"></div>
-          </div>
-
-        </div>
-      </div>
-
       <div class="drop">
         <button id="ins" type="button" title="Insert">
           <svg viewBox="0 0 16 16"><path d="M8 3.2v9.6M3.2 8h9.6"/></svg>
@@ -206,80 +132,161 @@ const ADMIN = REPO.split('/')[0];
               <button id="dt-go" type="button" class="primary">Insert</button>
             </div>
           </div>
+          <div class="ins-item num-item">
+            <button type="button" data-list="bullet" title="Bulleted list (⌘⇧8)">List<span class="ins-arrow">›</span></button>
+            <div class="ins-sub num-sub">
+              <button type="button" class="num-tile" data-list="bullet" title="Bulleted (⌘⇧8)">
+                <span class="nt">•</span><span class="nt l1">◦</span><span class="nt l1">◦</span><span class="nt l2">▪</span><span class="nt">•</span>
+              </button>
+              <button type="button" class="num-tile" data-num="alpha" title="Numbered 1. a. i. (⌘⇧7)">
+                <span class="nt">1.</span><span class="nt l1">a.</span><span class="nt l1">b.</span><span class="nt l2">i.</span><span class="nt">2.</span>
+              </button>
+              <button type="button" class="num-tile" data-num="outline" title="Numbered 1. 1.1. 1.2.1.">
+                <span class="nt">1.</span><span class="nt l1">1.1.</span><span class="nt l1">1.2.</span><span class="nt l2">1.2.1.</span><span class="nt">2.</span>
+              </button>
+            </div>
+          </div>
           <div class="ins-item" data-ins="nested">
             <button id="ins-nested" type="button">Nested list</button>
           </div>
         </div>
       </div>
+      <div class="drop">
+        <button id="insert" type="button" title="Insert media">
+          <svg viewBox="0 0 16 16"><rect x="2" y="3" width="12" height="10" rx="1.5"/><circle cx="5.6" cy="6.4" r="1.1"/><path d="m2.6 11.4 3.2-3 2.4 2.2 2.6-2.5 3.2 3"/></svg>
+          Media <span class="caret">▾</span>
+        </button>
+        <div class="drop-menu wide" id="insert-menu" hidden>
+          <div class="mp-tabs">
+            <button type="button" class="on" data-pane="images">Images</button>
+            <button type="button" data-pane="icons">Icons</button>
+          </div>
 
-      <button id="settings-btn" type="button" title="Page settings"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.6"/><circle cx="8" cy="8" r="2.1"/><path d="M8 1.7v2.3M8 12v2.3M14.3 8H12M4 8H1.7M12.46 3.54 10.83 5.17M5.17 10.83 3.54 12.46M12.46 12.46 10.83 10.83M5.17 5.17 3.54 3.54"/></svg></button>
+          <div class="mp-pane" id="pane-images">
+            <div class="mp-opts">
+              <div class="mp-row">
+                <span class="mp-lbl">Placement</span>
+                <div class="mp-col">
+                  <span class="mp-seg mp-place">
+                    <button type="button" class="on" data-as="image"><svg class="mp-pic" viewBox="0 0 22 16" aria-hidden="true"><rect x="2" y="1.5" width="18" height="8" rx="1"/><path d="M2 12.5h18M2 15h12"/></svg>Static</button>
+                    <button type="button" data-as="float"><svg class="mp-pic" viewBox="0 0 22 16" aria-hidden="true"><rect x="12" y="1.5" width="8" height="7" rx="1"/><path d="M2 2.5h7M2 5.5h7M2 8.5h7M2 12h18M2 15h14"/></svg>Floating</button>
+                    <button type="button" data-as="grid"><svg class="mp-pic" viewBox="0 0 22 16" aria-hidden="true"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="12" y="2" width="8" height="8" rx="1"/><path d="M2 13.5h8M12 13.5h8"/></svg>Grid</button>
+                    <button type="button" data-as="icon"><svg class="mp-pic" viewBox="0 0 22 16" aria-hidden="true"><path d="M2 8h6M15 8h5"/><rect x="9.5" y="5" width="4" height="6" rx=".8"/></svg>Icon</button>
+                  </span>
+                  <p class="mp-desc" id="mp-as-desc">Full width, on a line of its own.</p>
+                </div>
+              </div>
+              <div class="mp-row" id="mp-outline-row" hidden>
+                <span class="mp-lbl" title="The white outline a flag gets against the page">Outline</span>
+                <span class="mp-seg" id="mp-outline">
+                  <button type="button" class="on" data-outline="1">Yes</button>
+                  <button type="button" data-outline="0">No</button>
+                </span>
+              </div>
+              <div class="mp-row">
+                <span class="mp-lbl">Shape</span>
+                <span class="mp-seg" id="mp-ratio">
+                  <button type="button" class="on" data-ratio="">Original</button>
+                  <button type="button" data-ratio="16x9">16:9</button>
+                  <button type="button" data-ratio="3x2">3:2</button>
+                  <button type="button" data-ratio="4x3">4:3</button>
+                  <button type="button" data-ratio="1x1">1:1</button>
+                  <button type="button" data-ratio="3x4">3:4</button>
+                </span>
+              </div>
+            </div>
+            <div class="mp-src">
+              <div class="mp-link-row">
+                <input id="mp-link" type="url" placeholder="Paste an image link" autocomplete="off" />
+                <button id="mp-link-go" type="button" class="primary">Insert</button>
+              </div>
+              <p class="mp-hint" id="mp-link-note"></p>
+              {DEV && (
+                <Fragment>
+                  <div class="mp-upload">
+                    <button id="mp-add" type="button" class="mp-file-btn">Choose files…</button>
+                    <span class="mp-or">or drop pictures onto the article</span>
+                    <input id="mp-file" type="file" accept="image/*" multiple hidden />
+                  </div>
+                  <div class="mp-queue" id="mp-queue" hidden>
+                    <div id="mp-queue-list"></div>
+                    <button id="mp-upload" type="button" class="primary" disabled>Upload</button>
+                  </div>
+                </Fragment>
+              )}
+            </div>
+          </div>
+          <div class="mp-pane" id="pane-icons" hidden>
+            <input id="mp-iq" type="search" placeholder="Search icons" autocomplete="off" />
+            <div class="mp-body" id="mp-icons"></div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <button id="find-btn" type="button" title="Find and replace (⌘F)">
+        <svg viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.4"/><path d="m10.1 10.1 3.9 3.9"/></svg>
+      </button>
 
       <span class="spacer"></span>
       <span id="status" class="status"></span>
-      <span class="save-group">
-        {/* Writing straight to disk needs the dev server, so Save is only there. Setting
-            a page aside for a pull request works in both, or it could never be tried
-            out while developing. */}
-        {DEV && (
-          <Fragment>
-            <input id="slug" type="text" placeholder="file-name" spellcheck="false" />
-            <button id="save" type="button" class="primary">Save</button>
-          </Fragment>
-        )}
-        <input id="f-summary" type="text" placeholder="What changed?" spellcheck="false"
-          title="A line describing this edit. It becomes the commit message and shows in the page's history." />
-        <button id="cart-add" type="button" class="commit"
-          title="Put this page with the others, to be pushed as one pull request">Commit</button>
-        <button id="cart-open" type="button" title="Pages waiting to be pushed">
-          Changes <span class="cart-n" id="cart-n">0</span>
-        </button>
-      </span>
+      <span class="draft-state" id="draft-state" hidden>Draft saved</span>
+      <button id="publish" type="button" class="commit" title="Publish your changes">Publish<span class="cart-n" id="pub-n" hidden></span></button>
       <div class="drop">
         <button id="more" type="button" title="More">⋯</button>
         <div class="drop-menu right list" id="more-menu" hidden>
-          <button id="download">Download .md</button>
-          <button id="copy">Copy Markdown</button>
-          <button id="source">View Markdown</button>
+          {DEV && <button id="save" type="button" title="⌘S">Save to disk</button>}
+          <button id="reset-page" type="button">Reset page</button>
+          <div class="menu-sep"></div>
+          <button id="download" type="button">Download .md</button>
+          <button id="copy" type="button">Copy Markdown</button>
+          <button id="source" type="button">View Markdown</button>
         </div>
       </div>
-    </div>
-
-    <div class="ed-settings" id="settings" hidden>
-      <div class="set-grid">
-        <label>Title <span class="req-star">*</span><input id="f-title" type="text" placeholder="Nichirin" /></label>
-        <label id="crumb-field" hidden>Breadcrumb <span class="opt">navbox</span>
-          <input id="f-crumb" type="text" placeholder="[[portal:nichirin|Portal:Nichirin]] • [[nichirin|Overview]]" /></label>
-        {/* The sidebar heading is edited at the top of the sidebar itself. These carry
-            the same three values, so the markdown, the draft and the slug still have
-            one place to read them from. */}
-        <input id="f-boxtitle" type="hidden" />
-        <textarea id="f-native" hidden></textarea>
-        <textarea id="f-romaji" hidden></textarea>
-        <label id="url-field">Article URL <span class="opt">the file name</span>
-          <input id="f-slug" type="text" placeholder="emeka-okafor" spellcheck="false"
-            title="The address this page is served at, and the name of its file" /></label>
-        <label id="type-field">Article type<select id="f-type">{ARTICLE_TYPES.map((t) => <option value={t}>{t}</option>)}</select></label>
-        <label id="nation-field">Associated nation<select id="f-nation"><option value="">(none)</option>
-          {nationList.map((n) => <option value={n.id}>{n.name}</option>)}</select></label>
-        <label id="authors-field">Author(s)<input id="f-authors" type="text" placeholder="nichirin, alemannia" /></label>
-        <label id="coords-field" hidden>Coordinates
-          <input id="f-coords" type="text" placeholder="35.68°NW 139.69°NE" /></label>
-        <label id="icon-field">Icon <span class="opt">optional</span>
-          <input id="f-icon" type="text" placeholder="/assets/flags/nichirin.png" /></label>
-        <label id="banner-field" hidden>Banner <span class="opt">portal</span>
-          <span class="f-with-btn">
-            <input id="f-banner" class="path" type="text" placeholder="/assets/media/nichirin-portal-banner.jpg" />
-            <button id="f-banner-pick" type="button">Choose…</button>
-          </span></label>
-        <label id="welcome-field" hidden>Welcome line <span class="opt">portal</span>
-          <input id="f-welcome" type="text" placeholder="「日輪へようこそ！」" /></label>
-      </div>
-      <div class="set-toggles">
-        <label class="check"><input id="f-ooc" type="checkbox" /> Contains out-of-character information</label>
-        <label class="check"><input id="f-sidebar-on" type="checkbox" checked /> Display sidebar
-          <span class="opt" id="sidebar-note"></span></label>
-        <label class="check"><input id="f-navbox-on" type="checkbox" checked /> Display navbox
-          <span class="opt" id="navbox-note"></span></label>
+      <div class="findbar" id="findbar" hidden>
+        <div class="fb-row">
+          <button id="fb-expand" class="fb-ico" type="button" title="Replace (⌘⇧H)" aria-label="Show replace">
+            <svg viewBox="0 0 16 16"><path d="m6 4 4 4-4 4"/></svg>
+          </button>
+          <span class="fb-field">
+            <input id="fb-find" type="text" placeholder="Find" spellcheck="false" autocomplete="off" />
+            <span class="fb-in">
+              <button type="button" class="fb-opt" data-opt="case" aria-pressed="false" title="Match case">Aa</button>
+              <button type="button" class="fb-opt fb-word" data-opt="word" aria-pressed="false" title="Whole words only">ab</button>
+              <button type="button" class="fb-opt" data-opt="regex" aria-pressed="false" title="Regular expression">.*</button>
+            </span>
+          </span>
+          <span class="fb-count" id="fb-count"></span>
+          <button id="fb-prev" class="fb-ico" type="button" title="Previous (⇧Enter)" aria-label="Previous match">
+            <svg viewBox="0 0 16 16"><path d="m4 10 4-4 4 4"/></svg>
+          </button>
+          <button id="fb-next" class="fb-ico" type="button" title="Next (Enter)" aria-label="Next match">
+            <svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>
+          </button>
+          <button id="fb-close" class="fb-ico" type="button" title="Close (Esc)" aria-label="Close">
+            <svg viewBox="0 0 16 16"><path d="m4.5 4.5 7 7m0-7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="fb-row" id="fb-replace-row" hidden>
+          <span class="fb-ico-space"></span>
+          <span class="fb-field">
+            <input id="fb-repl" type="text" placeholder="Replace" spellcheck="false" autocomplete="off" />
+            <span class="fb-in">
+              <button type="button" class="fb-opt" data-opt="keep" aria-pressed="false" title="Keep each match's capitals">AB</button>
+            </span>
+          </span>
+          <button id="fb-one" class="fb-txt" type="button" title="Replace this match (Enter)">Replace</button>
+          <button id="fb-all" class="fb-txt" type="button" title="Replace every match (⌘Enter)">Replace all</button>
+        </div>
+        <div class="fb-scope">
+          <span class="fb-ico-space"></span>
+          <span class="fb-seg">
+            <button type="button" class="on" data-scope="all">Everything</button>
+            <button type="button" data-scope="article">Article</button>
+            <button type="button" data-scope="sidebar">Sidebar</button>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -293,8 +300,74 @@ const ADMIN = REPO.split('/')[0];
         This article contains out-of-character (OOC) information. Some details presented here are
         not publicly available in-character (IC).
       </p>
-      <h1 id="canvas-title" contenteditable="true" spellcheck="false" data-ph="Article title"></h1>
-      <div class="canvas-sub"><span id="canvas-by"></span></div>
+      <div class="title-row">
+        <h1 id="canvas-title" contenteditable="true" spellcheck="false" data-ph="Article title"></h1>
+        <button class="pp-toggle" id="pp-toggle" type="button" aria-expanded="false" aria-controls="settings">
+          Details<svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg>
+        </button>
+      </div>
+      <div class="canvas-sub" hidden><span id="canvas-by"></span></div>
+      <div class="page-props closed" id="settings">
+        <input id="f-title" type="hidden" />
+        {/* The sidebar heading is edited at the top of the sidebar itself. These carry
+            the same three values, so the markdown, the draft and the slug still have
+            one place to read them from. */}
+        <input id="f-boxtitle" type="hidden" />
+        <textarea id="f-native" hidden></textarea>
+        <textarea id="f-romaji" hidden></textarea>
+        <div class="pp-row" id="url-field">
+          <span class="pp-k">Address</span>
+          <span class="pp-v pp-url">
+            <span class="pp-base" id="pp-base">/</span>
+            <input id="f-slug" type="text" placeholder="page-address" spellcheck="false" />
+            <span class="pp-slug" id="pp-slug" hidden></span>
+            <span class="pp-was" id="pp-was"></span>
+            <button id="pp-move" class="pp-btn" type="button" hidden>Move</button>
+          </span>
+        </div>
+        <div class="pp-row" id="crumb-field" hidden>
+          <span class="pp-k">Breadcrumb</span>
+          <input id="f-crumb" type="text" placeholder="[[portal:nichirin|Portal:Nichirin]] • [[nichirin|Overview]]" />
+        </div>
+        <div class="pp-row" id="type-field">
+          <span class="pp-k">Type</span>
+          <select id="f-type">{ARTICLE_TYPES.map((t) => <option value={t}>{t[0].toUpperCase() + t.slice(1).replace(/-/g, ' ')}</option>)}</select>
+        </div>
+        <div class="pp-row" id="nation-field">
+          <span class="pp-k">Nation</span>
+          <select id="f-nation"><option value="">None</option>
+            {nationList.map((n) => <option value={n.id}>{n.name}</option>)}</select>
+        </div>
+        <div class="pp-row" id="authors-field">
+          <span class="pp-k">Written by</span>
+          <span class="pp-v"><input id="f-authors" type="hidden" /><span class="pp-chips" id="pp-authors"></span></span>
+        </div>
+        {/* Kept as it was written; not chosen in the editor. */}
+        <input id="f-icon" type="hidden" />
+        <div class="pp-row" id="coords-field" hidden>
+          <span class="pp-k">Coordinates</span>
+          <input id="f-coords" type="text" placeholder="35.68°NW 139.69°NE" />
+        </div>
+        <div class="pp-row" id="banner-field" hidden>
+          <span class="pp-k">Banner</span>
+          <span class="pp-v f-with-btn">
+            <input id="f-banner" class="path" type="text" placeholder="/assets/media/nichirin-portal-banner.jpg" />
+            <button id="f-banner-pick" class="pp-btn" type="button">Choose</button>
+          </span>
+        </div>
+        <div class="pp-row" id="welcome-field" hidden>
+          <span class="pp-k">Welcome line</span>
+          <input id="f-welcome" type="text" placeholder="「日輪へようこそ！」" />
+        </div>
+        <div class="pp-row set-toggles">
+          <span class="pp-k">Show</span>
+          <span class="pp-v pp-sws">
+            <label class="pp-sw"><input id="f-sidebar-on" type="checkbox" checked /><span></span>Sidebar</label>
+            <label class="pp-sw"><input id="f-navbox-on" type="checkbox" checked /><span></span>Navbox</label>
+            <label class="pp-sw"><input id="f-ooc" type="checkbox" /><span></span>OOC Notice</label>
+          </span>
+        </div>
+      </div>
 
       <div class="article">
         <aside class="infobox ib-edit">
@@ -341,38 +414,64 @@ const ADMIN = REPO.split('/')[0];
     </div>
 
     <div class="pub-back" id="pub-panel" hidden>
-      <div class="pub">
-        <h2>Changes waiting</h2>
-        <p class="pub-note" id="pub-intro">
-          All of it goes as one pull request. Nothing reaches the site until reviewed.
-        </p>
-
-        <div class="cart-list" id="cart-list"></div>
-
-        <label>GitHub token
-          <input id="pub-token" type="password" autocomplete="off" spellcheck="false"
-            placeholder="ghp_…" /></label>
-
-        <details class="pub-help" id="pub-help">
-          <summary>Need a token?</summary>
-          <ol class="pub-steps">
-            <li><a id="pub-make" href="#" target="_blank" rel="noopener">Open token page</a>.
-              Log in if asked.</li>
-            <li>Name filled. <b>public_repo</b> ticked. <b>Touch nothing else.</b></li>
-            <li>Pick expiry. Any.</li>
-            <li>Scroll down. Press <b>Generate token</b>.</li>
-            <li>Copy it. Starts with <code>ghp_</code>. Shown once.</li>
-            <li>Paste in box above.</li>
-          </ol>
-          <p class="pub-note">Your token stays in this browser and goes only to GitHub.</p>
-        </details>
-
+      <div class="pub pubs">
+        <div class="pub-head"><h2>Publish</h2><button id="pub-x" class="pub-ico" type="button" title="Close"><svg viewBox="0 0 16 16"><path d="m4.5 4.5 7 7m0-7-7 7"/></svg></button></div>
+        <div class="pr-list" id="pub-list"></div>
+        <p class="pr-empty" id="pub-empty" hidden>No changes.</p>
+        <div class="pr-sent" id="pub-sent-box" hidden>
+          <h3>Sent</h3>
+          <div id="pub-sent"></div>
+        </div>
+        <div class="pub-token">
+          <span class="pt-k">GitHub Token</span>
+          <span class="pt-set" id="pt-set">Saved<button id="pub-forget" class="pt-link" type="button">Forget</button></span>
+          <span class="pt-new" id="pt-new">
+            <input id="pub-token" type="password" autocomplete="off" spellcheck="false" placeholder="ghp_…" />
+          </span>
+          <button id="pt-how" class="pub-ico pt-help" type="button" title="GitHub Token help" aria-label="GitHub Token help">
+            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M6.3 6.2a1.8 1.8 0 1 1 2.5 1.7c-.5.2-.8.6-.8 1.1v.4"/><path d="M8 11.6v.1"/></svg>
+          </button>
+        </div>
         <p class="pub-status" id="pub-status"></p>
-        <div class="pub-row">
-          <button id="pub-go" type="button" class="primary">Push</button>
-          <button id="pub-forget" type="button">Forget token</button>
-          <span class="spacer"></span>
+        <div class="pub-foot">
           <button id="pub-close" type="button">Close</button>
+          <button id="pub-go" type="button" class="go">Publish</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-back guide-back" id="pub-help" hidden>
+      <div class="pub guide">
+        <div class="pub-head"><h2>GitHub Token</h2><button id="guide-x" class="pub-ico" type="button" title="Close"><svg viewBox="0 0 16 16"><path d="m4.5 4.5 7 7m0-7-7 7"/></svg></button></div>
+        <p class="guide-lead">Publishing opens a pull request on GitHub under your account. The token is what lets the editor do that. You make it once.</p>
+        <ol class="guide-steps">
+          <li><span>Open GitHub's token page. Sign in if it asks.</span>
+            <a id="pub-make" class="guide-go" href="#" target="_blank" rel="noopener">Open token page</a></li>
+          <li><span>The name and the <b>public_repo</b> box are already filled in. Leave every other box empty.</span></li>
+          <li><span>Pick any expiry. When it runs out, make a new token the same way.</span></li>
+          <li><span>Press <b>Generate token</b> at the bottom of the page.</span></li>
+          <li><span>Copy the token. It starts with <code>ghp_</code>, and GitHub shows it only once.</span></li>
+          <li><span>Paste it into the GitHub Token box here.</span></li>
+        </ol>
+        <dl class="guide-notes">
+          <dt>Where it is kept</dt><dd>In this browser only. It is sent to GitHub and nowhere else. Forget removes it.</dd>
+          <dt>No GitHub account</dt><dd>Make one at <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>.</dd>
+          <dt>Review</dt><dd>Your edits go live by themselves once your account is linked to your nation. Until then, and for pages that are not your nation's alone, they wait for review.</dd>
+        </dl>
+        <div class="pub-foot"><button id="guide-close" type="button" class="go">Done</button></div>
+      </div>
+    </div>
+
+    <div class="pub-back" id="move-panel" hidden>
+      <div class="pub mv">
+        <div class="pub-head"><h2>Move page</h2><button id="mv-x" class="pub-ico" type="button" title="Close"><svg viewBox="0 0 16 16"><path d="m4.5 4.5 7 7m0-7-7 7"/></svg></button></div>
+        <label class="mv-f"><span>/</span><input id="mv-slug" type="text" spellcheck="false" autocomplete="off" /></label>
+        <p class="mv-err" id="mv-err"></p>
+        <div class="mv-head">Linked from<span id="mv-n"></span></div>
+        <div class="mv-list" id="mv-list"></div>
+        <div class="pub-foot">
+          <button id="mv-cancel" type="button">Cancel</button>
+          <button id="mv-go" type="button" class="go">Move</button>
         </div>
       </div>
     </div>
@@ -408,6 +507,7 @@ const ADMIN = REPO.split('/')[0];
     // same file name with a different title is how an article gets used as a template
     // and overwritten; the text is what tells a rename apart from a replacement.
     let loadedTitle = '', loadedBody = '';
+    let movedFrom = [];                       // addresses the page had before, which forward to it
     let navboxLead = '';
     // A portal's body is not editable here. Two nations have no overview article yet
     // and their portal still carries its own paragraph, so whatever was loaded is
@@ -684,7 +784,7 @@ const ADMIN = REPO.split('/')[0];
         const p = e.target.closest?.('input.path');
         if (p) { lastPath = p; lastPathAt = Date.now(); }
         let c = e.target.closest?.('.ce');
-        if (!c && e.target.closest?.('.ed-tbl')) {
+        if (!c && e.target.closest?.('.ed-tbl, .ed-list')) {
           const n = getSelection().anchorNode;
           c = (n?.nodeType === 1 ? n : n?.parentElement)?.closest?.('.ce');
         }
@@ -761,7 +861,7 @@ const ADMIN = REPO.split('/')[0];
       const where = activeText();
       if (!where) return false;
       // A table cell is not its own editing host; the table is.
-      const host = where.closest('.ed-tbl') || where;
+      const host = where.closest('.ed-tbl, .ed-list') || where;
       const sel = getSelection();
       // Read the target range before touching focus: focusing a host that is not
       // already focused collapses the caret to its start, which in a table means
@@ -812,19 +912,102 @@ const ADMIN = REPO.split('/')[0];
     };
 
     /* ---------- controls ---------- */
-    function controls(node, extra = []) {
+    function controls(node, extra = [], { drag = false } = {}) {
       const c = el('div', 'ctl');
       const add = (label, title, fn) => {
         const b = el('button', null, label); b.type = 'button'; b.title = title;
         b.onmousedown = (e) => e.preventDefault();
         b.onclick = () => { fn(); sync(); };
         c.append(b);
+        return b;
       };
       for (const [label, title, fn] of extra) add(label, title, fn);
-      add('↑', 'Move up', () => node.previousElementSibling?.before(node));
-      add('↓', 'Move down', () => node.nextElementSibling?.after(node));
+      if (drag) c.append(grip(node));
+      else {
+        add('↑', 'Move up', () => node.previousElementSibling?.before(node));
+        add('↓', 'Move down', () => node.nextElementSibling?.after(node));
+      }
       add('✕', 'Remove', () => node.remove());
       return c;
+    }
+
+    /* A block is moved by its handle: dragged to the gap it should sit in, a line
+       showing where it will land, or nudged a place with the arrow keys while the
+       handle has focus. Escape puts a drag back where it started. */
+    function grip(node) {
+      const g = el('button', 'grip');
+      g.type = 'button';
+      g.title = 'Drag to move';
+      g.setAttribute('aria-label', 'Move block (arrow keys)');
+      g.innerHTML = '<svg viewBox="0 0 10 16" aria-hidden="true">'
+        + [3, 8, 13].map((y) => `<circle cx="2.5" cy="${y}" r="1.4"/><circle cx="7.5" cy="${y}" r="1.4"/>`).join('')
+        + '</svg>';
+      g.onmousedown = (e) => e.preventDefault();
+      g.onkeydown = (e) => {
+        const sib = e.key === 'ArrowUp' ? node.previousElementSibling : e.key === 'ArrowDown' ? node.nextElementSibling : null;
+        if (!sib?.classList.contains('blk')) return;
+        e.preventDefault();
+        if (e.key === 'ArrowUp') sib.before(node); else sib.after(node);
+        sync();
+        g.focus();
+      };
+      g.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        g.setPointerCapture(e.pointerId);
+        const host = node.parentElement;
+        const line = el('div', 'drop-line');
+        document.body.append(line);
+        node.classList.add('dragging');
+        document.documentElement.classList.add('dragging-blk');
+        let y = e.clientY, before, live = true;
+        const others = () => [...host.children].filter((b) => b.classList.contains('blk') && b !== node);
+        const place = () => {
+          const list = others();
+          before = list.find((b) => { const r = b.getBoundingClientRect(); return y < r.top + r.height / 2; }) ?? null;
+          const ref = before ?? list[list.length - 1];
+          if (!ref) { line.hidden = true; return; }
+          const r = ref.getBoundingClientRect(), box = host.getBoundingClientRect();
+          const pad = parseFloat(getComputedStyle(host).paddingLeft) || 0;
+          line.hidden = false;
+          line.style.top = `${(before ? r.top - 6 : r.bottom + 6) - 1}px`;
+          line.style.left = `${box.left + pad}px`;
+          line.style.width = `${box.width - pad}px`;
+        };
+        // Held near the top or bottom of the window, the page scrolls to reach further.
+        const scroll = () => {
+          if (!live) return;
+          const edge = 70, v = y < edge ? -(edge - y) / 4 : y > innerHeight - edge ? (y - innerHeight + edge) / 4 : 0;
+          if (v) { scrollBy(0, v); place(); }
+          requestAnimationFrame(scroll);
+        };
+        const end = (commit) => {
+          live = false;
+          line.remove();
+          node.classList.remove('dragging');
+          document.documentElement.classList.remove('dragging-blk');
+          g.removeEventListener('pointermove', move);
+          g.removeEventListener('pointerup', up);
+          g.removeEventListener('pointercancel', cancel);
+          removeEventListener('keydown', esc, true);
+          if (!commit) return;
+          const was = node.nextElementSibling;
+          if (before === was || (!before && node === others().at(-1)?.nextElementSibling)) return;
+          if (before) before.before(node); else others().at(-1)?.after(node);
+          sync();
+        };
+        const move = (ev) => { y = ev.clientY; place(); };
+        const up = () => end(true);
+        const cancel = () => end(false);
+        const esc = (ev) => { if (ev.key === 'Escape') { ev.preventDefault(); ev.stopPropagation(); end(false); } };
+        g.addEventListener('pointermove', move);
+        g.addEventListener('pointerup', up);
+        g.addEventListener('pointercancel', cancel);
+        addEventListener('keydown', esc, true);
+        place();
+        requestAnimationFrame(scroll);
+      });
+      return g;
     }
 
     /* ---------- a nested list, in the sidebar ----------
@@ -926,12 +1109,24 @@ const ADMIN = REPO.split('/')[0];
       sync();
     }
     /* Insert > Nested list: a new line hung under the one the caret is on, in any sidebar cell. */
-    $('#ins-nested').onmousedown = (e) => e.preventDefault();
-    $('#ins-nested').onclick = () => {
-      const boxOf = (r) => { const n = r?.startContainer; return (n?.nodeType === 1 ? n : n?.parentElement)?.closest('.ce.outline') || null; };
+    const nestedBoxOf = (r) => { const n = r?.startContainer; return (n?.nodeType === 1 ? n : n?.parentElement)?.closest('.ce.outline') || null; };
+    /** Where Nested list would go: the caret, if it is on a line in the sidebar. */
+    const nestedAt = () => {
       const sel = getSelection();
       const live = sel.rangeCount ? sel.getRangeAt(0) : null;
-      const at = boxOf(live) ? live : boxOf(caret) ? caret : null;
+      return nestedBoxOf(live) ? live : nestedBoxOf(caret) ? caret : null;
+    };
+    // Only the sidebar has nested lists, so anywhere else the item is locked, and
+    // says why, rather than refusing after it is clicked.
+    $('#ins').addEventListener('click', () => {
+      const off = !nestedAt();
+      $('#ins-nested').disabled = off;
+      $('#ins-nested').title = off ? 'Put the cursor on a line in the sidebar first' : '';
+    });
+    $('#ins-nested').onmousedown = (e) => e.preventDefault();
+    $('#ins-nested').onclick = () => {
+      const boxOf = nestedBoxOf;
+      const at = nestedAt();
       if (!at) { flash('Put the cursor on a line in the sidebar first.', true); return; }
       const box = boxOf(at);
       box.focus();
@@ -1254,6 +1449,379 @@ const ADMIN = REPO.split('/')[0];
       list: 'List', image: 'Image', float: 'Floating image', grid: 'Image grid', table: 'Table',
     };
 
+    /* ---------- between blocks ----------
+       Each paragraph and heading is a box of its own, so the writer cannot make a
+       format the page does not have. What crosses from one box to the next is done
+       here instead, the way a word processor does it: Backspace and Delete at an
+       edge join two blocks, a paste of several paragraphs
+       makes several, and a selection that runs past a block takes whole blocks. */
+    const TEXT_KINDS = new Set(['para', 'section', 'subsection', 'subsubsection']);
+    /** Written above a list numbered 1, 1.1, 1.2.1; src/lib/remark-talopedia.mjs reads it. */
+    const NUMBERING_NOTE = '<!-- numbering: 1.1 -->';
+    const hasContent = (n) => !!(n.textContent.trim() || n.querySelector?.('img, [data-tok]'));
+    const lockTokens = () => document.querySelectorAll('[data-tok]:not([contenteditable])')
+      .forEach((t) => { t.contentEditable = 'false'; });
+    /** Everything in the box after the caret, taken out of it. */
+    function cutTail(box) {
+      const s = getSelection();
+      if (s.rangeCount && !s.isCollapsed && box.contains(s.anchorNode)) document.execCommand('delete');
+      const r = document.createRange();
+      r.selectNodeContents(box);
+      if (s.rangeCount && box.contains(s.focusNode)) r.setStart(s.focusNode, s.focusOffset);
+      else r.collapse(false);
+      return r.extractContents();
+    }
+    /** One box's text onto the end of another's, the caret left at the join. */
+    function joinInto(into, from) {
+      if (into.lastChild?.nodeName === 'BR') into.lastChild.remove();
+      focusHost(into).focus({ preventScroll: true });
+      const at = document.createRange();
+      at.selectNodeContents(into);
+      at.collapse(false);
+      while (from.firstChild) into.append(from.firstChild);
+      putRange(at);
+    }
+    /** The block beside this one, passing over floating pictures, which sit between
+        paragraphs in the file but beside them on the page. */
+    function neighbour(b, back) {
+      let n = back ? b.previousElementSibling : b.nextElementSibling;
+      while (n?.dataset.kind === 'float') n = back ? n.previousElementSibling : n.nextElementSibling;
+      return n?.classList.contains('blk') ? n : null;
+    }
+    const boxesIn = (b) => [...b.querySelectorAll('.ce')];
+    /** What takes the focus for a box: the box, or the table or list it is part of. */
+    const focusHost = (box) => box.closest('.ed-tbl, .ed-list') || box;
+
+    /** Backspace at a block's start, or Delete at its end, as a word processor takes them. */
+    function joinKeys(e, b, box) {
+      if (e.isComposing || e.metaKey || e.ctrlKey || e.altKey) return;
+      if ((e.key !== 'Backspace' && e.key !== 'Delete') || !getSelection().isCollapsed) return;
+      const back = e.key === 'Backspace';
+      const edge = caretEdges(box);
+      if (back ? !edge.atStart : !edge.atEnd) return;
+      e.preventDefault();
+      const near = neighbour(b, back);
+      if (!near) return;
+      const empty = !hasContent(box);
+      const kind = near.dataset.kind;
+      if (TEXT_KINDS.has(kind)) {
+        const other = near.querySelector('.ce');
+        if (empty) { b.remove(); landIn(other, back); }
+        else if (!hasContent(other)) near.remove();
+        else if (back) { joinInto(other, box); b.remove(); }
+        else { joinInto(box, other); near.remove(); }
+      } else if (kind === 'list') {
+        const lis = near.querySelectorAll('li');
+        const li = back ? lis[lis.length - 1] : lis[0];
+        const other = li?.querySelector('.ce');
+        if (!other) return;
+        if (empty) { b.remove(); landIn(other, back); }
+        else if (back) { joinInto(other, box); b.remove(); }
+        else {
+          joinInto(box, other);
+          li.remove();
+          if (!near.querySelector('li')) near.remove();
+        }
+      } else {
+        // A picture or a table does not take text. An empty block beside one goes,
+        // and the caret goes into it; text stays where it is.
+        if (!empty) return;
+        b.remove();
+        const boxes = boxesIn(near);
+        if (boxes.length) landIn(back ? boxes[boxes.length - 1] : boxes[0], back);
+      }
+      sync();
+    }
+
+    /* ---------- pasting ---------- */
+    /** The markdown of blocks copied out of this editor, carried in the clipboard's
+        HTML so a paste can put back exactly the blocks that were taken. */
+    const MD_MARK = 'data-talo-md';
+    function copiedMd(html) {
+      if (!html || !html.includes(MD_MARK)) return null;
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      return doc.querySelector(`[${MD_MARK}]`)?.getAttribute(MD_MARK) ?? null;
+    }
+    /** The paste as lines of HTML, one for each paragraph it came from; null when it
+        is a single line, which the box's own paste already handles. */
+    function pastedLines(dt) {
+      const html = dt.getData('text/html'), text = dt.getData('text/plain');
+      const clean = !plainPaste && html ? keepTokens(html) : '';
+      const lines = clean.replace(/<[^>]*>/g, '').trim()
+        ? clean.split(/(?:\s*<br>\s*)+/)
+        : text.replace(/\r/g, '').split(/\n+/).map(esc);
+      const kept = lines.map((l) => l.trim()).filter((l) => l.replace(/<[^>]*>/g, '').trim() || /data-tok/.test(l));
+      return kept.length > 1 ? kept : null;
+    }
+    /** Lines into the box at the caret: the first joins the text there, each of the
+        rest starts a new block or item made by `next`, and whatever followed the caret
+        ends up after the last of them. */
+    function spreadLines(box, lines, next) {
+      const tail = cutTail(box);
+      if (box.lastChild?.nodeName === 'BR') box.lastChild.remove();
+      box.insertAdjacentHTML('beforeend', lines[0]);
+      let last = box;
+      lines.slice(1).forEach((l, i) => { last = next(l, last, i + 1); });
+      focusHost(last).focus({ preventScroll: true });
+      const at = document.createRange();
+      at.selectNodeContents(last);
+      at.collapse(false);
+      if (hasContent(tail)) last.append(tail);
+      putRange(at);
+      lockTokens();
+      unglue(box);
+      if (last !== box) unglue(last);
+      last.scrollIntoView({ block: 'nearest' });
+      sync();
+    }
+    /** A paragraph block holding this HTML. */
+    function paraOf(html) {
+      const n = block('para');
+      n.querySelector('.ce').innerHTML = html;
+      return n;
+    }
+    /** A list made of these items, each { html, level }. */
+    const listOf = (entries, ordered = false, numbering = 'alpha') => block('list', { ordered, numbering, htmlItems: entries });
+    /**
+     * A paste that holds a list, as blocks: the list with its levels, and the paragraphs
+     * around it. Google Docs and web pages give their lists as HTML; plain text counts
+     * when its lines start "- ", "* " or "1. ". Null when there is no list in it.
+     */
+    function pastedBlocks(dt) {
+      const html = plainPaste ? '' : dt.getData('text/html');
+      const out = [];
+      if (html && /<li[\s>]/i.test(html)) {
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        let buf = doc.createElement('div');
+        const flush = () => {
+          for (const l of keepTokens(buf.innerHTML).split(/(?:\s*<br>\s*)+/)) {
+            if (l.replace(/<[^>]*>/g, '').trim() || /data-tok/.test(l)) out.push({ kind: 'para', html: l.trim() });
+          }
+          buf = doc.createElement('div');
+        };
+        const listFrom = (top) => {
+          const entries = [];
+          const walk = (list, depth) => {
+            for (const n of list.children) {
+              if (n.tagName === 'UL' || n.tagName === 'OL') { walk(n, depth + 1); continue; }
+              if (n.tagName !== 'LI') continue;
+              // Docs marks the level on the item; ordinary HTML nests the lists.
+              const aria = +n.getAttribute('aria-level');
+              const copy = n.cloneNode(true);
+              copy.querySelectorAll('ul, ol').forEach((x) => x.remove());
+              const itemHtml = keepTokens(copy.innerHTML).replace(/^(\s*<br>\s*)+|(\s*<br>\s*)+$/g, '').trim();
+              entries.push({ html: itemHtml, level: aria ? aria - 1 : depth });
+              for (const sub of n.querySelectorAll(':scope > ul, :scope > ol')) walk(sub, depth + 1);
+            }
+          };
+          walk(top, 0);
+          return { kind: 'list', ordered: top.tagName === 'OL', items: entries };
+        };
+        const visit = (node) => {
+          for (const n of [...node.childNodes]) {
+            if (n.nodeType === 1 && (n.tagName === 'UL' || n.tagName === 'OL')) {
+              flush();
+              const l = listFrom(n);
+              const last = out[out.length - 1];
+              // Docs gives each run of items its own list; one list stays one.
+              if (last?.kind === 'list' && last.ordered === l.ordered) last.items.push(...l.items);
+              else out.push(l);
+            } else if (n.nodeType === 1 && n.querySelector('ul, ol')) visit(n);
+            else buf.append(n.cloneNode(true));
+          }
+        };
+        visit(doc.body);
+        flush();
+        return out.some((x) => x.kind === 'list') ? out : null;
+      }
+      if (html && !plainPaste) return null;
+      const BUL = /^(\s*)([-*•]|\d+[.)])\s+/;
+      const lines = dt.getData('text/plain').replace(/\r/g, '').split('\n').filter((l) => l.trim());
+      if (!lines.some((l) => BUL.test(l))) return null;
+      let stack = [];
+      for (const l of lines) {
+        const m = l.match(BUL);
+        if (!m) { out.push({ kind: 'para', html: esc(l.trim()) }); stack = []; continue; }
+        const ind = m[1].replace(/\t/g, '    ').length;
+        while (stack.length && stack[stack.length - 1] >= ind) stack.pop();
+        const entry = { html: esc(l.slice(m[0].length).trim()), level: stack.length };
+        stack.push(ind);
+        const ordered = /\d/.test(m[2]);
+        const last = out[out.length - 1];
+        if (last?.kind === 'list' && (entry.level > 0 || last.ordered === ordered)) last.items.push(entry);
+        else out.push({ kind: 'list', ordered, items: [entry] });
+      }
+      return out;
+    }
+    const madeOf = (blocks) => blocks.map((x) => (x.kind === 'list' ? listOf(x.items, x.ordered) : paraOf(x.html)));
+    /** What a paste into a list brings, as items: { html, level }. Null for one plain line. */
+    function pastedItems(dt) {
+      const md = copiedMd(dt.getData('text/html'));
+      if (md != null) {
+        const out = [];
+        for (const d of parseBody(md)) {
+          if (d.kind === 'list') d.items.forEach((t, i) => out.push({ html: mdToHtml(t), level: d.levels?.[i] || 0 }));
+          else if (TEXT_KINDS.has(d.kind)) out.push({ html: mdToHtml(d.text), level: 0 });
+        }
+        return out.length ? out : null;
+      }
+      const blocks = pastedBlocks(dt);
+      if (blocks) return blocks.flatMap((x) => (x.kind === 'list' ? x.items : [{ html: x.html, level: 0 }]));
+      const lines = pastedLines(dt);
+      return lines && lines.map((html) => ({ html, level: 0 }));
+    }
+    /** A list joined to a list of the same kind straight before or after it, as a word
+        processor carries a list on. Returns the list that is left. */
+    function mergeLists(n) {
+      const same = (x) => x?.dataset.kind === 'list' && x.list.ordered() === n.list.ordered()
+        && (!n.list.ordered() || x.list.numbering() === n.list.numbering());
+      const prev = n.previousElementSibling;
+      if (same(prev)) { prev.list.ul.append(...n.list.items()); n.remove(); n = prev; }
+      const next = n.nextElementSibling;
+      if (same(next)) { n.list.ul.append(...next.list.items()); next.remove(); }
+      n.list.tidy();
+      return n;
+    }
+    /** The caret into a box this many characters in. */
+    function caretInto(box, chars) {
+      focusHost(box).focus({ preventScroll: true });
+      const walk = document.createTreeWalker(box, NodeFilter.SHOW_TEXT);
+      let n, left = chars;
+      while ((n = walk.nextNode())) {
+        if (left <= n.nodeValue.length) { const r = document.createRange(); r.setStart(n, left); r.collapse(true); putRange(r); return; }
+        left -= n.nodeValue.length;
+      }
+      landIn(box, true);
+    }
+    /**
+     * ⌘⇧8, ⌘⇧7 and the Text menu. The paragraph the caret is in, or the blocks chosen,
+     * become a list; in a list of that kind, the items the selection touches come back
+     * out as paragraphs; in a list of the other kind, or numbered the other way when a
+     * style is picked, the list changes to the one asked for.
+     */
+    function toggleList(ordered, style = null) {
+      const fits = (x) => x.dataset.kind === 'list' && x.list.ordered() === ordered
+        && (!ordered || !style || x.list.numbering() === style);
+      if (pick) {
+        const list = chosen();
+        unchoose();
+        if (list.every(fits)) {
+          let last = null;
+          for (const x of list) {
+            const paras = x.list.items().map((li) => paraOf(x.list.boxOf(li).innerHTML));
+            x.replaceWith(...paras);
+            last = paras[paras.length - 1];
+          }
+          if (last) landIn(last.querySelector('.ce'), true);
+          sync();
+          return;
+        }
+        const runs = [];
+        let run = [];
+        for (const x of list) {
+          if (TEXT_KINDS.has(x.dataset.kind) || x.dataset.kind === 'list') run.push(x);
+          else { if (run.length) runs.push(run); run = []; }
+        }
+        if (run.length) runs.push(run);
+        let made = null;
+        for (const r of runs) {
+          const entries = r.flatMap((x) => (x.dataset.kind === 'list'
+            ? x.list.items().map((li) => ({ html: x.list.boxOf(li).innerHTML, level: +li.dataset.level || 0 }))
+            : [{ html: x.querySelector(':scope > .ce').innerHTML, level: 0 }]))
+            .filter((x) => x.html.replace(/<br>/g, '').trim());
+          if (!entries.length) continue;
+          made = listOf(entries, ordered, style || 'alpha');
+          r[0].before(made);
+          r.forEach((x) => x.remove());
+          made = mergeLists(made);
+        }
+        if (made) landIn(made.list.boxOf(made.list.ul.lastElementChild), true);
+        sync();
+        return;
+      }
+      const box = activeText();
+      const b = box?.closest('.blk');
+      if (!b || b.parentElement !== body) { insert('list', { ordered }); return; }
+      if (b.dataset.kind === 'list') {
+        if (!fits(b)) {
+          b.list.setOrdered(ordered);
+          if (ordered && style) b.list.setNumbering(style);
+          mergeLists(b);
+          sync();
+          return;
+        }
+        const lis = b.list.touched().length ? b.list.touched() : [b.list.here()].filter(Boolean);
+        if (lis.length) b.list.outOf(lis, true);
+        return;
+      }
+      if (!TEXT_KINDS.has(b.dataset.kind)) { insert('list', { ordered }); return; }
+      const at = getSelection().rangeCount && box.contains(getSelection().focusNode) ? caretOffset(box) : null;
+      const n = listOf([{ html: box.innerHTML, level: 0 }], ordered, style || 'alpha');
+      b.replaceWith(n);
+      const li = n.list.ul.firstElementChild;
+      const kept = mergeLists(n);
+      const into = kept.list.boxOf(li);
+      if (at == null) landIn(into, true); else caretInto(into, at);
+      sync();
+    }
+    /** "- ", "* " or "1. " typed at the start of a paragraph makes it a list. */
+    function autoList(e, b, box) {
+      if (e.key !== ' ' || e.metaKey || e.ctrlKey || e.altKey || b.dataset.kind !== 'para') return;
+      const s = getSelection();
+      if (!s.rangeCount || !s.isCollapsed) return;
+      const r = document.createRange();
+      r.selectNodeContents(box);
+      r.setEnd(s.focusNode, s.focusOffset);
+      const m = r.toString().match(/^\s*([-*•]|1[.)])$/);
+      if (!m) return;
+      e.preventDefault();
+      r.deleteContents();
+      const n = listOf([{ html: box.innerHTML, level: 0 }], /\d/.test(m[1]));
+      b.replaceWith(n);
+      const li = n.list.ul.firstElementChild;
+      const kept = mergeLists(n);
+      landIn(kept.list.boxOf(li), false);
+      sync();
+    }
+
+    /** Whole blocks in after this one, the text after the caret following them. */
+    function placeBlocks(b, box, made) {
+      const tail = cutTail(box);
+      let last = b;
+      for (const n of made) { last.after(n); last = n; }
+      if (hasContent(tail)) {
+        const t = block('para');
+        t.querySelector('.ce').append(tail);
+        last.after(t);
+        last = t;
+        landIn(t.querySelector('.ce'), false);
+      } else {
+        const boxes = boxesIn(last);
+        if (boxes.length) landIn(boxes[boxes.length - 1], true);
+      }
+      if (!hasContent(box)) b.remove();
+      lockTokens();
+      sync();
+    }
+    /** A paste into a paragraph or heading that brings more than one line. */
+    function blockPaste(e, b, box) {
+      const dt = e.clipboardData;
+      const md = copiedMd(dt.getData('text/html'));
+      const listed = md == null ? pastedBlocks(dt) : null;
+      const lines = md == null && !listed ? pastedLines(dt) : null;
+      if (md == null && !listed && !lines) return;
+      e.preventDefault();
+      e.stopPropagation();
+      plainPaste = false;
+      if (md != null) placeBlocks(b, box, parseBody(md).map((d) => block(d.kind, d)));
+      else if (listed) placeBlocks(b, box, madeOf(listed));
+      else spreadLines(box, lines, (html, prev) => {
+        const n = paraOf(html);
+        prev.closest('.blk').after(n);
+        return n.querySelector('.ce');
+      });
+    }
+
     function block(kind, data = {}) {
       const b = el('div', `blk blk-${kind}`);
       b.dataset.kind = kind;
@@ -1261,117 +1829,270 @@ const ADMIN = REPO.split('/')[0];
 
       if (kind in TEXT) {
         if (kind === 'list') {
-          // A list works as one does in Google Docs. Tab and Shift+Tab nest an item and
-          // bring it back; Shift+Enter is a new line inside the item; Enter splits the
-          // item at the caret, and on an empty item climbs out a level or, from the top,
-          // out of the list. Backspace at an item's start climbs out a level or joins the
-          // item above, and Delete at its end pulls the next one up.
-          const ul = el('ul', 'ce-list');
+          // One editing box for the whole list, as a table is one, so a selection runs
+          // across items and copies, deletes and bolds across them as in Google Docs.
+          // Inside it there is nothing but items, each a line of text at a level, and
+          // anything else the browser puts in is folded back into that shape. Tab and
+          // Shift+Tab nest the items the selection touches and bring them back;
+          // Shift+Enter is a new line inside an item; Enter splits the item at the caret,
+          // and on an empty item climbs out a level or, from the top, out of the list.
+          // Backspace at an item's start climbs out a level or joins the item above, and
+          // Delete at its end pulls the next one up. A numbered list is the same box
+          // numbered, so changing between the two never rebuilds it.
+          const ul = el('ul', 'ce-list ed-list');
+          ul.contentEditable = 'true';
+          ul.spellcheck = false;
+          if (data.ordered) ul.classList.add('ordered');
+          // A numbered list counts 1, a, i down its levels, or by outline: 1, 1.1, 1.2.1.
+          if (data.numbering === 'outline') ul.dataset.numbering = 'outline';
           const levelOf = (li) => +li.dataset.level || 0;
-          const boxOf = (li) => li.querySelector('.ce');
+          const boxOf = (li) => li.querySelector(':scope > .ce');
+          const items = () => [...ul.children];
+          const liOf = (n) => {
+            const e = n?.nodeType === 1 ? n : n?.parentElement;
+            const li = e?.closest?.('li');
+            return li && li.parentElement === ul ? li : null;
+          };
+          const ordered = () => ul.classList.contains('ordered');
+          const numbering = () => (ul.dataset.numbering === 'outline' ? 'outline' : 'alpha');
+          const letters = (c) => { let t = ''; for (; c > 0; c = Math.floor((c - 1) / 26)) t = String.fromCharCode(97 + ((c - 1) % 26)) + t; return t; };
+          const roman = (c) => [[1000, 'm'], [900, 'cm'], [500, 'd'], [400, 'cd'], [100, 'c'], [90, 'xc'], [50, 'l'],
+            [40, 'xl'], [10, 'x'], [9, 'ix'], [5, 'v'], [4, 'iv'], [1, 'i']]
+            .reduce((t, [v, r]) => { while (c >= v) { t += r; c -= v; } return t; }, '');
+          /** An item's number as the page prints it, without the full stop. */
+          const label = (counts, n) => (numbering() === 'outline' ? counts.slice(0, n + 1).join('.')
+            : n % 3 === 1 ? letters(counts[n]) : n % 3 === 2 ? roman(counts[n]) : String(counts[n]));
           /** No deeper than one below the item above, which is as far as markdown can
-              nest, and the first item always at the top. */
+              nest, and the first item always at the top. A numbered list counts each
+              level afresh, the way the page will. */
           const tidy = () => {
             let prev = -1;
+            const counts = [];
             for (const li of ul.children) {
               const n = Math.min(levelOf(li), prev + 1, 5);
               if (n > 0) li.dataset.level = n; else delete li.dataset.level;
               prev = n;
+              counts.length = n + 1;
+              counts[n] = (counts[n] || 0) + 1;
+              if (ordered()) li.dataset.n = label(counts, n); else delete li.dataset.n;
             }
-          };
-          const nest = (li, n) => { li.dataset.level = Math.max(0, n); tidy(); sync(); };
-          /** The item out of the list and into a paragraph of its own, the list split
-              around it: Enter on an empty item at the top level, or Backspace at the start
-              of the first item, whose bullet comes off. */
-          const unbullet = (li) => {
-            const rest = [...ul.children].slice([...ul.children].indexOf(li) + 1);
-            const para = block('para', { text: itemMd(boxOf(li)) });
-            b.after(para);
-            if (rest.length) {
-              para.after(block('list', { items: rest.map((x) => itemMd(boxOf(x))), levels: rest.map(levelOf) }));
-              rest.forEach((x) => x.remove());
-            }
-            li.remove();
-            if (!ul.children.length) b.remove();
-            landIn(para.querySelector('.ce'), false);
-            sync();
-          };
-          /** Two items made one: the second's text on the end of the first, caret at the join. */
-          const join = (a, c) => {
-            const into = boxOf(a), from = boxOf(c);
-            if (into.lastChild?.nodeName === 'BR') into.lastChild.remove();
-            into.focus({ preventScroll: true });
-            const at = document.createRange();
-            at.selectNodeContents(into);
-            at.collapse(false);
-            while (from.firstChild) into.append(from.firstChild);
-            c.remove();
-            putRange(at);
-            tidy();
-            sync();
           };
           const item = (html, level = 0) => {
             const li = el('li');
             if (level > 0) li.dataset.level = level;
-            const box = editable(html, 'List item', (d, e) => {
-              if (e?.shiftKey) { lineBreak(); return; }
-              if (!d.textContent.trim() && !d.querySelector('img')) {
-                if (levelOf(li) > 0) nest(li, levelOf(li) - 1); else unbullet(li);
+            const box = el('div', 'ce');
+            box.dataset.ph = 'List item';
+            box.innerHTML = html || '';
+            li.append(box);
+            return li;
+          };
+          const here = () => liOf(getSelection().focusNode);
+          /** The items the selection touches, first to last. */
+          const touched = () => {
+            const s = getSelection();
+            if (!s.rangeCount) return [];
+            const r = s.getRangeAt(0);
+            const all = items();
+            const a = liOf(r.startContainer) || (r.startContainer === ul ? all[r.startOffset] : null);
+            const z = liOf(r.endContainer) || (r.endContainer === ul ? all[r.endOffset - 1] : null);
+            return a && z ? all.slice(all.indexOf(a), all.indexOf(z) + 1) : [];
+          };
+          const nest = (li, n) => { li.dataset.level = Math.max(0, n); tidy(); sync(); };
+          /** These items out of the list as paragraphs, the list split around them. */
+          const outOf = (lis, caretAtEnd = false) => {
+            const all = items();
+            const after = all.slice(all.indexOf(lis[lis.length - 1]) + 1);
+            const paras = lis.map((li) => paraOf(boxOf(li).innerHTML));
+            let at = b;
+            for (const p of paras) { at.after(p); at = p; }
+            if (after.length) {
+              at.after(block('list', { ordered: ordered(), numbering: numbering(),
+                htmlItems: after.map((li) => ({ html: boxOf(li).innerHTML, level: levelOf(li) })) }));
+            }
+            [...lis, ...after].forEach((li) => li.remove());
+            if (!ul.children.length) b.remove(); else tidy();
+            landIn(paras[paras.length - 1].querySelector('.ce'), caretAtEnd);
+            sync();
+          };
+          /** Two items made one: the second's text on the end of the first, caret at the join. */
+          const join = (a, c) => { joinInto(boxOf(a), boxOf(c)); c.remove(); tidy(); sync(); };
+          /** A selection that runs across items taken out: the first item keeps what came
+              before it, the rest of the last joins it, and the items between go. */
+          const cutAcross = () => {
+            const s = getSelection();
+            if (!s.rangeCount || s.isCollapsed) return false;
+            const lis = touched();
+            if (lis.length < 2) return false;
+            const r = s.getRangeAt(0);
+            const a = lis[0], z = lis[lis.length - 1];
+            const inBox = (li, node, off, end) => (boxOf(li).contains(node) ? [node, off]
+              : [boxOf(li), end ? boxOf(li).childNodes.length : 0]);
+            const [sn, so] = inBox(a, r.startContainer, r.startOffset, false);
+            const [en, eo] = inBox(z, r.endContainer, r.endOffset, true);
+            const tail = document.createRange();
+            tail.selectNodeContents(boxOf(z));
+            tail.setStart(en, eo);
+            const rest = tail.extractContents();
+            const head = document.createRange();
+            head.selectNodeContents(boxOf(a));
+            head.setStart(sn, so);
+            head.deleteContents();
+            lis.slice(1).forEach((li) => li.remove());
+            const at = document.createRange();
+            at.selectNodeContents(boxOf(a));
+            at.collapse(false);
+            if (hasContent(rest)) boxOf(a).append(rest);
+            putRange(at);
+            tidy();
+            return true;
+          };
+          /** Nothing but items, each with one box, whatever the browser did. */
+          const shape = () => {
+            let changed = false;
+            for (const n of [...ul.childNodes]) {
+              if (n.nodeType === 1 && n.tagName === 'LI') {
+                let box = boxOf(n);
+                if (!box) {
+                  box = el('div', 'ce');
+                  box.dataset.ph = 'List item';
+                  while (n.firstChild) box.append(n.firstChild);
+                  n.append(box);
+                  changed = true;
+                }
+                for (const k of [...n.childNodes]) if (k !== box) { box.append(k); changed = true; }
+                continue;
+              }
+              if (n.nodeType === 3 && !n.nodeValue.trim()) { n.remove(); continue; }
+              const prev = n.previousSibling?.tagName === 'LI' ? n.previousSibling : null;
+              const li = prev || item('');
+              if (!prev) ul.insertBefore(li, n);
+              boxOf(li).append(n);
+              changed = true;
+            }
+            if (!ul.children.length) { ul.append(item('')); changed = true; }
+            if (changed) tidy();
+          };
+
+          ul.addEventListener('keydown', (e) => {
+            if (e.isComposing) return;
+            const li = here();
+            if (!li) return;
+            const box = boxOf(li);
+            if (e.key === 'Tab' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+              e.preventDefault();
+              const lis = touched().length ? touched() : [li];
+              for (const x of lis) x.dataset.level = Math.max(0, levelOf(x) + (e.shiftKey ? -1 : 1));
+              tidy();
+              sync();
+              return;
+            }
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              const s = getSelection();
+              if (!cutAcross() && !s.isCollapsed) document.execCommand('delete');
+              if (e.shiftKey) { lineBreak(); return; }
+              const cur = here(), cbox = boxOf(cur);
+              if (!hasContent(cbox)) {
+                if (levelOf(cur) > 0) nest(cur, levelOf(cur) - 1); else outOf([cur]);
                 return;
               }
               // What follows the caret goes down into a new item, as Enter splits a line.
-              const s = getSelection();
-              if (!s.isCollapsed) document.execCommand('delete');
               const tail = document.createRange();
-              tail.selectNodeContents(d);
+              tail.selectNodeContents(cbox);
               tail.setStart(s.focusNode, s.focusOffset);
-              const next = item('', levelOf(li));
-              boxOf(next).append(tail.extractContents());
-              li.after(next);
+              const next = item('', levelOf(cur));
+              const rest = tail.extractContents();
+              if (hasContent(rest)) boxOf(next).append(rest);
+              cur.after(next);
+              tidy();
               landIn(boxOf(next), false);
               sync();
-            });
-            box.addEventListener('keydown', (e) => {
-              if (e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
-              if (e.key === 'Tab') { e.preventDefault(); nest(li, levelOf(li) + (e.shiftKey ? -1 : 1)); return; }
-              if (!getSelection().isCollapsed) return;
-              if (e.key === 'Backspace' && caretEdges(box).atStart) {
-                e.preventDefault();
-                if (levelOf(li) > 0) nest(li, levelOf(li) - 1);
-                else if (li.previousElementSibling) join(li.previousElementSibling, li);
-                else unbullet(li);
-              } else if (e.key === 'Delete' && li.nextElementSibling && caretEdges(box).atEnd) {
-                e.preventDefault();
-                join(li, li.nextElementSibling);
-              }
-            });
-            li.append(box);
-            // Its own remove button. The only one before this was the block's, out in
-            // the gutter, so reaching for it took the whole list rather than the line.
-            const x = el('button', 'li-x', '✕');
-            x.type = 'button';
-            x.title = 'Remove this item';
-            x.onmousedown = (e) => e.preventDefault();
-            x.onclick = () => {
-              if (ul.children.length <= 1) b.remove(); else { li.remove(); tidy(); }
+              return;
+            }
+            if (!getSelection().isCollapsed) {
+              if ((e.key === 'Backspace' || e.key === 'Delete') && cutAcross()) { e.preventDefault(); sync(); }
+              return;
+            }
+            if (e.key === 'Backspace' && caretEdges(box).atStart) {
+              e.preventDefault();
+              if (levelOf(li) > 0) nest(li, levelOf(li) - 1);
+              else if (li.previousElementSibling) join(li.previousElementSibling, li);
+              else outOf([li]);
+            } else if (e.key === 'Delete' && caretEdges(box).atEnd) {
+              e.preventDefault();
+              if (li.nextElementSibling) { join(li, li.nextElementSibling); return; }
+              // The last item pulls the paragraph after the list up into itself.
+              const near = neighbour(b, false);
+              if (!near || !TEXT_KINDS.has(near.dataset.kind)) return;
+              const other = near.querySelector('.ce');
+              if (hasContent(other)) joinInto(box, other);
+              near.remove();
               sync();
-            };
-            li.append(x);
-            return li;
-          };
-          (data.items?.length ? data.items : ['']).forEach((i, n) => ul.append(item(mdToHtml(i), data.levels?.[n] || 0)));
+            }
+          });
+          // Typing or deleting over a selection that runs across items, however it came.
+          ul.addEventListener('beforeinput', (e) => {
+            if (!/^(insertText|insertReplacementText|delete)/.test(e.inputType)) return;
+            if (!cutAcross()) return;
+            e.preventDefault();
+            if (e.data && e.inputType.startsWith('insert')) document.execCommand('insertText', false, e.data);
+            sync();
+          });
+          ul.addEventListener('input', () => { shape(); sync(); });
+          // A paste of several lines or of a list makes items, at their own levels
+          // under the item it went into.
+          ul.addEventListener('paste', (e) => {
+            const dt = e.clipboardData;
+            e.preventDefault();
+            if (!cutAcross() && !getSelection().isCollapsed) document.execCommand('delete');
+            const entries = pastedItems(dt);
+            if (!entries) {
+              const html = dt.getData('text/html'), text = dt.getData('text/plain');
+              const clean = plainPaste || !html ? '' : keepTokens(html);
+              plainPaste = false;
+              if (clean.replace(/<[^>]*>/g, '').trim()) { insertHtml(clean); unglue(boxOf(here())); }
+              else document.execCommand('insertText', false, text);
+              return;
+            }
+            plainPaste = false;
+            const li = here() || ul.lastElementChild, base = levelOf(li);
+            spreadLines(boxOf(li), entries.map((x) => x.html), (html, prev, i) => {
+              const n = item(html, base + entries[i].level);
+              liOf(prev).after(n);
+              return boxOf(n);
+            });
+            tidy();
+          });
+
+          const seed = data.htmlItems?.length ? data.htmlItems
+            : (data.items?.length ? data.items : ['']).map((t, n) => ({ html: mdToHtml(t), level: data.levels?.[n] || 0 }));
+          seed.forEach((x) => ul.append(item(x.html, x.level)));
           tidy();
+          // What the commands outside the list work it with.
+          b.list = { ul, items, tidy, ordered, numbering, here, touched, outOf, boxOf,
+            setOrdered: (o) => { ul.classList.toggle('ordered', o); tidy(); },
+            setNumbering: (n) => { if (n === 'outline') ul.dataset.numbering = 'outline'; else delete ul.dataset.numbering; tidy(); } };
           b.append(ul);
         } else {
           const ph = kind === 'section' ? 'Section heading'
             : kind === 'subsection' ? 'Subsection heading'
             : kind === 'subsubsection' ? 'Sub-subsection heading' : 'Write here';
-          b.append(editable(mdToHtml(data.text || ''), ph, () => {
+          // Enter never splits a block: it starts a new paragraph under it.
+          const box = editable(mdToHtml(data.text || ''), ph, () => {
             const n = block('para');
             b.after(n);
             n.querySelector('.ce').focus();
             sync();
-          }));
+          });
+          box.addEventListener('keydown', (e) => {
+            if (b.parentElement !== body) return;
+            joinKeys(e, b, box);
+            autoList(e, b, box);
+          });
+          // Ahead of the box's own paste, which keeps to one line.
+          b.addEventListener('paste', (e) => { if (b.parentElement === body) blockPaste(e, b, box); }, true);
+          b.append(box);
         }
       } else if (kind === 'image') {
         b.append(figure(data));
@@ -1445,7 +2166,7 @@ const ADMIN = REPO.split('/')[0];
         }
       }
 
-      const ctl = controls(b);
+      const ctl = controls(b, [], { drag: true });
       if (kind === 'float') b.querySelector('figure').append(ctl);
       else b.append(ctl);
       return b;
@@ -1503,6 +2224,7 @@ const ADMIN = REPO.split('/')[0];
       img.onload = () => {
         if (img.naturalHeight && f.closest('.imgrid')) {
           f.style.flex = (img.naturalWidth / img.naturalHeight).toFixed(3);
+          rebaseIfUntouched();
         }
       };
       src.oninput = (e) => { paint(); sync(e); };
@@ -1668,7 +2390,7 @@ const ADMIN = REPO.split('/')[0];
         const td = cells.find((c) => { const b = c.getBoundingClientRect(); return x >= b.left && x < b.right; }) || cells[0];
         if (td) target = td.querySelector('.ce');
       }
-      (table || target).focus({ preventScroll: true });
+      (table || target.closest('.ed-list') || target).focus({ preventScroll: true });
       target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
       if (x != null) {
         const b = target.getBoundingClientRect();
@@ -1684,7 +2406,7 @@ const ADMIN = REPO.split('/')[0];
     body.addEventListener('keydown', (e) => {
       const step = { ArrowUp: -1, ArrowDown: 1, ArrowLeft: -1, ArrowRight: 1 }[e.key];
       if (!step || e.defaultPrevented || e.shiftKey || e.altKey || e.ctrlKey || e.metaKey || e.isComposing) return;
-      const box = e.target.closest?.('.ce');
+      const box = e.target.closest?.('.ce') || (e.target.classList?.contains('ed-list') ? ceOf(getSelection().focusNode) : null);
       if (!box || box.closest('.ed-tbl') || !getSelection().rangeCount) return;
       const vertical = e.key === 'ArrowUp' || e.key === 'ArrowDown';
       const x = vertical ? caretLeft(box) : null;
@@ -1701,6 +2423,210 @@ const ADMIN = REPO.split('/')[0];
       const next = stops[stops.indexOf(box) + step];
       if (next) landIn(next, step < 0, x);
     });
+
+    /* ---------- whole blocks selected ----------
+       A selection cannot run from one box into the next, so one that tries to takes
+       whole blocks instead: dragging out of a block into another, Shift with an arrow
+       at a block's edge, Shift-clicking another block, or ⌘A a second time. Chosen
+       blocks copy, cut and paste as themselves, and Delete or typing replaces them. */
+    let pick = null;                         // { a, b }: where it began, where it reaches
+    const bodyBlocks = () => [...body.children].filter((b) => b.classList.contains('blk'));
+    function chosen() {
+      if (!pick) return [];
+      const all = bodyBlocks();
+      let i = all.indexOf(pick.a), j = all.indexOf(pick.b);
+      if (i < 0 || j < 0) return [];
+      if (i > j) [i, j] = [j, i];
+      return all.slice(i, j + 1);
+    }
+    function paintChoice() {
+      const on = new Set(chosen());
+      for (const b of bodyBlocks()) b.classList.toggle('chosen', on.has(b));
+    }
+    function choose(a, b) {
+      pick = { a, b };
+      getSelection().removeAllRanges();
+      body.tabIndex = -1;
+      body.focus({ preventScroll: true });
+      paintChoice();
+    }
+    function unchoose() {
+      pick = null;
+      body.querySelectorAll('.blk.chosen').forEach((b) => b.classList.remove('chosen'));
+    }
+    /** The caret into a block, at its start or its end. */
+    function enterBlock(b, end) {
+      const boxes = b ? boxesIn(b) : [];
+      if (boxes.length) landIn(end ? boxes[boxes.length - 1] : boxes[0], end);
+    }
+    /** The chosen blocks out, and these in their place. */
+    function replaceChosen(made = []) {
+      const list = chosen();
+      if (!list.length) return;
+      const after = list[list.length - 1].nextElementSibling, before = list[0].previousElementSibling;
+      // A page is never left with nothing in it to type into.
+      if (!made.length && bodyBlocks().length === list.length) made = [block('para')];
+      for (const n of made) list[0].before(n);
+      list.forEach((b) => b.remove());
+      unchoose();
+      if (made.length) enterBlock(made[made.length - 1], true);
+      else if (after?.classList.contains('blk')) enterBlock(after, false);
+      else enterBlock(before, true);
+      lockTokens();
+      sync();
+    }
+    /** The chosen blocks for the clipboard: their markdown, for pasting back here, inside
+        HTML and plain text that read as the same thing anywhere else. */
+    function clipChosen(dt) {
+      const list = chosen();
+      const md = bodyMarkdown(list);
+      const html = list.map((b) => {
+        const k = b.dataset.kind, box = b.querySelector(':scope > .ce');
+        if (k === 'para') return `<p>${box.innerHTML}</p>`;
+        if (k === 'section') return `<h2>${box.innerHTML}</h2>`;
+        if (k === 'subsection') return `<h3>${box.innerHTML}</h3>`;
+        if (k === 'subsubsection') return `<h4>${box.innerHTML}</h4>`;
+        if (k === 'list') {
+          const tag = b.list.ordered() ? 'ol' : 'ul';
+          return `<${tag}>${b.list.items().map((li) => `<li aria-level="${(+li.dataset.level || 0) + 1}">${b.list.boxOf(li).innerHTML}</li>`).join('')}</${tag}>`;
+        }
+        return '';
+      }).join('');
+      const text = list.map((b) => b.dataset.kind === 'list'
+        ? b.list.items().map((li, i) => '  '.repeat(+li.dataset.level || 0)
+          + (b.list.ordered() ? (li.dataset.n || i + 1) + '. ' : '- ') + b.list.boxOf(li).innerText.trim()).join('\n')
+        : boxesIn(b).map((c) => c.innerText.trim()).filter(Boolean).join('\n')).filter(Boolean).join('\n\n');
+      dt.setData('text/plain', text);
+      dt.setData('text/html', `<div ${MD_MARK}="${esc(md).replace(/"/g, '&quot;')}"></div>${html}`);
+    }
+
+    document.addEventListener('copy', (e) => { if (!pick) return; e.preventDefault(); clipChosen(e.clipboardData); });
+    document.addEventListener('cut', (e) => {
+      if (!pick) return;
+      e.preventDefault();
+      clipChosen(e.clipboardData);
+      replaceChosen();
+    });
+    document.addEventListener('paste', (e) => {
+      if (!pick) return;
+      e.preventDefault();
+      const dt = e.clipboardData;
+      const md = copiedMd(dt.getData('text/html'));
+      if (md != null) { replaceChosen(parseBody(md).map((d) => block(d.kind, d))); return; }
+      const listed = pastedBlocks(dt);
+      if (listed) { plainPaste = false; replaceChosen(madeOf(listed)); return; }
+      const lines = pastedLines(dt) || [esc(dt.getData('text/plain').trim())].filter(Boolean);
+      plainPaste = false;
+      replaceChosen(lines.map(paraOf));
+    });
+
+    body.addEventListener('keydown', (e) => {
+      if (!pick || e.target !== body) return;
+      const mod = e.metaKey || e.ctrlKey;
+      const all = bodyBlocks();
+      if (mod && e.key.toLowerCase() === 'a') { e.preventDefault(); pick = { a: all[0], b: all[all.length - 1] }; paintChoice(); return; }
+      if (mod || e.altKey) return;                  // copy, cut, paste and undo go their own way
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const up = e.key === 'ArrowUp';
+        if (e.shiftKey) {
+          const to = all[all.indexOf(pick.b) + (up ? -1 : 1)];
+          if (to) { pick.b = to; paintChoice(); to.scrollIntoView({ block: 'nearest' }); }
+          return;
+        }
+        const list = chosen();
+        unchoose();
+        enterBlock(up ? list[0] : list[list.length - 1], !up);
+        return;
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Escape') {
+        e.preventDefault();
+        const list = chosen();
+        unchoose();
+        const end = e.key !== 'ArrowLeft';
+        enterBlock(end ? list[list.length - 1] : list[0], end);
+        return;
+      }
+      if (e.key === 'Backspace' || e.key === 'Delete') { e.preventDefault(); replaceChosen(); return; }
+      if (e.key === 'Enter' || e.key.length === 1) {
+        // Typing over chosen blocks puts a paragraph in their place, starting with the key.
+        e.preventDefault();
+        const n = block('para');
+        replaceChosen([n]);
+        if (e.key.length === 1) document.execCommand('insertText', false, e.key);
+      }
+    });
+
+    // Shift with an arrow at the edge of a block carries on into whole blocks.
+    body.addEventListener('keydown', (e) => {
+      if (pick || !e.shiftKey || e.altKey || e.metaKey || e.ctrlKey || e.isComposing) return;
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+      const box = e.target.closest?.('.ce') || (e.target.classList?.contains('ed-list') ? e.target : null);
+      if (!box || box.closest('.ed-tbl')) return;
+      const b = box.closest('.blk');
+      if (b?.parentElement !== body) return;
+      const up = e.key === 'ArrowUp';
+      const s = getSelection();
+      const was = [s.anchorNode, s.anchorOffset, s.focusNode, s.focusOffset];
+      s.modify('extend', up ? 'backward' : 'forward', 'line');
+      e.preventDefault();
+      // Inside a list the selection runs on from item to item; it takes whole blocks
+      // only once it would leave the list.
+      if (focusHost(box).contains(s.focusNode) && !(s.focusNode === was[2] && s.focusOffset === was[3])) return;
+      s.setBaseAndExtent(...was);
+      const all = bodyBlocks();
+      choose(b, all[all.indexOf(b) + (up ? -1 : 1)] || b);
+    });
+
+    // ⌘A selects the box first, as it always has; a second ⌘A takes every block.
+    body.addEventListener('keydown', (e) => {
+      if (pick || !(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== 'a' || e.shiftKey) return;
+      const box = e.target.closest?.('.ce') || (e.target.classList?.contains('ed-list') ? e.target : null);
+      if (!box || box.closest('.ed-tbl') || box.closest('.blk')?.parentElement !== body) return;
+      const s = getSelection();
+      const norm = (t) => t.replace(/\s+/g, ' ').trim();
+      const whole = !box.textContent.trim() || norm(s.toString()) === norm(box.innerText);
+      if (!whole) return;
+      e.preventDefault();
+      const all = bodyBlocks();
+      choose(all[0], all[all.length - 1]);
+    });
+
+    // The caret going back into any box, however it got there, lets the blocks go.
+    document.addEventListener('focusin', (e) => { if (pick && e.target !== body && !e.target.closest?.('.ed-tools')) unchoose(); });
+
+    // The mouse: a drag that leaves the block it began in, or a Shift-click on another.
+    let dragFrom = null;
+    document.addEventListener('pointerdown', (e) => {
+      // In the space between two blocks, the one nearest below the pointer.
+      const b = e.target === body
+        ? bodyBlocks().find((x) => x.getBoundingClientRect().bottom >= e.clientY) || bodyBlocks().pop()
+        : e.target.closest?.('.blk');
+      const inBody = b?.parentElement === body;
+      // The toolbar acts on the blocks chosen, so reaching for it keeps them.
+      if (e.target.closest?.('.ed-tools')) { dragFrom = null; return; }
+      if (pick) {
+        if (e.shiftKey && inBody) { e.preventDefault(); pick.b = b; paintChoice(); return; }
+        unchoose();
+      } else if (e.shiftKey && inBody) {
+        const here = activeText()?.closest?.('.blk');
+        if (here?.parentElement === body && here !== b) { e.preventDefault(); choose(here, b); return; }
+      }
+      dragFrom = e.button === 0 && inBody && !e.target.closest('.ctl, button, input, .float-grip, .float-bar') ? b : null;
+      // Begun outside any text (between blocks, or in the gutter), no text drag starts,
+      // so even a drag that stays in one block takes it whole.
+      fromOutside = !e.target.closest?.('[contenteditable="true"]');
+    }, true);
+    let fromOutside = false;
+    addEventListener('pointermove', (e) => {
+      if (!dragFrom || !(e.buttons & 1)) return;
+      const over = document.elementFromPoint(e.clientX, e.clientY)?.closest?.('.blk');
+      if (over?.parentElement !== body) return;
+      if (!pick) { if (over !== dragFrom || fromOutside) choose(dragFrom, over); return; }
+      if (over !== pick.b) { pick.b = over; paintChoice(); }
+      getSelection().removeAllRanges();
+    });
+    addEventListener('pointerup', () => { dragFrom = null; });
     /** A list item's text as saved: a line break inside it kept as <br>, and the one a
         browser leaves at the end to hold an empty line open dropped. */
     const itemMd = (box) => htmlToMd(box, '<br>').replace(/(\s*<br>\s*)+$/, '').trim();
@@ -2218,8 +3144,8 @@ const ADMIN = REPO.split('/')[0];
     })();
 
 
-    function readBody() {
-      return [...body.children].map((b) => {
+    function readBody(blocks = [...body.children]) {
+      return blocks.map((b) => {
         const kind = b.dataset.kind;
         const ratioOf = (f) => ([...f.classList].find((c) => /^r-/.test(c)) || '').replace(/^r-/, '');
         if (kind === 'image') {
@@ -2264,6 +3190,8 @@ const ADMIN = REPO.split('/')[0];
           const lis = [...b.querySelectorAll('li')];
           return {
             kind,
+            ...(b.querySelector('.ce-list')?.classList.contains('ordered') && { ordered: true }),
+            ...(b.querySelector('.ce-list')?.dataset.numbering === 'outline' && { numbering: 'outline' }),
             // Every item, empty ones included: this is what undo restores, and dropping
             // them here made the history disagree with what is on screen.
             items: lis.map((li) => itemMd(li.querySelector('.ce'))),
@@ -2327,6 +3255,11 @@ const ADMIN = REPO.split('/')[0];
       else if (!v('#f-nation')) fm.push('navbox: site');
       if (v('#f-coords')) fm.push(`coords: ${q(v('#f-coords'))}`);
       if ($('#f-ooc').checked) fm.push('ooc: true');
+      // A page moved from an address the site has keeps that address, forwarding here.
+      const now = slugify(slugValue() || pageSlug);
+      const was = [...movedFrom, ...(onSiteKey('article', pageSlug) && now !== pageSlug ? [pageSlug] : [])]
+        .filter((m, i, a) => m !== now && a.indexOf(m) === i);
+      if (was.length) fm.push(`movedFrom: [${was.join(', ')}]`);
 
       // The type skeleton stays on screen to be filled in; only filled rows are written.
       const some = (v) => (Array.isArray(v) ? v.length : v !== '');
@@ -2473,22 +3406,32 @@ const ADMIN = REPO.split('/')[0];
 
     /** The blocks of the article body alone, as markdown. A portal page has the
         same body and none of the frontmatter, so both callers share this. */
-    function bodyMarkdown() {
+    function bodyMarkdown(blocks) {
       const fig = (i) => {
         const alt = (i.caption || '').replace(/"/g, '&quot;');
         const style = i.flex ? ` style="flex:${parseFloat(i.flex).toFixed(3)}"` : '';
         const cls = i.ratio ? ` class="r-${i.ratio}"` : '';
         return `<figure${cls}${style}><img src="${i.src}" alt="${alt}"><figcaption>${i.caption}</figcaption></figure>`;
       };
-      return readBody().map((b) => {
+      return readBody(blocks).map((b) => {
         if (b.kind === 'section') return '## ' + b.text;
         if (b.kind === 'subsection') return '### ' + b.text;
         if (b.kind === 'subsubsection') return '#### ' + b.text;
         if (b.kind === 'para') return b.text;
         if (b.kind === 'list') {
-          // Two spaces deeper for each level, which markdown reads as the list below.
-          return b.items.map((t, i) => [t, b.levels?.[i] || 0]).filter(([t]) => t)
-            .map(([t, lv]) => '  '.repeat(lv) + '- ' + t).join('\n');
+          // Two spaces deeper for each level, which markdown reads as the list below. A
+          // numbered item is four deeper, past "10. ", and each level counts afresh.
+          const counts = [];
+          // Numbering by outline is said in a note above the list, which markdown has no
+          // way to say itself; the site's remark plugin reads it. 1, a, i needs none.
+          const note = b.ordered && b.numbering === 'outline' ? NUMBERING_NOTE + '\n' : '';
+          return note + b.items.map((t, i) => [t, b.levels?.[i] || 0]).filter(([t]) => t)
+            .map(([t, lv]) => {
+              if (!b.ordered) return '  '.repeat(lv) + '- ' + t;
+              counts.length = lv + 1;
+              counts[lv] = (counts[lv] || 0) + 1;
+              return '    '.repeat(lv) + counts[lv] + '. ' + t;
+            }).join('\n');
         }
         if (b.kind === 'image') return b.src ? fig(b) : '';
         if (b.kind === 'float') {
@@ -2540,8 +3483,10 @@ const ADMIN = REPO.split('/')[0];
     function parseBody(md) {
       const blocks = [];
       for (const chunk of md.trim().split(/\n{2,}/)) {
-        const t = chunk.trim();
+        let t = chunk.trim();
         if (!t) continue;
+        let numbering = null;
+        if (t.startsWith(NUMBERING_NOTE + '\n')) { numbering = 'outline'; t = t.slice(NUMBERING_NOTE.length + 1).trim(); }
         if (t.startsWith('#### ')) blocks.push({ kind: 'subsubsection', text: t.slice(5) });
         else if (t.startsWith('### ')) blocks.push({ kind: 'subsection', text: t.slice(4) });
         else if (t.startsWith('## ')) blocks.push({ kind: 'section', text: t.slice(3) });
@@ -2589,17 +3534,18 @@ const ADMIN = REPO.split('/')[0];
             rows: t.split('\n').filter((l) => !/^\|[\s|:-]+\|$/.test(l)).map((l) =>
               l.replace(/^\||\|$/g, '').split(/(?<!\\)\|/).map((s) => s.trim().replace(/\\\|/g, '|'))),
           });
-        } else if (t.split('\n').every((l) => /^ *- /.test(l))) {
-          // An item two or four spaces deeper than the one above is one level below it.
+        } else if (t.split('\n').every((l) => /^ *(- |\d+\. )/.test(l))) {
+          // An item indented past the one above is one level below it.
           const stack = [], items = [], levels = [];
           for (const l of t.split('\n')) {
             const ind = l.length - l.trimStart().length;
             while (stack.length && stack[stack.length - 1] >= ind) stack.pop();
             levels.push(stack.length);
             stack.push(ind);
-            items.push(l.trimStart().slice(2));
+            items.push(l.trimStart().replace(/^(- |\d+\. )/, ''));
           }
-          blocks.push({ kind: 'list', items, levels });
+          blocks.push({ kind: 'list', ...(/^ *\d+\. /.test(t) && { ordered: true }),
+            ...(numbering && { numbering }), items, levels });
         } else blocks.push({ kind: 'para', text: t.replace(/\n/g, ' ') });
       }
       return blocks;
@@ -2659,6 +3605,7 @@ const ADMIN = REPO.split('/')[0];
       sidebar: $('#f-sidebar-on').checked,
       slug: slugValue(),
       from: loadedFrom,
+      movedFrom,
       // What is being edited, and the two things it holds that are never on screen.
       // Without these an undo, or the reload after a save, turns a portal into an article.
       kind: pageKind,
@@ -2675,6 +3622,7 @@ const ADMIN = REPO.split('/')[0];
       $('#f-sidebar-on').checked = d.sidebar !== false;
       if (d.slug) { setSlug(d.slug); slugTouched = true; }
       if (d.from !== undefined) loadedFrom = d.from;
+      movedFrom = d.movedFrom || [];
       pageKind = d.kind || 'article';
       portalBody = d.portalBody || '';
       navboxLead = d.navboxLead || '';
@@ -2683,6 +3631,21 @@ const ADMIN = REPO.split('/')[0];
       (d.blocks || []).forEach((b) => body.append(block(b.kind, b)));
       if (!body.children.length && pageKind !== 'portal') body.append(block('para'));
       paintSettings();
+    }
+
+    /**
+     * A row of pictures measures itself once they load and writes the widths into the
+     * page. On a page nobody has touched, that is the page as opened, not an edit: left
+     * as one, merely opening a page put it in Publish with words it never lost. A page
+     * reopened from a draft is not the page as opened, and is left alone.
+     */
+    function rebaseIfUntouched() {
+      if (!settling || past.length > 1 || !draftKey || kept?.key !== draftKey || kept.markdown !== opened) return;
+      const md = toMarkdown();
+      if (md === opened) return;
+      opened = md;
+      loadedBody = md;
+      kept = { key: draftKey, markdown: md };
     }
 
     let draftTimer;
@@ -2708,7 +3671,7 @@ const ADMIN = REPO.split('/')[0];
           snap: snapshot(), markdown, opened, file: pageSlug, loadedTitle, loadedBody,
           images: [...staged.entries()].filter(([p]) => markdown.includes(p)).map(([p, s]) => ({ path: p, file: s.file })),
         });
-      } catch { kept = null; }
+      } catch { kept = null; } finally { paintPending(); }
     }
     // A tab closing, or put away by a phone, writes what the last keystrokes left waiting.
     addEventListener('pagehide', keep);
@@ -2741,45 +3704,21 @@ const ADMIN = REPO.split('/')[0];
       paintAssets();
       resetHistory();
       sync();
+      paintPending();
       flash(`Unsent edits put back, saved ${ago(d.at)}.`);
     }
 
-    /** The File menu's pages with unsent edits, newest first. */
-    async function paintDrafts() {
-      const all = (await drafts.all().catch(() => [])).sort((a, b) => b.at - a.at);
-      const list = $('#draft-list');
-      list.innerHTML = '';
-      $('#draft-box').hidden = !all.length;
-      for (const d of all) {
-        const row = el('div', 'draft-row');
-        const open = el('button', null, d.title || d.slug || 'Untitled');
-        open.type = 'button';
-        open.append(el('small', null, ago(d.at)));
-        open.onclick = async () => {
-          $('#file-menu').hidden = true;
-          await keep();
-          // Read again: the list was drawn before the page on screen last wrote to it.
-          const now = (await drafts.all().catch(() => [])).find((x) => x.key === d.key);
-          if (now) reopen(now);
-        };
-        const x = el('button', 'draft-x', '✕');
-        x.type = 'button';
-        x.title = 'Throw these edits away';
-        x.onclick = async (e) => {
-          e.stopPropagation();
-          if (!confirm(`Throw away your unsent edits to ${d.title || 'this page'}?`)) return;
-          const here = d.key === draftKey;
-          if (here) { clearTimeout(draftTimer); draftKey = ''; }
-          await drafts.drop(d.key);
-          // The page on screen was that draft: it goes back to the page as the site has it.
-          if (here) {
-            if (d.file) load(d.kind === 'article' ? d.file : `${d.kind}:${d.file}`); else blank('article');
-          }
-          paintDrafts();
-        };
-        row.append(open, x);
-        list.append(row);
+    /** Throw a page's unsent edits away; on screen, it goes back to the site's copy. */
+    async function resetDraft(d) {
+      const here = d.key === draftKey;
+      if (here) { clearTimeout(draftTimer); draftKey = ''; }
+      await drafts.drop(d.key);
+      notes.drop(d.key);
+      if (here) {
+        if (d.file && onSiteKey(d.kind, d.file)) await load(d.kind === 'article' ? d.file : `${d.kind}:${d.file}`);
+        else blank('article');
       }
+      paintPending();
     }
 
     const tocToggle = $('#ed-toc-toggle');
@@ -2835,7 +3774,7 @@ const ADMIN = REPO.split('/')[0];
       const art = pageKind === 'article', portal = pageKind === 'portal', nav = pageKind === 'navbox';
       for (const [id, on] of [
         ['#banner-field', portal], ['#welcome-field', portal], ['#crumb-field', nav],
-        ['#type-field', art], ['#authors-field', art], ['#icon-field', art],
+        ['#type-field', art], ['#authors-field', art],
         ['#nation-field', !nav],
       ]) $(id).hidden = !on;
       // The byline says who may edit the page once it exists, so it stops being
@@ -2851,7 +3790,6 @@ const ADMIN = REPO.split('/')[0];
       // Not every article wants a sidebar. The rows stay in the editor while it is
       // off, so turning it back on before saving brings them back untouched.
       const sidebar = $('#f-sidebar-on').checked;
-      $('#sidebar-note').textContent = sidebar ? '' : 'none';
       document.querySelector('.ib-edit').hidden = !art || !sidebar;
       // Only the types that sit somewhere on the map.
       const PLACED = ['overview', 'city', 'subdivision', 'continent', 'geography'];
@@ -2877,9 +3815,8 @@ const ADMIN = REPO.split('/')[0];
       $('#back').dataset.to = to;
       $('#back').disabled = !to;
 
-      $('#navbox-note').textContent = !$('#f-navbox-on').checked ? 'none'
-        : $('#f-nation').value ? `${$('#f-nation').selectedOptions[0].textContent}'s navbox`
-        : 'site navbox';
+      paintAddress();
+      paintAuthors();
     }
     /* ---------- undo / redo ----------
        Modelled on Google Docs. A snapshot stack rather than execCommand('undo'),
@@ -3120,6 +4057,7 @@ const ADMIN = REPO.split('/')[0];
       $('#f-sidebar-on').checked = !!(data.infobox || []).length;
       $('#f-coords').value = data.coords || '';
       $('#f-ooc').checked = !!data.ooc;
+      movedFrom = data.movedFrom || [];
       pageSlug = bare;
       loadedTitle = (data.title || '').trim();
       setSlug(bare); slugTouched = true;
@@ -3139,6 +4077,7 @@ const ADMIN = REPO.split('/')[0];
       draftKey = `${pageKind}:${bare}`;
       opened = loadedBody;
       kept = { key: draftKey, markdown: opened };
+      paintPending();
       flash(`Opened ${data.title}.`);
     }
 
@@ -3184,7 +4123,7 @@ const ADMIN = REPO.split('/')[0];
     }
     $('#file-q').oninput = paintFileList;
     $('#file').addEventListener('click', () => {
-      if (!$('#file-menu').hidden) { paintFileList(); paintDrafts(); $('#file-q').focus(); }
+      if (!$('#file-menu').hidden) { paintFileList(); $('#file-q').focus(); }
     });
     dropdown($('#more'), $('#more-menu'));
     dropdown($('#style'), $('#style-menu'));
@@ -3193,7 +4132,6 @@ const ADMIN = REPO.split('/')[0];
       document.querySelectorAll('.drop-menu').forEach((m) => m.hidden = true);
       pickTarget = null;      // the panel is shut; it is not aimed at anything now
     });
-    $('#settings-btn').onclick = () => { $('#settings').hidden = !$('#settings').hidden; };
 
     $('#back').onclick = () => {
       const to = $('#back').dataset.to;
@@ -3203,6 +4141,16 @@ const ADMIN = REPO.split('/')[0];
     $('#source-close').onclick = () => { $('#source-panel').hidden = true; };
 
     document.querySelectorAll('[data-add]').forEach((b) => b.onclick = () => insert(b.dataset.add));
+    // The list buttons work on what is there, as in a word processor: the paragraph
+    // becomes a list, rather than an empty list going in under it.
+    document.querySelectorAll('[data-list], [data-num]').forEach((b) => {
+      b.onmousedown = (e) => e.preventDefault();
+      b.onclick = () => {
+        if (b.dataset.num) toggleList(true, b.dataset.num);
+        else toggleList(b.dataset.list === 'numbered');
+        document.querySelectorAll('.drop-menu').forEach((m) => { m.hidden = true; });
+      };
+    });
 
     /* ---------- table size pickers ---------- */
     // Docs-style grid: hovering sizes the table, clicking inserts it. A data table is
@@ -3400,6 +4348,7 @@ const ADMIN = REPO.split('/')[0];
     });
     addEventListener('keydown', (e) => {
       if (!(e.metaKey || e.ctrlKey)) return;
+      if (e.shiftKey && (e.code === 'Digit8' || e.code === 'Digit7')) { e.preventDefault(); toggleList(e.code === 'Digit7'); return; }
       const k = e.key.toLowerCase();
       if (k === 'b' || k === 'i' || k === 'k') { e.preventDefault(); runCmd(k === 'k' ? 'link' : k === 'b' ? 'bold' : 'italic'); }
       if (k === 'z') { e.preventDefault(); (e.shiftKey ? $('#redo') : $('#undo')).click(); }
@@ -3462,6 +4411,7 @@ const ADMIN = REPO.split('/')[0];
       keep();
       loadedFrom = BUILT_FROM;           // a page not on main yet: any copy of main will do
       pageKind = kind; navboxLead = ''; portalBody = ''; pageSlug = slug; loadedTitle = ''; loadedBody = '';
+      movedFrom = [];
       $('#settings').querySelectorAll('input[type=text], input[type=hidden], textarea').forEach((i) => i.value = '');
       $('#f-ooc').checked = false;
       $('#f-navbox-on').checked = true;
@@ -3865,7 +4815,6 @@ const ADMIN = REPO.split('/')[0];
         clear: () => store('readwrite', (s) => s.clear()),
       };
     }
-    const cart = shelf('talopedia-changes', 'changes');
 
     /** This page as a change: the file it writes, and the pictures it brings with it. */
 /**
@@ -3921,83 +4870,21 @@ const ADMIN = REPO.split('/')[0];
       return `Sent. ${held.title} is credited to ${who || 'nobody'}, so it waits for a look.`;
     }
 
-    function currentChange() {
-      const slug = slugify(slugValue() || pageSlug || $('#f-title').value);
-      if (!slug) return null;
-      const markdown = toMarkdown();
-      return {
-        key: `${pageKind}:${slug}`,
-        kind: pageKind,
-        slug,
-        title: $('#f-title').value || slug,
-        summary: $('#f-summary').value.trim(),
-        path: targetPath(slug),
-        from: loadedFrom,
-        markdown,
-        images: [...staged.entries()].filter(([p]) => markdown.includes(p))
-          .map(([p, item]) => ({ path: p, file: item.file })),
-        at: Date.now(),
-      };
-    }
-
-    async function paintCart() {
-      const list = await cart.all();
-      const n = $('#cart-n');
-      if (n) n.textContent = list.length;
-      const box = $('#cart-list');
-      if (!box) return list;
-      box.innerHTML = '';
-      if (!list.length) {
-        box.innerHTML = '<p class="mp-empty">Nothing waiting. Edit a page and press Commit.</p>';
-      }
-      for (const c of list.sort((a, b) => a.at - b.at)) {
-        const row = el('div', 'cart-row');
-        const known = ARTICLES.some((a) => a.slug === c.key.replace(/^article:/, ''));
-        row.append(el('span', 'cart-tag', known ? 'edit' : 'new'));
-        const who = el('span', 'cart-name');
-        who.append(el('b', null, c.title));
-        who.append(el('span', 'cart-path', c.path
-          + (c.images.length ? `  ·  ${c.images.length} image${c.images.length === 1 ? '' : 's'}` : '')));
-        const open = el('button', null, 'Open'); open.type = 'button';
-        open.onclick = () => { $('#pub-panel').hidden = true; loadChange(c); };
-        const x = el('button', 'cart-x', '\u2715'); x.type = 'button'; x.title = 'Drop this change';
-        x.onclick = async () => { await cart.drop(c.key); paintCart(); };
-        row.append(who, open, x);
-        box.append(row);
-      }
-      return list;
-    }
-
-    /** Put a waiting change back on screen, exactly as it was set aside. */
-    function loadChange(c) {
-      keep();
-      loadedFrom = c.from || '';
-      pageKind = c.kind;
-      pageSlug = c.slug;
-      fromMarkdown(c.markdown);
-      for (const im of c.images) {
-        if (!staged.has(im.path)) staged.set(im.path, { file: im.file, url: URL.createObjectURL(im.file) });
-      }
-      // Its own address, or Commit would file it under whatever page was open before.
-      setSlug(c.slug); slugTouched = true;
-      paintAssets();
-      sync();
-      draftKey = c.key;
-      opened = toMarkdown();
-      kept = { key: draftKey, markdown: opened };
-      flash(`Opened ${c.title} from your changes.`);
-    }
-
     /* ---------- sending them ---------- */
 
-    async function publishAll() {
-      const list = await cart.all();
-      if (!list.length) { pubSay('Nothing to push yet.', true); return; }
+    /**
+     * Send these changes as one pull request. A moved page goes to its new address, its
+     * old file goes, and every page linking to it is rewritten to the new address: the
+     * ones in this batch in their own text, the rest read off the branch.
+     */
+    async function publishAll(list) {
+      if (!list.length) { pubSay('Nothing ticked.', true); return; }
 
       $('#pub-go').disabled = true;
       try {
-        pubSay('Checking the token\u2026');
+        pubSay('Checking the token…');
         const me = await gh('/user');
+        try { localStorage.setItem(LOGIN_KEY, me.login); } catch {}
         const base = await gh(`/repos/${REPO}`);
         const canPush = !!base.permissions?.push;
         const mine = (base.owner?.login || '').toLowerCase() === (me.login || '').toLowerCase();
@@ -4008,7 +4895,7 @@ const ADMIN = REPO.split('/')[0];
             throw new Error(`This token cannot write to ${REPO}, which you own. `
               + 'It needs the public_repo scope.');
           }
-          pubSay(`Forking ${REPO}\u2026`);
+          pubSay(`Forking ${REPO}…`);
           await gh(`/repos/${REPO}/forks`, { method: 'POST' });
           work = `${me.login}/${base.name}`;
           for (let i = 0; i < 20; i++) {
@@ -4030,16 +4917,22 @@ const ADMIN = REPO.split('/')[0];
         const main = base.default_branch;
         const tip = await gh(`/repos/${work}/git/ref/heads/${main}`);
         const branch = `talopedia/${list.length > 1 ? 'batch' : list[0].slug}-${Date.now().toString(36)}`;
-        pubSay('Making a branch\u2026');
+        pubSay('Making a branch…');
         await gh(`/repos/${work}/git/refs`, {
           method: 'POST',
           body: JSON.stringify({ ref: `refs/heads/${branch}`, sha: tip.object.sha }),
         });
 
+        const moves = list.filter((c) => c.moved);
+        for (const m of moves) for (const c of list) c.markdown = relink(c.markdown, c.kind, m.moved, m.slug);
+
         let done = 0;
         for (const c of list) {
-          pubSay(`Committing ${++done} of ${list.length}: ${c.title}\u2026`);
+          pubSay(`Committing ${++done} of ${list.length}: ${c.title}…`);
           await putFile(work, branch, c.path, b64text(c.markdown), commitMsg(c.slug, c.summary, c.from));
+          if (c.moved) {
+            await deleteFile(work, branch, pathFor('article', c.moved), commitMsg(c.slug, `moved from ${c.moved}`, c.from));
+          }
           for (const im of c.images) {
             const bytes = new Uint8Array(await im.file.arrayBuffer());
             await putFile(work, branch, 'public' + im.path, b64(bytes),
@@ -4047,9 +4940,37 @@ const ADMIN = REPO.split('/')[0];
           }
         }
 
-        pubSay('Opening the pull request\u2026');
-        const lines = list.map((c) => `- \`${c.path}\``).join('\n');
-        await gh(`/repos/${REPO}/pulls`, {
+        if (moves.length) {
+          const into = await linksIndex();
+          const sending = new Set(list.map((c) => c.path));
+          const pages = new Map();
+          for (const m of moves) {
+            for (const key of into[m.moved] || []) {
+              const path = keyPath(key);
+              if (sending.has(path) || moves.some((x) => pathFor('article', x.moved) === path)) continue;
+              if (!pages.has(path)) {
+                pubSay(`Reading ${path.split('/').pop()}…`);
+                const f = await gh(`/repos/${work}/contents/${encodeURI(path)}?ref=${branch}`).catch(() => null);
+                if (!f) continue;
+                const text = new TextDecoder().decode(Uint8Array.from(atob(f.content.replace(/\n/g, '')), (ch) => ch.charCodeAt(0)));
+                pages.set(path, { key, was: text, text });
+              }
+              const p = pages.get(path);
+              p.text = relink(p.text, key.startsWith('navbox:') ? 'navbox' : 'article', m.moved, m.slug);
+            }
+          }
+          for (const [path, p] of pages) {
+            if (p.text === p.was) continue;
+            pubSay(`Relinking ${path.split('/').pop()}…`);
+            const name = p.key.replace(/^(portal|navbox):/, '');
+            await putFile(work, branch, path, b64text(p.text),
+              commitMsg(name, `links to ${moves.map((m) => m.slug).join(', ')}`, tip.object.sha));
+          }
+        }
+
+        pubSay('Opening the pull request…');
+        const lines = list.map((c) => `- \`${c.path}\`${c.moved ? ` (moved from \`${pathFor('article', c.moved)}\`)` : ''}`).join('\n');
+        const pr = await gh(`/repos/${REPO}/pulls`, {
           method: 'POST',
           body: JSON.stringify({
             title: list.length === 1 ? list[0].title : `${list.length} pages from the wiki editor`,
@@ -4058,17 +4979,18 @@ const ADMIN = REPO.split('/')[0];
             body: `Written in the wiki editor by @${me.login}.\n\n${lines}\n`,
           }),
         });
+        saveSent([{ n: pr.number, url: pr.html_url, title: pr.title, at: Date.now() }, ...sentList()]);
 
-        await cart.clear();
-        // What went is in the pull request now. A draft that says exactly that has nothing
-        // left to keep; one written on past it still holds the rest.
-        const sent = new Set(list.map((c) => c.markdown));
-        for (const d of await drafts.all().catch(() => [])) if (sent.has(d.markdown)) await drafts.drop(d.key);
-        if (sent.has(toMarkdown())) { opened = toMarkdown(); kept = { key: draftKey, markdown: opened }; }
-        await paintCart();
+        // What went is in the pull request now, so its drafts go.
+        for (const c of list) { await drafts.drop(c.key).catch(() => {}); notes.drop(c.key); }
+        if (list.some((c) => c.key === draftKey)) {
+          opened = toMarkdown(); kept = { key: draftKey, markdown: opened };
+          if (slugValue() !== pageSlug) { pageSlug = slugify(slugValue()); }
+        }
         pubSay('');
-        $('#pub-panel').hidden = true;
         flash(sentWord(list, me.login));
+        await paintPublish();
+        paintPending();
       } catch (e) {
         pubSay(String(e.message || e), true);
       } finally {
@@ -4076,46 +4998,368 @@ const ADMIN = REPO.split('/')[0];
       }
     }
 
-    if ($('#cart-add')) {
-      const panel = $('#pub-panel');
-      $('#cart-add').onclick = async () => {
-        const c = currentChange();
-        if (!c) { flash('Give the page a title first.', true); return; }
-        const held = occupiedBy(c.slug);
-        if (held) { refuseReplace(c.slug, held); return; }
-        if (overwrites(c.slug)) {
-          // Same file, different subject, and the text has gone too. That is a new
-          // page wearing an old file name, and it is refused rather than queried.
-          if (keptFraction() < 0.35) { refuseReplace(c.slug, loadedTitle); return; }
-          if (!confirm(`${c.slug} is "${loadedTitle}". Saving renames it to "${c.title}".\n\n`
-              + 'To keep both, cancel and use File \u25b8 Duplicate as a new page.')) return;
-        }
-        await cart.put(c);
-        $('#f-summary').value = '';       // the next edit gets its own line
-        await paintCart();
-        flash(`${c.title} is waiting with ${(await cart.all()).length - 1} other change(s).`
-          .replace(' with 0 other change(s)', ', on its own so far'));
-      };
-      $('#cart-open').onclick = async () => {
-        await paintCart();
-        panel.hidden = false;
-        $('#pub-token').value = token.get();
-        $('#pub-make').href = 'https://github.com/settings/tokens/new?scopes=public_repo'
-          + `&description=${encodeURIComponent('The Talopedia editor')}`;
-        $('#pub-help').open = !token.get();
-        pubSay(token.get() ? '' : 'Paste a token to push.');
-      };
-      $('#pub-close').onclick = () => { panel.hidden = true; };
-
-      panel.onclick = (e) => { if (e.target === panel) panel.hidden = true; };
-      $('#pub-token').oninput = () => token.set($('#pub-token').value.trim());
-      $('#pub-forget').onclick = () => { token.set(''); $('#pub-token').value = ''; pubSay('Token forgotten.'); };
-      $('#pub-go').onclick = () => {
-        if (!token.get()) { pubSay('Paste a token first.', true); $('#pub-token').focus(); return; }
-        publishAll();
-      };
-      paintCart();
+    async function deleteFile(repo, branch, path, message) {
+      let sha;
+      try { sha = (await gh(`/repos/${repo}/contents/${encodeURI(path)}?ref=${branch}`)).sha; } catch { return; }
+      await gh(`/repos/${repo}/contents/${encodeURI(path)}`, {
+        method: 'DELETE', body: JSON.stringify({ message, sha, branch }),
+      });
     }
+
+    /**
+     * A page's text with every link to `old` pointed at `now`: [[links]] and :icon[]
+     * tokens anywhere, and a navbox's bare entries. A bare nation id in a navbox names
+     * the nation rather than its article, and is left.
+     */
+    function relink(text, kind, old, now) {
+      const o = old.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      let t = text.replace(new RegExp(`\\[\\[${o}(?=[\\]|#])`, 'g'), `[[${now}`)
+        .replace(new RegExp(`:icon\\[${o}\\]`, 'g'), `:icon[${now}]`);
+      if (kind === 'navbox' && !NATION_NAMES[old]) {
+        t = t.replace(new RegExp(`(^\\s*-\\s*["']?|[\\[,]\\s*["']?|^\\s+["']?)${o}(?=(?:\\|[^"'\\],\\n]*)?["']?\\s*(?:,|\\]|$))`, 'gm'), `$1${now}`);
+      }
+      return t;
+    }
+
+    /* ---------- publishing ----------
+       Every page with unsent edits is a change. Publish lists them: each can be left
+       out, opened, or reset to the site's copy, and carries a line for its history. */
+    const LOGIN_KEY = 'talopedia-gh-login', SENT_KEY = 'talopedia-sent', NOTES_KEY = 'talopedia-notes';
+    const store = (k, fallback) => ({
+      get: () => { try { return JSON.parse(localStorage.getItem(k) || 'null') ?? fallback; } catch { return fallback; } },
+      set: (v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+    });
+    const sentStore = store(SENT_KEY, []);
+    const sentList = () => sentStore.get();
+    const saveSent = (l) => sentStore.set(l.slice(0, 20));
+    /** Each change's line for the history, and whether it is left out, by draft. */
+    const notesStore = store(NOTES_KEY, {});
+    const notes = {
+      of: (k) => notesStore.get()[k] || {},
+      set: (k, v) => { const all = notesStore.get(); all[k] = { ...all[k], ...v }; notesStore.set(all); },
+      drop: (k) => { const all = notesStore.get(); delete all[k]; notesStore.set(all); },
+    };
+    const pathFor = (kind, slug) => (kind === 'portal' ? `src/content/portals/${slug}.md`
+      : kind === 'navbox' ? `src/content/data/navboxes/${slug}.yaml` : `src/content/articles/${slug}.md`);
+    const keyPath = (key) => (key.startsWith('portal:') ? pathFor('portal', key.slice(7))
+      : key.startsWith('navbox:') ? pathFor('navbox', key.slice(7)) : pathFor('article', key));
+    let linksCache = null;
+    const linksIndex = () => (linksCache ||= fetch(`${BASE.replace(/\/$/, '')}/links.json`)
+      .then((r) => r.json()).catch(() => ({})));
+
+    /** A draft as the change it makes. */
+    function changeOf(d) {
+      const slug = slugify(d.slug || d.file || d.title || '');
+      const moved = d.kind === 'article' && d.file && slug && slug !== d.file && onSiteKey('article', d.file) ? d.file : null;
+      const n = notes.of(d.key);
+      return {
+        key: d.key, kind: d.kind, slug, title: d.title || slug, summary: n.summary || '', skip: !!n.skip,
+        path: pathFor(d.kind, slug), from: d.snap?.from || '', markdown: d.markdown,
+        images: d.images || [], moved, file: d.file || '',
+      };
+    }
+    /** What stops a change going: the address another page has, or a page written over. */
+    function problem(c, d) {
+      if (!c.slug) return 'No title';
+      const held = ARTICLES.find((a) => a.slug === indexKey(c.kind, c.slug));
+      if (held && c.slug !== c.file && held.title !== c.title) return `/${c.slug} is ${held.title}`;
+      if (c.file === c.slug && d.loadedTitle && c.title !== d.loadedTitle
+          && wordsKept(d.loadedBody, d.markdown) < 0.35) return `Replaces ${d.loadedTitle}`;
+      return null;
+    }
+    function wordsKept(was, now) {
+      const words = (t) => new Set(String(t).toLowerCase().split(/[^a-z0-9À-￿]+/).filter((w) => w.length > 3));
+      const a = words(was);
+      if (a.size < 20) return 1;
+      const b = words(now);
+      let hit = 0;
+      for (const w of a) if (b.has(w)) hit++;
+      return hit / a.size;
+    }
+    /** Words in and out, against the page as it was opened. */
+    function wordDiff(was, now) {
+      const count = (t) => { const m = new Map(); for (const w of String(t).split(/\s+/).filter(Boolean)) m.set(w, (m.get(w) || 0) + 1); return m; };
+      const a = count(was), b = count(now);
+      let add = 0, del = 0;
+      for (const [w, n] of b) add += Math.max(0, n - (a.get(w) || 0));
+      for (const [w, n] of a) del += Math.max(0, n - (b.get(w) || 0));
+      return [add, del];
+    }
+    /** Whether the gate holds this change: the page is not the writer's alone, or a move
+        rewrites links on pages that are not. */
+    async function held(c, login) {
+      if (!login || login === ADMIN) return false;
+      if (heldBack([c], login)) return true;
+      if (!c.moved) return false;
+      const mine = NATION_OF[login];
+      const into = await linksIndex();
+      return (into[c.moved] || []).some((k) => {
+        const by = k.startsWith('navbox:') ? (k === 'navbox:site' ? [] : [k.slice(7)])
+          : ARTICLES.find((a) => a.slug === k)?.by || [];
+        return by.length !== 1 || by[0] !== mine;
+      });
+    }
+
+    async function paintPending() {
+      const all = await drafts.all().catch(() => []);
+      $('#pub-n').textContent = all.length;
+      $('#pub-n').hidden = !all.length;
+      $('#draft-state').hidden = !all.some((d) => d.key === draftKey);
+    }
+
+    async function paintPublish() {
+      await keep();
+      const all = (await drafts.all().catch(() => [])).sort((a, b) => b.at - a.at);
+      const login = (() => { try { return localStorage.getItem(LOGIN_KEY) || ''; } catch { return ''; } })();
+      const box = $('#pub-list');
+      box.replaceChildren();
+      $('#pub-empty').hidden = !!all.length;
+      for (const d of all) {
+        const c = changeOf(d);
+        const bad = problem(c, d);
+        const row = el('div', 'pr-row' + (bad ? ' bad' : ''));
+        const tick = el('input');
+        tick.type = 'checkbox';
+        tick.checked = !bad && !c.skip;
+        tick.disabled = !!bad;
+        tick.onchange = () => { notes.set(d.key, { skip: !tick.checked }); paintGo(); };
+        const main = el('div', 'pr-main');
+        const top = el('div', 'pr-top');
+        top.append(el('b', null, c.title));
+        if (bad) top.append(el('span', 'pr-tag bad', bad));
+        else if (login) {
+          const tag = el('span', 'pr-tag');
+          top.append(tag);
+          held(c, login).then((h) => { tag.textContent = h ? 'Review' : 'Live'; tag.classList.add(h ? 'review' : 'live'); });
+        }
+        const [add, del] = wordDiff(d.opened || '', d.markdown);
+        const delta = el('span', 'pr-delta');
+        delta.append(el('span', 'pr-add', `+${add}`), el('span', 'pr-del', `−${del}`));
+        const meta = el('div', 'pr-meta');
+        if (c.moved) meta.append(el('span', null, `/${c.moved}`), el('span', 'pr-arrow', '→'), el('span', 'pr-to', `/${c.slug}`));
+        else meta.append(el('span', null, `/${c.kind === 'portal' ? 'portal/' : ''}${c.slug}`));
+        const note = el('input', 'pr-note');
+        note.placeholder = 'What changed?';
+        note.value = c.summary;
+        note.oninput = () => notes.set(d.key, { summary: note.value });
+        main.append(top, meta, note);
+        const acts = el('div', 'pr-acts');
+        const open = el('button', 'pub-ico');
+        open.innerHTML = '<svg viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M13.5 2.5 8 8M11.5 9.5v4h-9v-9h4"/></svg>';
+        open.title = 'Open';
+        open.type = 'button';
+        open.onclick = async () => {
+          $('#pub-panel').hidden = true;
+          if (d.key === draftKey) return;
+          await keep();
+          const now = (await drafts.all().catch(() => [])).find((x) => x.key === d.key);
+          if (now) reopen(now);
+        };
+        const reset = el('button', 'pub-ico');
+        reset.innerHTML = '<svg viewBox="0 0 16 16"><path d="M3 8a5 5 0 1 0 1.6-3.7"/><path d="M4.4 1.8v2.8h2.8"/></svg>';
+        reset.title = 'Reset';
+        reset.type = 'button';
+        reset.onclick = async () => {
+          if (!confirm(`Reset ${c.title}?`)) return;
+          await resetDraft(d);
+          paintPublish();
+        };
+        acts.append(delta, open, reset);
+        row.append(tick, main, acts);
+        box.append(row);
+      }
+      paintGo();
+      paintSent();
+    }
+    function paintGo() {
+      const n = [...$('#pub-list').querySelectorAll('input[type=checkbox]')].filter((t) => t.checked).length;
+      $('#pub-go').textContent = n ? `Publish ${n}` : 'Publish';
+      $('#pub-go').disabled = !n;
+    }
+    async function paintSent() {
+      const sent = sentList().slice(0, 8);
+      $('#pub-sent-box').hidden = !sent.length;
+      const box = $('#pub-sent');
+      box.replaceChildren();
+      for (const p of sent) {
+        const row = el('div', 'pr-sent-row');
+        const a = el('a', null, `#${p.n}`);
+        a.href = p.url; a.target = '_blank'; a.rel = 'noopener';
+        const tag = el('span', 'pr-tag');
+        row.append(el('span', 'pr-sent-title', p.title), tag, a);
+        box.append(row);
+        const auth = token.get() ? { authorization: `Bearer ${token.get()}` } : {};
+        fetch(`${GH}/repos/${REPO}/pulls/${p.n}`, { headers: { accept: 'application/vnd.github+json', ...auth } })
+          .then((r) => (r.ok ? r.json() : null)).then((pr) => {
+            if (!pr) return;
+            const [t, cls] = pr.merged_at ? ['Live', 'live'] : pr.state === 'open' ? ['Review', 'review'] : ['Closed', 'closed'];
+            tag.textContent = t; tag.classList.add(cls);
+          }).catch(() => {});
+      }
+    }
+
+    /** The token row: saved, or a box to paste one into. */
+    function paintToken() {
+      const has = !!token.get();
+      $('#pt-set').hidden = !has;
+      $('#pt-new').hidden = has;
+    }
+    $('#publish').onclick = async () => {
+      $('#pub-panel').hidden = false;
+      $('#pub-token').value = '';
+      $('#pub-make').href = 'https://github.com/settings/tokens/new?scopes=public_repo'
+        + `&description=${encodeURIComponent('The Talopedia editor')}`;
+      paintToken();
+      pubSay('');
+      await paintPublish();
+    };
+    const closePub = () => { $('#pub-panel').hidden = true; };
+    $('#pub-close').onclick = closePub;
+    $('#pub-x').onclick = closePub;
+    $('#pub-panel').onclick = (e) => { if (e.target === $('#pub-panel')) closePub(); };
+    $('#pub-token').oninput = () => { token.set($('#pub-token').value.trim()); };
+    $('#pub-token').onchange = paintToken;
+    $('#pt-how').onclick = () => { $('#pub-help').hidden = false; };
+    const closeGuide = () => { $('#pub-help').hidden = true; if (!token.get()) $('#pub-token').focus(); };
+    $('#guide-x').onclick = closeGuide;
+    $('#guide-close').onclick = closeGuide;
+    $('#pub-help').onclick = (e) => { if (e.target === $('#pub-help')) closeGuide(); };
+    $('#pub-forget').onclick = () => { token.set(''); paintToken(); };
+    $('#pub-go').onclick = async () => {
+      if (!token.get()) { pubSay('Paste a token first.', true); $('#pub-token').focus(); return; }
+      const all = (await drafts.all().catch(() => [])).map((d) => [changeOf(d), d]);
+      publishAll(all.filter(([c, d]) => !c.skip && !problem(c, d)).map(([c]) => c));
+    };
+    $('#reset-page').onclick = async () => {
+      $('#more-menu').hidden = true;
+      await keep();
+      const d = (await drafts.all().catch(() => [])).find((x) => x.key === draftKey);
+      if (!d) { flash('No changes.'); return; }
+      if (!confirm(`Reset ${d.title || 'this page'}?`)) return;
+      await resetDraft(d);
+      flash('Reset.');
+    };
+
+    /* ---------- the page's details, under its title ---------- */
+    // Folded away until asked for.
+    function showDetails(open) {
+      $('#settings').classList.toggle('closed', !open);
+      $('#pp-toggle').setAttribute('aria-expanded', String(open));
+    }
+    showDetails(false);
+    $('#pp-toggle').onclick = () => showDetails($('#settings').classList.contains('closed'));
+    const onSiteKey = (kind, slug) => !!slug && ARTICLES.some((a) => a.slug === indexKey(kind, slug));
+    const assetSrc = (p) => (String(p || '').startsWith('/') ? BASE.replace(/\/$/, '') + p : p);
+    /** A page on the site shows its address and moves; a new one types its own. */
+    function paintAddress() {
+      const live = onSiteKey(pageKind, pageSlug);
+      const now = slugify(slugValue() || pageSlug);
+      $('#pp-base').textContent = pageKind === 'portal' ? '/portal/' : '/';
+      $('#f-slug').hidden = live;
+      $('#pp-slug').hidden = !live;
+      $('#pp-slug').textContent = now;
+      $('#pp-was').textContent = live && now !== pageSlug ? `from /${pageSlug}` : '';
+      $('#pp-move').hidden = !(live && pageKind === 'article' && pageSlug !== 'home');
+    }
+    function paintAuthors() {
+      const box = $('#pp-authors');
+      const ids = $('#f-authors').value.split(',').map((x) => x.trim()).filter(Boolean);
+      const locked = $('#f-authors').readOnly;
+      box.replaceChildren();
+      for (const id of ids) {
+        const chip = el('span', 'pp-chip');
+        if (FLAGS[id]) { const im = el('img'); im.src = assetSrc(FLAGS[id]); im.alt = ''; chip.append(im); }
+        chip.append(el('span', null, NATION_NAMES[id] || id));
+        if (!locked) {
+          const x = el('button', 'pp-chip-x', '✕');
+          x.type = 'button';
+          x.title = 'Remove';
+          x.onclick = () => setAuthors(ids.filter((i) => i !== id));
+          chip.append(x);
+        }
+        box.append(chip);
+      }
+      if (!locked) {
+        const add = el('button', 'pp-add', '+ Add');
+        add.type = 'button';
+        add.onclick = (e) => { e.stopPropagation(); nationPick(add, ids, (id) => setAuthors([...ids, id])); };
+        box.append(add);
+      }
+    }
+    function setAuthors(ids) { $('#f-authors').value = ids.join(', '); paintSettings(); sync(); }
+    /** A list of nations to choose from, under the button that asked. */
+    const pickPop = el('div', 'pp-pop');
+    pickPop.hidden = true;
+    document.body.append(pickPop);
+    function nationPick(anchor, exclude, done) {
+      pickPop.replaceChildren();
+      const q = el('input');
+      q.placeholder = 'Nation';
+      const list = el('div', 'pp-pop-list');
+      const paint = () => {
+        list.replaceChildren();
+        const f = fold(q.value.trim());
+        for (const [id, name] of Object.entries(NATION_NAMES).sort((a, b) => a[1].localeCompare(b[1]))) {
+          if (exclude.includes(id) || (f && !fold(name).includes(f))) continue;
+          const b = el('button');
+          b.type = 'button';
+          if (FLAGS[id]) { const im = el('img'); im.src = assetSrc(FLAGS[id]); im.alt = ''; b.append(im); }
+          b.append(el('span', null, name));
+          b.onclick = () => { pickPop.hidden = true; done(id); };
+          list.append(b);
+        }
+      };
+      q.oninput = paint;
+      q.onkeydown = (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); list.querySelector('button')?.click(); }
+        if (e.key === 'Escape') pickPop.hidden = true;
+      };
+      paint();
+      pickPop.append(q, list);
+      const r = anchor.getBoundingClientRect();
+      pickPop.style.left = `${Math.min(r.left, innerWidth - 240)}px`;
+      pickPop.style.top = `${r.bottom + 4}px`;
+      pickPop.hidden = false;
+      q.focus();
+    }
+    document.addEventListener('mousedown', (e) => { if (!pickPop.hidden && !pickPop.contains(e.target)) pickPop.hidden = true; });
+
+    /* Moving: a new address, and the pages that link to the old one. */
+    async function openMove() {
+      $('#mv-slug').value = slugify(slugValue() || pageSlug);
+      $('#mv-err').textContent = '';
+      $('#move-panel').hidden = false;
+      $('#mv-slug').focus();
+      $('#mv-slug').select();
+      const into = await linksIndex();
+      const from = into[pageSlug] || [];
+      const titleOf = (k) => ARTICLES.find((a) => a.slug === k)?.title
+        || (k.startsWith('navbox:') ? `Navbox: ${NATION_NAMES[k.slice(7)] || 'Site'}` : k);
+      $('#mv-n').textContent = from.length;
+      $('#mv-list').replaceChildren(...from.map(titleOf).sort((a, b) => a.localeCompare(b)).map((t) => el('div', null, t)));
+    }
+    function moveTo() {
+      const to = slugify($('#mv-slug').value);
+      if (!to) { $('#mv-err').textContent = 'Empty'; return; }
+      const taken = to !== pageSlug && ARTICLES.find((a) => a.slug === to);
+      if (taken) { $('#mv-err').textContent = `Taken: ${taken.title}`; return; }
+      setSlug(to);
+      slugTouched = true;
+      $('#move-panel').hidden = true;
+      paintSettings();
+      sync();
+    }
+    $('#pp-move').onclick = openMove;
+    $('#mv-go').onclick = moveTo;
+    $('#mv-cancel').onclick = () => { $('#move-panel').hidden = true; };
+    $('#mv-x').onclick = () => { $('#move-panel').hidden = true; };
+    $('#move-panel').onclick = (e) => { if (e.target === $('#move-panel')) $('#move-panel').hidden = true; };
+    $('#mv-slug').onkeydown = (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); moveTo(); }
+      if (e.key === 'Escape') $('#move-panel').hidden = true;
+    };
+    $('#mv-slug').oninput = () => { $('#mv-err').textContent = ''; };
+
 
     $('#download').onclick = downloadPage;
     $('#copy').onclick = async () => {
@@ -4129,11 +5373,8 @@ const ADMIN = REPO.split('/')[0];
 
     $('#f-slug').oninput = () => { slugTouched = true; showUrl($('#f-slug').value); };
     if (DEV) {
-      const slugBox = $('#slug');
-      // Typing in either box is the same act, and both show the same name.
-      slugBox.oninput = () => { slugTouched = true; $('#f-slug').value = slugBox.value; };
-      $('#f-slug').addEventListener('input', () => { slugBox.value = $('#f-slug').value; });
       $('#save').onclick = async () => {
+        $('#more-menu').hidden = true;
         const slug = slugify(slugValue() || $('#f-title').value);
         if (!slug) { flash('Give the article a title first.', true); return; }
         const held = occupiedBy(slug);
@@ -4224,7 +5465,12 @@ const ADMIN = REPO.split('/')[0];
         { kind: 'up', label: 'Up', terms: 'up rise increase arrow green' },
         { kind: 'down', label: 'Down', terms: 'down fall decrease arrow red' },
       ].filter((a) => !iq || a.terms.includes(iq));
-      if (arrows.length) mpIcons.append(el('div', 'mp-group', 'arrows'));
+      const group = (name, n) => {
+        const g = el('div', 'mp-group');
+        g.append(el('span', null, name), el('span', 'mp-n', String(n)));
+        return g;
+      };
+      if (arrows.length) mpIcons.append(group('Arrows', arrows.length));
       for (const a of arrows) {
         const b = el('button', 'mp-icon');
         b.type = 'button';
@@ -4251,18 +5497,27 @@ const ADMIN = REPO.split('/')[0];
         if (!GROUP[a.group] || held.has(a.path)) continue;
         const stem = a.name.replace(/\.[^.]+$/, '');
         const label = displayOf(stem);
-        icons.push({ slug: a.path, src: a.path, kind: GROUP[a.group], label, loose: true });
+        // The icons folder splits by use: medals, and the marks for how a commander's
+        // war ended. Anything else in it is gathered under Other icons.
+        const kind = GROUP[a.group] === 'symbol'
+          ? /-medal$/.test(stem) ? 'medal' : /^(executed|killed-in-action|surrendered)$/.test(stem) ? 'fate' : 'symbol'
+          : GROUP[a.group];
+        icons.push({ slug: a.path, src: a.path, kind, label, loose: true });
       }
-      // Symbols first, next to the arrows, then flags, then emblems.
-      const RANK = { symbol: 0, flag: 1, icon: 2 };
-      icons.sort((a, b) => RANK[a.kind] - RANK[b.kind] || a.label.localeCompare(b.label));
+      // Next to the arrows the icons, then flags, then emblems. Medals go gold, silver,
+      // bronze, as they are won, rather than by name.
+      const RANK = { medal: 0, fate: 1, symbol: 2, flag: 3, icon: 4 };
+      const PODIUM = ['gold', 'silver', 'bronze'];
+      const place = (i) => (i.kind === 'medal' ? PODIUM.findIndex((m) => i.label.toLowerCase().startsWith(m)) : 0);
+      icons.sort((a, b) => RANK[a.kind] - RANK[b.kind] || place(a) - place(b) || a.label.localeCompare(b.label));
       const shown = icons.filter((i) => !iq || fold(i.label).includes(iq) || fold(i.slug).includes(iq));
       if (!shown.length && !arrows.length) { mpIcons.innerHTML = '<p class="mp-empty">Nothing matches.</p>'; }
       let kind = null;
       for (const i of shown) {
         if (i.kind !== kind) {
           kind = i.kind;
-          mpIcons.append(el('div', 'mp-group', { symbol: 'icons', flag: 'flags', icon: 'emblems' }[kind]));
+          mpIcons.append(group({ medal: 'Medals', fate: 'Commanders', symbol: 'Other icons', flag: 'Flags', icon: 'Emblems' }[kind],
+            shown.filter((x) => x.kind === kind).length));
         }
         const b = el('button', 'mp-icon');
         b.type = 'button';
@@ -4380,7 +5635,7 @@ const ADMIN = REPO.split('/')[0];
       loadedBody = '';
       setSlug('');
       slugTouched = false;          // the URL follows the title again until it is typed in
-      $('#settings').hidden = false;
+      movedFrom = [];
       // The copy is a page of its own; undoing back past this would put the old
       // page's address on it again.
       resetHistory();
@@ -4388,8 +5643,8 @@ const ADMIN = REPO.split('/')[0];
       draftKey = newKey();
       opened = toMarkdown();
       kept = { key: draftKey, markdown: opened };
-      $('#f-title').focus();
-      flash(`Copy of ${from}. Give it a new title, and check the URL before saving.`);
+      $('#canvas-title').focus();
+      flash(`Copy of ${from}.`);
     }
 
     /**
@@ -4427,9 +5682,9 @@ const ADMIN = REPO.split('/')[0];
 
     /** Refuse the write and put the writer in the field they have to change. */
     function refuseReplace(slug, held) {
-      flash(`${slug} already holds \u201c${held}\u201d. Change the Article URL, `
-        + 'or open that page if you meant to edit it.', true);
-      $('#settings').hidden = false;
+      flash(`/${slug} is \u201c${held}\u201d.`, true);
+      if (!$('#pp-move').hidden) { openMove(); return; }
+      showDetails(true);
       $('#f-slug').focus();
       $('#f-slug').select();
     }
@@ -4487,8 +5742,19 @@ const ADMIN = REPO.split('/')[0];
         document.querySelectorAll('[data-as]').forEach((x) => x.classList.toggle('on', x.dataset.as === want));
         insertAs = want;
       }
+      paintAsDesc();
       openMedia();
     };
+    /** A line under Placement saying what the chosen one does, which the names alone don't. */
+    function paintAsDesc() {
+      const d = $('#mp-as-desc');
+      if (!d) return;
+      const side = !!pickTarget?.closest?.('.ib-media');
+      d.textContent = side
+        ? { image: 'One picture across the sidebar.', grid: 'Two pictures side by side in this row.' }[insertAs] || ''
+        : { image: 'Full width, on a line of its own.', float: 'Beside the text, which wraps around it.',
+            grid: 'Several pictures side by side in a row.', icon: 'Small, inside a line of text, like a flag.' }[insertAs] || '';
+    }
 
     /** Make a sidebar picture row hold one picture or two. */
     function setSidebarSlots(cell, n) {
@@ -4688,6 +5954,7 @@ const ADMIN = REPO.split('/')[0];
     $('#insert').addEventListener('click', () => {
       pickTarget = null;
       document.querySelectorAll('[data-as="float"], [data-as="icon"]').forEach((b) => b.removeAttribute('hidden'));
+      paintAsDesc();
     });
     document.querySelectorAll('#insert-menu > .mp-tabs button').forEach((b) => b.onclick = () => {
       document.querySelectorAll('#insert-menu > .mp-tabs button')
@@ -4697,6 +5964,7 @@ const ADMIN = REPO.split('/')[0];
     document.querySelectorAll('[data-as]').forEach((b) => b.onclick = () => {
       document.querySelectorAll('[data-as]').forEach((x) => x.classList.toggle('on', x === b));
       insertAs = b.dataset.as;
+      paintAsDesc();
       // An icon is a mark in the line at the height of its text, whatever the picture's
       // own size: it takes an outline or not, and no shape.
       $('#mp-outline-row').hidden = insertAs !== 'icon';
@@ -4928,6 +6196,254 @@ const ADMIN = REPO.split('/')[0];
     }
     titlesReady.then(() => { sync(); paintAssets(); });
     loadAssets();
+    paintPending();
+
+    /* ---------- text surfaces ----------
+       Every place the writer types: the title, the sidebar heading and cells, the
+       article's blocks, list items, table cells and captions. Find reads them as text,
+       a token counted as one character it cannot match into. */
+    const SURFACES = '#canvas-title, #ib-title, #ib-native, #ib-romaji, .ed-canvas .ce';
+    const HL = typeof CSS !== 'undefined' && CSS.highlights && typeof Highlight === 'function';
+    /** A box as one string, with where each piece of it came from. */
+    function textOf(box) {
+      const parts = [];
+      let text = '';
+      const walk = (n) => {
+        for (const c of n.childNodes) {
+          if (c.nodeType === 3) { parts.push({ node: c, at: text.length }); text += c.nodeValue; }
+          else if (c.nodeType === 1) {
+            if (c.dataset?.tok || c.getAttribute('contenteditable') === 'false') text += '\uFFFC';
+            else if (c.tagName === 'BR') text += '\n';
+            else if (!c.classList.contains('ce')) {
+              // A line of its own (each line of a sidebar cell is a div) is not run into the
+              // one before it, or "Makinami" and "Kanade" on two lines would read as one word.
+              if (/^(DIV|P|LI)$/.test(c.tagName) && text && !text.endsWith('\n')) text += '\n';
+              walk(c);                                         // a box inside a box is its own
+            }
+          }
+        }
+      };
+      walk(box);
+      return { text, parts };
+    }
+    /** A range over characters a to b of a box read by textOf. */
+    function rangeOf({ parts }, a, b) {
+      const spot = (i, end) => {
+        for (const p of parts) {
+          const len = p.node.nodeValue.length;
+          if (i < p.at + len || (end && i === p.at + len)) return [p.node, Math.max(0, i - p.at)];
+        }
+        return null;
+      };
+      const s = spot(a, false), e = spot(b, true);
+      if (!s || !e) return null;
+      const r = document.createRange();
+      r.setStart(...s);
+      r.setEnd(...e);
+      return r;
+    }
+    const surfaces = (scope = 'all') => [...document.querySelectorAll(SURFACES)].filter((b) => {
+      if (b.closest('[hidden]')) return false;
+      if (scope === 'article') return !!b.closest('#body');
+      if (scope === 'sidebar') return !!b.closest('.ib-edit');
+      return true;
+    });
+    /** Text put in place of a range, as typing would put it, keeping the formatting
+        the range started in; the box it is in is told, so the page catches up. */
+    function putText(r, text) {
+      const host = r.startContainer.parentElement?.closest('[contenteditable="true"]');
+      r.deleteContents();
+      if (text) r.insertNode(document.createTextNode(text));
+      r.startContainer.parentElement?.normalize?.();
+      return host;
+    }
+
+    /* ---------- find and replace ----------
+       ⌘F finds, ⌘⇧H replaces. Every match is lit and the current one more so; Enter
+       and Shift+Enter step through them, and the count says where you are. Matching can
+       keep to case, to whole words, or be a regular expression, and can look through
+       the whole page, the article or the sidebar. Replacing can keep each match's
+       capitals: "Nichirin", "NICHIRIN" and "nichirin" each come back in their own case. */
+    const fb = $('#findbar');
+    const fbOpts = { case: false, word: false, regex: false, keep: false };
+    let fbScope = 'all', hits = [], at = -1, fbBusy = false;
+    const findHL = HL ? new Highlight() : null, nowHL = HL ? new Highlight() : null;
+    if (HL) { nowHL.priority = 1; CSS.highlights.set('find', findHL); CSS.highlights.set('find-now', nowHL); }
+
+    /** The pattern as asked for, or a message saying why it is not one. */
+    function pattern() {
+      const q = $('#fb-find').value;
+      if (!q) return null;
+      let src = fbOpts.regex ? q : q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (fbOpts.word) src = `(?<![\\p{L}\\p{N}_])(?:${src})(?![\\p{L}\\p{N}_])`;
+      try { return new RegExp(src, 'gu' + (fbOpts.case ? '' : 'i')); }
+      catch { return 'bad'; }
+    }
+    function findAll(keep = false) {
+      const was = hits[at]?.range;
+      hits = [];
+      const re = pattern();
+      $('#fb-find').classList.toggle('bad', re === 'bad');
+      $('#fb-find').parentElement.classList.toggle('bad', re === 'bad');
+      if (re && re !== 'bad') {
+        for (const box of surfaces(fbScope)) {
+          const t = textOf(box);
+          for (const m of t.text.matchAll(re)) {
+            if (!m[0] || m[0].includes('\uFFFC')) continue;
+            const range = rangeOf(t, m.index, m.index + m[0].length);
+            if (range) hits.push({ box, range, text: m[0] });
+          }
+        }
+      }
+      // Where you were, if it is still a match; otherwise the first one after the caret.
+      at = keep && was ? hits.findIndex((h) => !h.range.collapsed && h.range.compareBoundaryPoints(Range.START_TO_START, was) >= 0) : -1;
+      if (at < 0 && hits.length) {
+        const s = getSelection();
+        const here = s.rangeCount ? s.getRangeAt(0) : null;
+        at = here ? hits.findIndex((h) => h.range.compareBoundaryPoints(Range.START_TO_START, here) >= 0) : 0;
+        if (at < 0) at = 0;
+      }
+      paintFind();
+    }
+    function paintFind(scroll = false) {
+      if (HL) {
+        findHL.clear(); nowHL.clear();
+        hits.forEach((h, i) => (i === at ? nowHL : findHL).add(h.range));
+      }
+      const re = pattern();
+      $('#fb-count').textContent = re === 'bad' ? 'Not a pattern' : !re ? '' : hits.length ? `${at + 1} of ${hits.length}` : 'No results';
+      $('#fb-count').classList.toggle('none', !!re && !hits.length);
+      for (const id of ['#fb-prev', '#fb-next', '#fb-one', '#fb-all']) $(id).disabled = !hits.length;
+      if (scroll && hits[at]) {
+        const r = hits[at].range.getBoundingClientRect();
+        const top = $('.ed-tools').getBoundingClientRect().bottom + 70;
+        if (r.top < top || r.bottom > innerHeight - 40) scrollBy({ top: r.top - (top + innerHeight) / 2 + 40, behavior: 'smooth' });
+        // Without highlights to light it, the match is shown by selecting it.
+        if (!HL) putRange(hits[at].range.cloneRange());
+      }
+    }
+    function step(by) {
+      if (!hits.length) return;
+      at = (at + by + hits.length) % hits.length;
+      paintFind(true);
+    }
+    /** What a match is replaced with: the text as typed, a regular expression's groups
+        filled in, and the match's own capitals kept if that is asked for. */
+    function replacement(h) {
+      let r = $('#fb-repl').value;
+      if (fbOpts.regex) {
+        const re = pattern();
+        r = h.text.replace(new RegExp(re.source, re.flags.replace('g', '')), r);
+      }
+      if (fbOpts.keep && /\p{L}/u.test(h.text)) {
+        if (h.text === h.text.toUpperCase() && h.text !== h.text.toLowerCase()) r = r.toUpperCase();
+        else if (h.text === h.text.toLowerCase()) r = r.toLowerCase();
+        else if (h.text[0] === h.text[0].toUpperCase()) r = r[0]?.toUpperCase() + r.slice(1);
+      }
+      return r;
+    }
+    /** Replace these matches as one step, so one undo takes them all back. */
+    function replaceHits(list) {
+      if (!list.length) return 0;
+      fbBusy = true;
+      const touched = new Set();
+      // Every range is live, so each replacement leaves the ones after it where they were.
+      for (const h of list) touched.add(putText(h.range, replacement(h)));
+      quiet = true;
+      try { touched.forEach((host) => host?.dispatchEvent(new Event('input', { bubbles: true }))); }
+      finally { quiet = false; }
+      sync();
+      fbBusy = false;
+      return list.length;
+    }
+    function openFind(replace) {
+      fb.hidden = false;
+      $('#fb-replace-row').hidden = !replace && $('#fb-replace-row').hidden;
+      if (replace) $('#fb-replace-row').hidden = false;
+      $('#fb-expand').classList.toggle('on', !$('#fb-replace-row').hidden);
+      // A word already selected in the article is what you most likely want to find.
+      const sel = getSelection().toString().trim();
+      if (sel && !sel.includes('\n') && sel.length < 80) $('#fb-find').value = sel;
+      const box = replace && $('#fb-find').value ? $('#fb-repl') : $('#fb-find');
+      box.focus();
+      box.select();
+      findAll();
+      paintFind(true);
+    }
+    function closeFind() {
+      fb.hidden = true;
+      const h = hits[at];
+      hits = []; at = -1;
+      if (HL) { findHL.clear(); nowHL.clear(); }
+      // Back in the article at the match you were on.
+      if (h && !h.range.collapsed) {
+        const host = h.range.startContainer.parentElement?.closest('[contenteditable="true"]');
+        host?.focus({ preventScroll: true });
+        putRange(h.range.cloneRange());
+      }
+    }
+    $('#find-btn').onclick = () => (fb.hidden ? openFind(false) : closeFind());
+    $('#fb-close').onclick = closeFind;
+    $('#fb-expand').onclick = () => {
+      const row = $('#fb-replace-row');
+      row.hidden = !row.hidden;
+      $('#fb-expand').classList.toggle('on', !row.hidden);
+      if (!row.hidden) $('#fb-repl').focus();
+    };
+    $('#fb-prev').onclick = () => step(-1);
+    $('#fb-next').onclick = () => step(1);
+    $('#fb-one').onclick = () => {
+      const h = hits[at];
+      if (!h) return;
+      replaceHits([h]);
+      findAll(true);
+      paintFind(true);
+    };
+    $('#fb-all').onclick = () => {
+      const n = replaceHits(hits.slice());
+      findAll();
+      flash(`Replaced ${n} ${n === 1 ? 'match' : 'matches'}.`);
+    };
+    fb.querySelectorAll('[data-opt]').forEach((b) => b.onclick = () => {
+      fbOpts[b.dataset.opt] = !fbOpts[b.dataset.opt];
+      b.classList.toggle('on', fbOpts[b.dataset.opt]);
+      b.setAttribute('aria-pressed', fbOpts[b.dataset.opt]);
+      findAll(true);
+    });
+    fb.querySelectorAll('[data-scope]').forEach((b) => b.onclick = () => {
+      fbScope = b.dataset.scope;
+      fb.querySelectorAll('[data-scope]').forEach((x) => x.classList.toggle('on', x === b));
+      findAll();
+      paintFind(true);
+    });
+    let fbTimer = 0;
+    $('#fb-find').addEventListener('input', () => { clearTimeout(fbTimer); fbTimer = setTimeout(() => { findAll(); paintFind(true); }, 120); });
+    $('#fb-find').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); step(e.shiftKey ? -1 : 1); }
+    });
+    $('#fb-repl').addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      (e.metaKey || e.ctrlKey ? $('#fb-all') : $('#fb-one')).click();
+    });
+    fb.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); closeFind(); } });
+    // The page changing under an open bar, by typing or undo, moves the matches with it.
+    // Its own timer: sharing the one the Find box uses let a change to the page cancel a
+    // search just typed, and show the last one's count meanwhile.
+    let fbPageTimer = 0;
+    new MutationObserver(() => {
+      if (fb.hidden || fbBusy) return;
+      clearTimeout(fbPageTimer);
+      fbPageTimer = setTimeout(() => findAll(true), 250);
+    }).observe($('.ed-canvas'), { subtree: true, childList: true, characterData: true });
+    addEventListener('keydown', (e) => {
+      if (!(e.metaKey || e.ctrlKey) || e.altKey) return;
+      const k = e.key.toLowerCase();
+      if (k === 'f' && !e.shiftKey) { e.preventDefault(); openFind(false); }
+      else if (k === 'h' && e.shiftKey) { e.preventDefault(); openFind(true); }
+      else if (k === 'g' && !fb.hidden) { e.preventDefault(); step(e.shiftKey ? -1 : 1); }
+    });
+
   </script>
 
   <script>
@@ -4938,6 +6454,59 @@ const ADMIN = REPO.split('/')[0];
 
   <style is:inline>
     .ed { padding-bottom: 60px; min-width: 0; }
+
+    /* ---- find and replace ---- */
+    ::highlight(find) { background-color: rgb(255 214 10 / .3); }
+    ::highlight(find-now) { background-color: rgb(255 168 0 / .9); color: #111; }
+    .findbar {
+      position: absolute; right: 8px; top: calc(100% + 8px); z-index: 30; width: 440px;
+      display: grid; gap: 8px; padding: 10px;
+      background: var(--lift); border: 1px solid var(--rule); border-radius: 10px;
+      box-shadow: 0 12px 30px rgb(0 0 0 / .55);
+    }
+    .findbar[hidden] { display: none; }
+    .fb-row, .fb-scope { display: flex; align-items: center; gap: 4px; }
+    .fb-row[hidden] { display: none; }
+    .ed-tools .findbar button { min-width: 0; background: none; border: 0; color: var(--muted); cursor: pointer; }
+    .ed-tools .findbar button:hover:not(:disabled) { color: var(--ink); background: var(--band); }
+    .ed-tools .findbar button:disabled { opacity: .35; cursor: default; }
+    .ed-tools .findbar .fb-ico { flex: none; width: 28px; height: 28px; padding: 0; border-radius: 6px; display: inline-grid; place-items: center; }
+    .fb-ico svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .fb-ico-space { flex: none; width: 28px; }
+    #fb-expand svg { transition: transform .12s; }
+    #fb-expand.on svg { transform: rotate(90deg); }
+    .fb-field {
+      position: relative; flex: 1; min-width: 0; display: flex; align-items: center; height: 30px;
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 7px;
+    }
+    .fb-field:focus-within { border-color: var(--link); }
+    .fb-field.bad { border-color: #d08a8a; }
+    .fb-field input {
+      flex: 1; min-width: 0; height: 100%; box-sizing: border-box; padding: 0 6px 0 9px;
+      font: 13px var(--body); color: var(--ink); background: none; border: 0; outline: none;
+    }
+    .fb-in { display: flex; gap: 1px; padding-right: 3px; }
+    .ed-tools .findbar .fb-opt {
+      width: 24px; height: 22px; padding: 0; border-radius: 5px; border: 1px solid transparent;
+      font: 600 11.5px/1 var(--body); letter-spacing: -.02em;
+    }
+    .ed-tools .findbar .fb-word { text-decoration: underline; text-underline-offset: 2px; }
+    .ed-tools .findbar .fb-opt[aria-pressed="true"] {
+      color: var(--ink); background: color-mix(in srgb, var(--link) 26%, transparent); border-color: var(--link);
+    }
+    .fb-count {
+      flex: none; min-width: 66px; padding: 0 6px; text-align: center;
+      font: 12px var(--body); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+    .fb-count.none { color: #e8a0a0; }
+    .ed-tools .findbar .fb-txt {
+      flex: none; height: 30px; padding: 0 11px; border-radius: 7px; font: 12.5px var(--body);
+      color: var(--ink); border: 1px solid var(--rule); background: var(--band);
+    }
+    .ed-tools .findbar .fb-txt:hover:not(:disabled) { background: var(--hair); }
+    .fb-seg { display: inline-flex; padding: 2px; gap: 2px; background: var(--paper); border: 1px solid var(--hair); border-radius: 7px; }
+    .ed-tools .findbar .fb-seg button { height: 22px; padding: 0 10px; border-radius: 5px; font: 12px var(--body); }
+    .ed-tools .findbar .fb-seg button.on { color: var(--ink); background: var(--band); }
 
     /* ---- toolbar ---- */
     .ed-tools {
@@ -4984,9 +6553,22 @@ const ADMIN = REPO.split('/')[0];
     .save-group { display: inline-flex; gap: 6px; align-items: center; }
     .save-group input { width: 160px; font-family: ui-monospace, monospace; font-size: 12px; }
     .caret { font-size: 9px; opacity: .6; }
-    .status { font-size: 12.5px; color: var(--muted); padding: 0 10px; white-space: nowrap; }
-    .status.good { color: #79c07f; }
-    .status.bad { color: var(--link-new); }
+    /* One line wherever there is room for one: the status message gives way, nothing wraps. */
+    @media (min-width: 1001px) {
+      .ed-tools { flex-wrap: nowrap; }
+      .ed-tools > * { flex-shrink: 0; }
+    }
+    /* What the editor just did, said at the foot of the window and gone again, so
+       the toolbar never has to make room for it. */
+    .ed-tools .status {
+      position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 90;
+      max-width: min(560px, calc(100vw - 32px)); overflow: hidden; text-overflow: ellipsis;
+      font-size: 13px; color: var(--ink); padding: 9px 16px; white-space: nowrap;
+      background: var(--lift); border: 1px solid var(--rule); border-radius: 9px; box-shadow: 0 8px 24px rgb(0 0 0 / .5);
+    }
+    .ed-tools .status:empty { display: none; }
+    .ed-tools .status.good { color: var(--ink); }
+    .ed-tools .status.bad { color: var(--link-new); }
 
     .drop { position: relative; }
     .drop-menu {
@@ -5033,51 +6615,58 @@ const ADMIN = REPO.split('/')[0];
     .ed-rail .toc-list a { cursor: pointer; }
 
     /* ---- media picker ---- */
-    .drop-menu.wide { width: 420px; padding: 0; overflow: hidden; }
+    .drop-menu.wide { width: 452px; padding: 0; overflow: hidden; }
     .mp-tabs { display: flex; border-bottom: 1px solid var(--rule); }
     .mp-tabs button {
-      flex: 1; height: 38px; font: 13px var(--body); color: var(--muted);
+      flex: 1; height: 40px; font: 13px var(--body); color: var(--muted);
       background: none; border: 0; border-bottom: 2px solid transparent; cursor: pointer;
       border-radius: 0; justify-content: center;
     }
     .mp-tabs button:hover { color: var(--ink); background: var(--band); }
     .mp-tabs button.on { color: var(--ink); border-bottom-color: var(--link); }
     #mp-iq {
-      display: block; box-sizing: border-box; width: 100%; height: 30px;
-      margin: 10px 0 8px; padding: 0 9px; font: 12.5px var(--body);
+      display: block; box-sizing: border-box; width: 100%; height: 32px;
+      margin: 14px 0 8px; padding: 0 10px; font: 13px var(--body);
       color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
     }
     #mp-iq:focus { outline: none; border-color: var(--link); }
     /* One gutter for the whole pane, so nothing sits proud of the panel edge. */
-    .mp-pane { padding: 0 12px 10px; }
+    .mp-pane { padding: 0 16px; }
     .mp-pane.over { box-shadow: inset 0 0 0 2px var(--link); }
-    .mp-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    /* How it goes in, then where it comes from: the options above a rule, the link and
+       its Insert button under it, as the last thing to do. */
+    .mp-opts { display: grid; gap: 12px; padding: 16px 0 14px; }
+    .mp-src { border-top: 1px solid var(--rule); padding: 14px 0 16px; }
+    .mp-row { display: flex; align-items: flex-start; gap: 12px; }
+    .mp-row[hidden] { display: none; }
+    .mp-col { display: grid; gap: 6px; min-width: 0; }
     .mp-lbl {
-      flex: none; width: 74px; white-space: nowrap;
-      font: 11px var(--body); color: var(--muted);
-      text-transform: uppercase; letter-spacing: .06em;
+      flex: none; width: 72px; line-height: 28px; white-space: nowrap;
+      font: 12px/28px var(--body); color: var(--muted);
     }
-    .mp-seg { display: flex; }
+    .mp-desc { margin: 0; font: 11.5px var(--body); color: var(--muted); }
+    /* A segmented control is one bordered strip; a hidden option leaves no gap in it. */
+    .mp-seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
     .mp-seg button {
-      font: 12px var(--body); color: var(--muted); background: transparent;
-      border: 1px solid var(--rule); border-right-width: 0; padding: 4px 11px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 11px;
+      font: 12px var(--body); color: var(--muted); background: transparent; border: 0; cursor: pointer;
     }
-    .mp-seg button:first-child { border-radius: 5px 0 0 5px; }
-    .mp-seg button:last-child { border-right-width: 1px; border-radius: 0 5px 5px 0; }
-    .mp-seg button:hover { color: var(--ink); }
-    .mp-seg button.on { color: var(--ink); background: var(--band); border-color: var(--link); }
-    .mp-seg button.on + button { border-left-color: var(--link); }
+    .mp-seg button + button { border-left: 1px solid var(--rule); }
+    .mp-seg button[hidden] { display: none; }
+    .mp-seg button:hover { color: var(--ink); background: var(--band); }
+    .mp-seg button.on { color: var(--ink); background: color-mix(in srgb, var(--link) 22%, transparent); }
+    .mp-pic { width: 18px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.4; flex: none; }
+    .mp-link-row { display: flex; gap: 8px; }
     .mp-link-row input {
-      flex: 1; min-width: 0; font: 12px ui-monospace, monospace; padding: 5px 7px;
-      color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 5px;
+      flex: 1; min-width: 0; height: 32px; box-sizing: border-box; font: 13px var(--body); padding: 0 10px;
+      color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
     }
     .mp-link-row input:focus { outline: none; border-color: var(--link); }
-    .mp-link-row button {
-      flex: none; font: 12px var(--body); color: var(--ink); background: var(--band);
-      border: 1px solid var(--rule); border-radius: 5px; padding: 5px 11px; cursor: pointer;
-    }
-    .mp-link-row button:hover { background: var(--hair); }
-    .mp-hint { margin: 2px 0 0; padding: 0 2px; font: 11px var(--body); color: var(--muted); }
+    .mp-link-row button { flex: none; height: 32px; padding: 0 16px; border-radius: 6px; font: 13px var(--body); }
+    .mp-hint { margin: 7px 0 0; font: 11.5px var(--body); color: var(--muted); }
+    .mp-hint:empty { display: none; }
+    .mp-upload { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+    .mp-or { font: 11.5px var(--body); color: var(--muted); }
     .mp-hint.ok { color: #7fae8a; }
     .mp-hint.bad { color: #d08a8a; }
     /* The editor shows a chosen shape the same way the article does. */
@@ -5088,18 +6677,23 @@ const ADMIN = REPO.split('/')[0];
     .blk .r-1x1  img { aspect-ratio: 1 / 1; }
     .blk .r-3x4  img { aspect-ratio: 3 / 4; }
     .mp-file-btn {
-      font: 12px var(--body); color: var(--ink); background: var(--band);
-      border: 1px solid var(--rule); border-radius: 5px; padding: 4px 12px; cursor: pointer;
+      height: 30px; font: 12.5px var(--body); color: var(--ink); background: var(--band);
+      border: 1px solid var(--rule); border-radius: 6px; padding: 0 12px; cursor: pointer;
     }
     .mp-file-btn:hover { background: var(--hair); }
-    .mp-body { max-height: min(340px, 45vh); overflow-y: auto; margin: 0 -4px; padding: 0 4px 4px; }
+    .mp-body { max-height: min(380px, 50vh); overflow-y: auto; margin: 0 -16px; padding: 0 16px 10px; }
     .mp-body[hidden] { display: none; }
+    /* Each group under a rule, its name and count pinned while its rows scroll past. */
     .mp-group {
-      font: 10px var(--body); text-transform: uppercase; letter-spacing: .07em;
-      color: var(--muted); padding: 10px 2px 5px;
+      position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: baseline;
+      margin: 8px -16px 4px; padding: 8px 22px 6px; background: var(--lift);
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--hair);
+      font: 600 11px var(--body); color: var(--muted); letter-spacing: .05em; text-transform: uppercase;
     }
+    .mp-group:first-child { margin-top: 0; border-top: 0; }
+    .mp-n { font-weight: 400; letter-spacing: 0; font-variant-numeric: tabular-nums; }
     .mp-icon {
-      display: flex; align-items: center; gap: 9px; width: 100%; padding: 5px 6px; height: auto;
+      display: flex; align-items: center; gap: 10px; width: 100%; padding: 6px 6px; height: auto;
       background: none; border: 0; border-radius: 6px; cursor: pointer; text-align: left;
     }
     .mp-icon img { width: 22px; height: 15px; object-fit: contain; flex: none; }
@@ -5153,11 +6747,222 @@ const ADMIN = REPO.split('/')[0];
 
     /* ---- canvas ---- */
     .ed-canvas { flex: 1; min-width: 0; max-width: 1020px; padding: 14px 8px 60px 104px; }
-    #canvas-title {
-      font: 400 32px/1.25 var(--display); margin: 0 0 8px; outline: none;
+    /* The title, and at the far end of its line the page's details, folded away. */
+    .title-row {
+      display: flex; align-items: baseline; gap: 16px; margin: 0 0 8px;
       padding-bottom: 10px; border-bottom: 1px solid var(--rule);
     }
+    #canvas-title { flex: 1; min-width: 0; font: 400 32px/1.25 var(--display); margin: 0; outline: none; }
     .canvas-sub { font-size: 13px; color: var(--muted); min-height: 1.3em; margin-bottom: 16px; }
+    .canvas-sub[hidden] { display: none; }
+
+    /* ---- the page's details, under its title ----
+       Values read as text and turn into controls under the pointer, so the block is a
+       record of the page rather than a form standing over it. */
+    .page-props {
+      display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 2px 12px; align-items: center;
+      margin: 6px 0 22px; padding-bottom: 14px; border-bottom: 1px solid var(--hair); font-size: 13px;
+    }
+    .page-props .pp-row { display: contents; }
+    .page-props .pp-row[hidden], .page-props.closed .pp-row { display: none; }
+    .page-props.closed { display: none; }
+    .pp-toggle {
+      flex: none; display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px 0 10px;
+      font: 600 11px var(--body); letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+      background: none; border: 0; border-radius: 6px; cursor: pointer;
+    }
+    .pp-toggle:hover, .pp-toggle[aria-expanded="true"] { color: var(--ink); background: var(--band); }
+    .pp-toggle svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .12s; }
+    .pp-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .pp-k { color: var(--muted); font-size: 12.5px; line-height: 30px; }
+    .pp-v { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; min-width: 0; min-height: 30px; }
+    .page-props input[type=text], .page-props select {
+      height: 28px; box-sizing: border-box; padding: 0 8px; margin-left: -8px;
+      font: 13px var(--body); color: var(--ink); background-color: transparent;
+      border: 1px solid transparent; border-radius: 6px; transition: background-color .1s, border-color .1s;
+    }
+    .page-props input[type=text] { width: min(360px, 100%); }
+    .page-props select {
+      justify-self: start; width: auto; max-width: 100%; appearance: none; -webkit-appearance: none; padding-right: 24px; cursor: pointer;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: right 12px top 12px, right 8px top 12px; background-size: 4px 4px; background-repeat: no-repeat;
+    }
+    .page-props select option { background: var(--lift); }
+    .page-props input[type=text]:hover, .page-props select:hover { background-color: var(--band); }
+    .page-props input:focus, .page-props select:focus { outline: none; background-color: var(--paper); border-color: var(--link); }
+    .page-props input::placeholder { color: #5c656e; }
+    .page-props select:disabled { opacity: 1; cursor: default; background-image: none; }
+    .page-props select:disabled:hover { background-color: transparent; }
+    .page-props > .pp-row > input[type=text] { justify-self: start; }
+    .pp-url { gap: 0; }
+    .pp-base { color: var(--muted); }
+    .page-props .pp-url input[type=text] { margin-left: 0; padding-left: 1px; }
+    .pp-slug { color: var(--ink); }
+    .pp-was { color: var(--muted); margin-left: 10px; font-size: 12px; }
+    .pp-was:empty { display: none; }
+    .page-props .pp-btn {
+      height: 26px; padding: 0 8px; margin-left: 8px; font: 12.5px var(--body); color: var(--link);
+      background: none; border: 0; border-radius: 6px; cursor: pointer;
+    }
+    .page-props .pp-btn:hover { background: var(--band); }
+    .pp-muted { color: var(--muted); }
+    .pp-x, .pp-chip-x {
+      width: 22px; height: 22px; padding: 0; border: 0; border-radius: 5px; cursor: pointer;
+      background: none; color: var(--muted); font-size: 11px;
+    }
+    .pp-x:hover, .pp-chip-x:hover { color: var(--ink); background: var(--band); }
+    .pp-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .pp-chip {
+      display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 3px 0 8px;
+      background: var(--band); border: 1px solid var(--hair); border-radius: 12px; font-size: 12.5px;
+    }
+    .pp-chip img { width: 17px; height: 12px; object-fit: contain; }
+    .pp-chip:not(:has(.pp-chip-x)) { padding-right: 10px; }
+    .pp-chip-x { width: 18px; height: 18px; border-radius: 9px; font-size: 10px; }
+    .pp-add {
+      height: 24px; padding: 0 9px; font: 12.5px var(--body); color: var(--muted); cursor: pointer;
+      background: none; border: 1px dashed var(--rule); border-radius: 12px;
+    }
+    .pp-add:hover { color: var(--ink); border-style: solid; }
+    .f-with-btn input[type=text] { flex: 1; }
+    .f-with-btn .pp-btn { margin-left: 0; }
+    .pp-sws { gap: 18px; }
+    .pp-sw { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; color: var(--ink); font-size: 12.5px; }
+    .pp-sw input { position: absolute; opacity: 0; pointer-events: none; }
+    .pp-sw span { display: inline-block; flex: none; position: relative; width: 26px; height: 15px; border-radius: 8px; background: var(--rule); transition: background .12s; }
+    .pp-sw span::after {
+      content: ''; position: absolute; left: 2px; top: 2px; width: 11px; height: 11px;
+      border-radius: 50%; background: #fff; transition: transform .12s;
+    }
+    .pp-sw input:checked + span { background: var(--link); }
+    .pp-sw input:checked + span::after { transform: translateX(11px); }
+    .pp-sw input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .pp-pop {
+      position: fixed; z-index: 70; width: 230px; padding: 6px;
+      background: var(--lift); border: 1px solid var(--rule); border-radius: 8px; box-shadow: 0 10px 28px rgb(0 0 0 / .55);
+    }
+    .pp-pop[hidden] { display: none; }
+    .pp-pop input {
+      width: 100%; height: 28px; box-sizing: border-box; padding: 0 8px; margin-bottom: 4px;
+      font: 13px var(--body); color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+    }
+    .pp-pop input:focus { outline: none; border-color: var(--link); }
+    .pp-pop-list { max-height: 260px; overflow-y: auto; }
+    .pp-pop-list button {
+      display: flex; align-items: center; gap: 8px; width: 100%; padding: 5px 7px; font: 13px var(--body);
+      color: var(--ink); background: none; border: 0; border-radius: 5px; cursor: pointer; text-align: left;
+    }
+    .pp-pop-list button:hover { background: var(--band); }
+    .pp-pop-list img { width: 18px; height: 12px; object-fit: contain; }
+
+    /* ---- publish ---- */
+    .draft-state { flex: none; font: 12px var(--body); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; margin-right: 8px; white-space: nowrap; }
+    .draft-state::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #7fae8a; }
+    .draft-state[hidden] { display: none; }
+    .ed-tools #publish { flex: none; display: inline-flex; align-items: center; gap: 8px; }
+    .ed-tools #publish .cart-n { margin: 0; background: rgb(255 255 255 / .18); border-color: transparent; color: #fff; }
+    .ed-tools #publish .cart-n[hidden] { display: none; }
+    .pub.pubs { width: min(600px, 100%); padding: 0; display: flex; flex-direction: column; max-height: calc(100vh - 60px); overflow: hidden; }
+    .pub-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px 12px; }
+    .pub .pub-head h2 { margin: 0; }
+    .pub-ico {
+      display: inline-grid; place-items: center; width: 30px; height: 30px; padding: 0; flex: none;
+      background: none; border: 0; border-radius: 7px; color: var(--muted); cursor: pointer;
+    }
+    .pub-ico:hover { color: var(--ink); background: var(--band); }
+    .pub-ico svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .pr-list { overflow-y: auto; padding: 0 22px; border-top: 1px solid var(--hair); }
+    .pr-list:empty { display: none; }
+    .pr-row { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--hair); }
+    .pr-row:last-child { border-bottom: 0; }
+    .pub .pr-row > input { display: inline-block; width: 16px; height: 16px; margin: 2px 0 0; padding: 0; accent-color: var(--link); cursor: pointer; }
+    .pr-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+    .pr-top b { font: 600 14px var(--body); color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pr-tag { flex: none; font: 600 10.5px var(--body); padding: 2px 7px; border-radius: 9px; background: var(--band); color: var(--muted); }
+    .pr-tag:empty { display: none; }
+    .pr-tag.live { color: #8fc49b; background: rgb(127 174 138 / .14); }
+    .pr-tag.review { color: #e2c06b; background: rgb(226 192 107 / .13); }
+    .pr-tag.bad { color: #e8a0a0; background: rgb(224 140 140 / .13); }
+    .pr-tag.closed { color: var(--muted); }
+    .pr-delta { flex: none; display: flex; gap: 6px; margin-right: 8px; font: 12px var(--body); font-variant-numeric: tabular-nums; }
+    .pr-add { color: #8fc49b; }
+    .pr-del { color: #e8a0a0; }
+    .pr-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; font: 12.5px var(--body); color: var(--muted); min-width: 0; white-space: nowrap; overflow: hidden; }
+    .pr-meta span { overflow: hidden; text-overflow: ellipsis; }
+    .pr-arrow { flex: none; }
+    .pr-to { color: var(--ink); }
+    .pub .pr-note {
+      margin-top: 9px; height: 30px; padding: 0 9px; font-size: 13px;
+      background: var(--paper); border: 1px solid var(--hair); border-radius: 6px;
+    }
+    .pr-acts { display: flex; align-items: center; gap: 2px; margin-top: -5px; }
+    .pr-empty { color: var(--muted); font-size: 13px; margin: 0; padding: 14px 22px; border-top: 1px solid var(--hair); }
+    .pr-empty[hidden] { display: none; }
+    .pr-sent { padding: 12px 22px 4px; border-top: 1px solid var(--hair); }
+    .pr-sent[hidden] { display: none; }
+    .pr-sent h3 { font: 600 11px var(--body); color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin: 0 0 4px; }
+    .pr-sent-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13px; }
+    .pr-sent-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pr-sent-row a { color: var(--link); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+    .pub-token { display: flex; align-items: center; gap: 12px; padding: 12px 22px; border-top: 1px solid var(--hair); font-size: 13px; }
+    .pt-k { flex: none; color: var(--muted); }
+    .pt-set, .pt-new { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+    .pt-set[hidden], .pt-new[hidden] { display: none; }
+    .pub .pt-new input { margin: 0; height: 30px; padding: 0 9px; flex: 1; }
+    .pt-link { flex: none; font: 12.5px var(--body); color: var(--link); background: none; border: 0; padding: 0; cursor: pointer; }
+    .pt-link:hover { text-decoration: underline; }
+    .pub-token .pt-help { margin-left: auto; }
+    .guide-back { z-index: 85; }
+    .pub.guide { width: min(500px, 100%); padding: 0; }
+    .guide-lead { margin: 0 22px 14px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+    .guide-steps { list-style: none; counter-reset: step; margin: 0 22px; padding: 0; display: grid; gap: 10px; }
+    .guide-steps li {
+      counter-increment: step; display: grid; grid-template-columns: 24px 1fr; column-gap: 10px; row-gap: 8px;
+      font-size: 13.5px; line-height: 1.5; color: var(--ink);
+    }
+    .guide-steps li::before {
+      content: counter(step); grid-row: 1 / span 2; width: 22px; height: 22px; border-radius: 50%;
+      display: grid; place-items: center; font: 600 11.5px var(--body); color: var(--ink); background: var(--band); border: 1px solid var(--rule);
+    }
+    .guide-steps b { font-weight: 600; }
+    .guide-steps code { font: 12.5px ui-monospace, monospace; color: var(--ink); background: var(--band); padding: 1px 4px; border-radius: 4px; }
+    .guide-go {
+      justify-self: start; display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 7px;
+      background: #37538c; border: 1px solid #47659f; color: #eef2fa; font: 600 12.5px var(--body); text-decoration: none;
+    }
+    .guide-go:hover { background: #40609e; }
+    .guide-notes { margin: 18px 22px 16px; padding-top: 14px; border-top: 1px solid var(--hair); display: grid; grid-template-columns: 130px 1fr; gap: 8px 12px; font-size: 12.5px; line-height: 1.5; }
+    .guide-notes dt { color: var(--muted); }
+    .guide-notes dd { margin: 0; color: var(--ink); }
+    .guide-notes a { color: var(--link); }
+    .pub .pub-status { margin: 0; padding: 0 22px; min-height: 0; }
+    .pub .pub-status:not(:empty) { padding-bottom: 10px; }
+    .pub-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 22px; border-top: 1px solid var(--rule); }
+    .pub-foot button {
+      height: 32px; padding: 0 14px; font: 13px var(--body); color: var(--ink); cursor: pointer;
+      background: var(--band); border: 1px solid var(--rule); border-radius: 7px;
+    }
+    .pub-foot button:hover { background: var(--hair); }
+    .pub-foot button.go { background: #37538c; border-color: #47659f; color: #eef2fa; font-weight: 600; }
+    .pub-foot button.go:hover { background: #40609e; }
+    .pub-foot button:disabled { opacity: .45; cursor: default; }
+    .pub.mv { width: min(460px, 100%); padding: 0; }
+    .mv .mv-f {
+      display: flex; align-items: center; margin: 0 22px; height: 36px; padding: 0 0 0 10px;
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 7px; font: 14px var(--body); color: var(--muted);
+    }
+    .mv .mv-f:focus-within { border-color: var(--link); }
+    .mv .mv-f input { margin: 0; height: 34px; padding: 0 10px 0 1px; border: 0; background: none; font-size: 14px; }
+    .mv-err { min-height: 0; margin: 6px 22px 0; font-size: 12.5px; color: #e8a0a0; }
+    .mv-err:empty { display: none; }
+    .mv-head { display: flex; gap: 8px; margin: 16px 22px 6px; font: 600 11px var(--body); color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+    .mv-head span { color: var(--ink); }
+    .mv-list { max-height: 200px; overflow-y: auto; margin: 0 22px 16px; padding: 4px 0; border: 1px solid var(--hair); border-radius: 7px; font-size: 13px; }
+    .mv-list div { padding: 4px 12px; }
+    .mv-list:empty { display: none; }
+    /* Menu rows are text on the panel, not the browser's grey buttons. */
+    .drop-menu.list button { background: none; border: 0; color: var(--ink); border-radius: 5px; font: 13px var(--body); cursor: pointer; }
+    .drop-menu.list button:hover { background: var(--band); }
     .canvas-sub a { color: var(--link); }
 
     /* ---- editable surfaces ---- */
@@ -5210,6 +7015,18 @@ const ADMIN = REPO.split('/')[0];
     .sty-subsubsection { font: 700 13.5px var(--body); }
     .sty-list { font: 14px var(--body); }
     .sty-list::before { content: '\2022  '; color: var(--muted); }
+    /* The two ways to number, drawn as Google Docs draws them: a few lines each. */
+    .num-sub { display: none; min-width: 0; padding: 10px; gap: 10px; }
+    .ins-item.num-item:hover > .num-sub, .ins-item.num-item:focus-within > .num-sub { display: flex; }
+    .drop-menu.list .num-sub .num-tile {
+      display: flex; flex-direction: column; gap: 5px; width: 112px; height: auto;
+      padding: 10px 10px 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper);
+    }
+    .num-tile:hover { border-color: var(--accent); }
+    .num-tile .nt { display: flex; align-items: center; gap: 6px; font: 11px/1 var(--body); color: var(--ink); }
+    .num-tile .nt::after { content: ''; flex: 1; height: 3px; border-radius: 2px; background: var(--rule); }
+    .num-tile .nt.l1 { padding-left: 16px; }
+    .num-tile .nt.l2 { padding-left: 34px; }
     .mp-queue { margin-bottom: 10px; }
     .mp-qrow { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
     .mp-qrow img { width: 34px; height: 26px; object-fit: cover; border: 1px solid var(--rule); border-radius: 3px; }
@@ -5229,6 +7046,7 @@ const ADMIN = REPO.split('/')[0];
       /* A list of things to insert; each opens its own panel beside it on hover, so
        the menu is never every panel at once. */
     .ins-menu { min-width: 150px; }
+    .ins-menu button:disabled { opacity: .4; cursor: default; background: none; }
     .ins-item { position: relative; }
     /* A data table sorts on the page by its header cells; here the arrows only say so. */
     .blk[data-sortable] .ed-tbl tr:first-child > th { position: relative; padding-right: 22px; }
@@ -5368,28 +7186,56 @@ const ADMIN = REPO.split('/')[0];
     .blk-subsection .ce { font: 700 17px/1.3 var(--body); }
     .blk-subsubsection .ce { font: 700 15px/1.4 var(--body); }
     .ce-list { margin: 0; padding-left: 22px; }
-    .ce-list li { margin: 3px 0; position: relative; padding-right: 26px; }
+    .ce-list { outline: none; }
+    .ce-list li { margin: 3px 0; position: relative; }
+    /* A numbered list counts each level on its own, as the page does; tidy() writes the
+       numbers, since the items sit side by side here rather than nested. */
+    .ce-list.ordered li, .ce-list.ordered li[data-level] { list-style: none; }
+    .ce-list.ordered li[data-n]::before {
+      content: attr(data-n) "."; position: absolute; right: 100%; margin-right: .45em;
+      white-space: nowrap; font-variant-numeric: tabular-nums;
+    }
     /* A nested item, as the page shows it: a step in, and the bullet changes. */
     .ce-list li[data-level="1"] { margin-left: 24px; list-style-type: circle; }
     .ce-list li[data-level="2"] { margin-left: 48px; list-style-type: square; }
     .ce-list li[data-level="3"] { margin-left: 72px; }
     .ce-list li[data-level="4"] { margin-left: 96px; list-style-type: circle; }
     .ce-list li[data-level="5"] { margin-left: 120px; list-style-type: square; }
-    .li-x {
-      position: absolute; top: 0; right: 0; font: 11px/1 var(--body);
-      color: var(--muted); background: var(--lift); border: 1px solid var(--rule);
-      border-radius: 3px; padding: 2px 5px; cursor: pointer; opacity: 0; transition: opacity .12s;
-    }
-    .ce-list li:hover .li-x, .ce-list li:focus-within .li-x { opacity: 1; }
-    .li-x:hover { color: var(--ink); background: var(--band); }
 
     #body { padding-left: 96px; margin-left: -96px; }
     .blk-tag {
-      position: absolute; left: -96px; top: 1px; width: 88px; text-align: right;
-      font: 10px var(--body); text-transform: uppercase; letter-spacing: .06em;
+      position: absolute; left: -96px; top: 1px; width: 76px; text-align: right;
+      font: 600 10px var(--body); text-transform: uppercase; letter-spacing: .07em;
       color: #5c656e; opacity: 0; pointer-events: none;
     }
     .blk:hover > .blk-tag, .blk:focus-within > .blk-tag { opacity: 1; }
+    /* The block being written in is marked by a rail down its left edge, in the
+       favicon's blue. A ring round the text would run under the sidebar, since a
+       paragraph's box goes on beneath a float while only its lines wrap. */
+    .blk:focus-within > .blk-tag { color: var(--accent); }
+    .blk:not(.blk-float):not(.blk-image):not(.blk-grid):focus-within::before {
+      content: ''; position: absolute; left: -11px; top: 2px; bottom: 2px;
+      width: 3px; border-radius: 2px; background: var(--accent);
+    }
+    .blk-section .ce:focus, .blk-subsection .ce:focus, .blk-subsubsection .ce:focus,
+    .blk-para .ce:focus, .blk-list .ce:focus { box-shadow: none; }
+    .grip { cursor: grab; touch-action: none; }
+    .grip svg { width: 10px; height: 16px; fill: currentColor; display: block; }
+    .dragging-blk, .dragging-blk * { cursor: grabbing !important; user-select: none; }
+    .blk.dragging { opacity: .35; }
+    /* Only what can be written in can be selected. A drag that began on the toolbar,
+       the contents or the gutter used to paint the whole page blue. */
+    .ed { user-select: none; -webkit-user-select: none; }
+    .ed [contenteditable="true"], .ed input, .ed textarea, .ed select { user-select: text; -webkit-user-select: text; }
+    /* Blocks chosen whole, when a selection ran past the one it started in. */
+    #body:focus { outline: none; }
+    .blk.chosen { background: rgb(127 168 255 / .16); box-shadow: 0 0 0 4px rgb(127 168 255 / .16); border-radius: 2px; }
+    .blk-float.chosen .float-edit { outline: 3px solid var(--accent); }
+    .blk.chosen ::selection { background: transparent; }
+    .drop-line {
+      position: fixed; z-index: 40; height: 3px; border-radius: 2px;
+      background: var(--accent); pointer-events: none;
+    }
 
     /* Controls sit outside the content: in the gutter for blocks, beside the sidebar
        for its rows. A transparent border bridges the visual gap so the pointer can
@@ -5401,6 +7247,21 @@ const ADMIN = REPO.split('/')[0];
       visibility: hidden; opacity: 0; transition: opacity .1s;
     }
     .blk > .ctl { top: 18px; right: 100%; left: auto; border-right: 9px solid transparent; }
+    /* Beside a body block the controls stand bare under the label, one above the other. */
+    .blk:not(.blk-float) > .ctl {
+      right: calc(100% + 20px); flex-direction: column; align-items: center; gap: 2px;
+      padding: 0; background: none; border: 0;
+    }
+    .blk:not(.blk-float) > .ctl button { width: 24px; height: 22px; }
+    /* The gutter beside a block belongs to it, so the pointer can cross from the text
+       to the label and the controls without the block losing its hover on the way. */
+    .blk:not(.blk-float)::after {
+      content: ''; position: absolute; top: 0; bottom: 0; right: 100%; width: 96px;
+    }
+    /* One block's chrome at a time. A heading is shorter than its controls, which hang
+       down beside the paragraph under it, so while another block is hovered the one
+       being typed in keeps only its rail. */
+    #body:has(> .blk:hover) > .blk:not(:hover) > :is(.ctl, .blk-tag) { visibility: hidden; opacity: 0; }
     .blk:hover > .ctl, .blk:focus-within > .ctl, .blk > .ctl:hover,
     .ib-edit tr:hover .ctl, .ib-edit tr:focus-within .ctl, .ib-edit .ctl:hover {
       visibility: visible; opacity: 1;
@@ -5677,6 +7538,7 @@ const ADMIN = REPO.split('/')[0];
       .blk:hover > .ctl, .blk:focus-within > .ctl, .blk > .ctl:hover {
         display: flex; visibility: visible; opacity: 1;
       }
+      .blk:not(.blk-float) > .ctl { flex-direction: row; }
       .ib-edit .ctl {
         position: static; left: auto; right: auto; top: auto; display: none;
         flex-direction: row; width: max-content; margin-top: 6px; border-left-width: 1px;
@@ -5731,6 +7593,7 @@ const ADMIN = REPO.split('/')[0];
       .ed-settings { grid-template-columns: 1fr; }
       #body { padding-left: 0; margin-left: 0; }
       .blk-tag { display: none; }
+      .blk:not(.blk-float)::after { content: none; }
       .ed-source { width: 100%; }
     }
   </style>

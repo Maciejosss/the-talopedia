@@ -41,6 +41,9 @@ for (const h of headings) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="aTNJYgdygNtrPIt6rOBzJPwGVAUGxetvrunedeunEYs" />
+    {/* Google Photos refuses pictures asked for from a localhost page, so the dev server
+        asks without saying where from. The built site is untouched. */}
+    {import.meta.env.DEV && <meta name="referrer" content="no-referrer" />}
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
     {/* What a link preview shows: Discord and the like read these rather than the page. */}

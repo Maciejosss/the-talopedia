@@ -244,15 +244,17 @@
       return ev.defaultPrevented;
     };
     const caretAt = (i, end = true, offset = null) => {
-      const box = lis()[i].querySelector('.ce'); box.focus();
+      const box = lis()[i].querySelector('.ce'); L().focus();
       const r = document.createRange();
       if (offset != null) r.setStart(box.firstChild, offset); else r.selectNodeContents(box);
       r.collapse(offset != null ? true : !end);
       getSelection().removeAllRanges(); getSelection().addRange(r);
     };
     const mdNow = () => $('#preview').textContent;
-    focusEnd(paras()[0]);
-    document.querySelector('[data-add="list"]').click();
+    // The list button turns the paragraph the caret is in into a list, so this starts
+    // on a fresh empty one.
+    focusEnd(paras()[0]); press('Enter');
+    document.querySelector('[data-list="bullet"]').click();
     await sleep(50);
     type('one'); press('Enter'); type('two');
     ok('Enter makes the next item', lis().length === 2 && liText(1) === 'two' && inLi() === 1, lis().map((li) => li.textContent));
@@ -290,13 +292,78 @@
     redo();
     ok('and redo keeps it', liLvl(1) === 1, liLvl(1));
 
+    // One box for the whole list: a selection runs across items.
+    ok('the list is one editing box', L().isContentEditable && L().getAttribute('contenteditable') === 'true' && !lis()[0].querySelector('[contenteditable="true"]'), L().outerHTML.slice(0, 80));
+    ok('and no item carries a remove button', !L().querySelector('button'), L().querySelectorAll('button').length);
+    const across = (i, a, j, z) => {
+      L().focus();
+      const r = document.createRange();
+      r.setStart(lis()[i].querySelector('.ce').firstChild, a);
+      r.setEnd(lis()[j].querySelector('.ce').firstChild, z);
+      getSelection().removeAllRanges(); getSelection().addRange(r);
+    };
+    lis()[0].querySelector('.ce').textContent = 'alpha'; lis()[1].querySelector('.ce').textContent = 'bravo';
+    across(0, 2, 1, 3); press('Backspace');
+    ok('Backspace over a selection across two items joins what is left of them', lis().length === 1 && liText(0) === 'alvo', lis().map((li) => li.textContent));
+    caretAt(0); press('Enter'); type('charlie'); press('Enter'); type('delta');
+    across(0, 0, 2, 2); press('Tab');
+    ok('Tab nests every item the selection touches that can go', liLvl(0) === 0 && liLvl(1) === 1 && liLvl(2) === 1, [liLvl(0), liLvl(1), liLvl(2)]);
+    caretAt(2); document.querySelector('[data-num="alpha"]').click();
+    ok('the numbered button turns the whole list to numbers', L().classList.contains('ordered'), L().className);
+    ok('saved numbered, each level counted afresh', mdNow().includes('1. alvo\n    1. charlie\n    2. delta'), (mdNow().match(/1\. alvo[\s\S]{0,40}/) || [''])[0]);
+    caretAt(1); document.querySelector('[data-num="alpha"]').click();
+    ok('pressed again in a numbered list, the item comes out as a paragraph', lis().length === 1 && document.activeElement.closest('[data-kind]')?.dataset.kind === 'para', [lis().length, document.activeElement.closest('[data-kind]')?.dataset.kind]);
+    undo();
+    ok('and undo puts it back in the list', lis().length === 3, lis().length);
+    caretAt(0); document.querySelector('[data-list="bullet"]').click();
+    ok('the bullet button turns it back to bullets', !L().classList.contains('ordered') && mdNow().includes('- alvo'), L().className);
+    caretAt(0); document.querySelector('[data-num="outline"]').click();
+    ok('the 1.1 tile numbers the list by outline', L().classList.contains('ordered') && L().dataset.numbering === 'outline' && lis()[1].dataset.n === '1.1', [L().className, L().dataset.numbering, lis().map((li) => li.dataset.n)]);
+    ok('saved under the note the site reads', mdNow().includes('<!-- numbering: 1.1 -->\n1. alvo\n    1. charlie'), (mdNow().match(/<!--[\s\S]{0,60}/) || [''])[0]);
+    caretAt(0); document.querySelector('[data-num="alpha"]').click();
+    ok('the 1, a, i tile numbers a level down by letter', !L().dataset.numbering && lis()[1].dataset.n === 'a' && lis()[2].dataset.n === 'b', lis().map((li) => li.dataset.n));
+    ok('and needs no note', !mdNow().includes('<!-- numbering') && mdNow().includes('1. alvo'), (mdNow().match(/1\. alvo[\s\S]{0,30}/) || [''])[0]);
+    caretAt(0); document.querySelector('[data-list="bullet"]').click();
+
+    // Into a list from a paragraph: the button, the typed dash, and a paste.
+    focusEnd(paras()[0]); press('Enter'); type('echo');
+    document.querySelector('[data-list="bullet"]').click();
+    ok('the bullet button makes the paragraph the caret is in a list item', inLi() === 0 && liText(0) === 'echo', [inLi(), liText(0)]);
+    caretAt(0); press('Enter'); press('Enter'); type('-');
+    press(' '); type('foxtrot');
+    const AL = document.activeElement.closest('.ce-list');
+    ok('"- " at the start of a paragraph makes it a list, joined to the lists either side', !!AL && AL.children[0].textContent === 'echo' && AL.children[1].textContent === 'foxtrot', AL && [...AL.children].map((li) => li.textContent));
+    const pasteInto = (target, html, text) => {
+      const dt = new DataTransfer(); dt.setData('text/html', html); dt.setData('text/plain', text);
+      target.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }));
+    };
+    focusEnd(paras()[0]); press('Enter');
+    const before = document.querySelectorAll('.ce-list').length;
+    pasteInto(document.activeElement, '<b style="font-weight:normal" id="docs-internal-guid-1"><ul><li aria-level="1"><p>golf</p></li><li aria-level="2"><p>hotel</p></li></ul><p>india</p></b>', '* golf\n  * hotel\nindia');
+    const pl = [...document.querySelectorAll('.ce-list')].find((l) => l.textContent.includes('golf'));
+    ok('a list pasted from Docs comes in as a list, levels kept', !!pl && pl.children.length === 2 && +pl.children[1].dataset.level === 1, pl && [...pl.children].map((li) => li.dataset.level || 0));
+    ok('and the paragraph after it as a paragraph', [...paras()].some((c) => c.textContent === 'india' && c.closest('[data-kind]').dataset.kind === 'para'), document.querySelectorAll('.ce-list').length - before);
+    {
+      // Read back from markdown: blocks copied out of the editor carry it, so a paste
+      // goes through the same reader a page does when it opens.
+      focusEnd(paras()[0]); press('Enter');
+      const dt = new DataTransfer();
+      dt.setData('text/html', '<div data-talo-md="&lt;!-- numbering: 1.1 --&gt;\n1. kilo\n    1. lima"></div>');
+      dt.setData('text/plain', 'kilo\nlima');
+      document.activeElement.dispatchEvent(new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true }));
+      const kl = [...document.querySelectorAll('.ce-list')].find((l) => l.textContent.includes('kilo'));
+      ok('a list under the note is read back numbered by outline', !!kl && kl.dataset.numbering === 'outline' && kl.children[1]?.dataset.n === '1.1', kl && [kl.dataset.numbering, kl.children[1]?.dataset.n]);
+    }
+
     // The medals sit in their own icons group, first after the arrows, and go in
     // without the white edge a flag gets.
     await new Promise((r) => setTimeout(r, 300));
-    const groups = [...document.querySelectorAll('#mp-icons .mp-group')].map((g) => g.textContent);
+    // Each group's header is its name and how many it holds.
+    const groups = [...document.querySelectorAll('#mp-icons .mp-group')].map((g) => g.firstChild.textContent.toLowerCase());
     const symbols = [...document.querySelectorAll('#mp-icons .mp-icon')].filter((b) => /\/assets\/icons\//.test(b.title));
     const medals = symbols.filter((b) => /-medal\./.test(b.title));
-    ok('an icons group with the three medals, after the arrows', groups[0] === 'arrows' && groups[1] === 'icons' && medals.length === 3, [groups.slice(0, 3), medals.length]);
+    ok('a medals group of three, after the arrows, gold first', groups[0] === 'arrows' && groups[1] === 'medals' && medals.length === 3 && /gold/.test(medals[0].title), [groups.slice(0, 4), medals.map((m) => m.title)]);
+    ok('then the marks for a commander in a group of their own', groups[2] === 'commanders', groups.slice(0, 4));
     ok('and the three marks for a commander', ['Executed', 'Killed in Action', 'Surrendered'].every((l) => symbols.some((b) => b.textContent.trim() === l)),
       symbols.map((b) => b.textContent.trim()));
     focusEnd(paras()[0]);
@@ -323,6 +390,75 @@
     $('#mp-link').value = 'https://i.ibb.co/QFXcvYjH/Shushestan-flag.png';
     ok("the picture's own link passes", !/page for the picture|not on the list/.test(note()), note());
     $('#mp-link').value = '';
+
+    // Find and replace.
+    {
+      const md = () => $('#preview').textContent;
+      paras()[0].innerHTML = 'Nichirin met NICHIRIN and nichirin at Nichirinsk. <b>Nichi</b>rin too.';
+      paras()[0].dispatchEvent(new Event('input', { bubbles: true }));
+      await sleep(30);
+      const findIn = (q) => { $('#fb-find').value = q; $('#fb-find').dispatchEvent(new Event('input')); };
+      const settle = () => sleep(200);
+      const count = () => $('#fb-count').textContent;
+      const opt = (o) => $(`[data-opt="${o}"]`).click();
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'f', metaKey: true, bubbles: true }));
+      ok('⌘F opens the find bar on the find box', !$('#findbar').hidden && document.activeElement === $('#fb-find'), [$('#findbar').hidden, document.activeElement?.id]);
+      findIn('nichirin'); await settle();
+      const all = +count().split(' of ')[1];
+      ok('every match is counted, across bold, case ignored', all >= 5, count());
+      opt('word'); await settle();
+      const words = +count().split(' of ')[1];
+      ok('Whole words leaves out Nichirinsk', words === all - 1, [all, words]);
+      opt('case'); await settle();
+      const cased = +count().split(' of ')[1];
+      ok('Match case keeps to the capitals typed', cased < words, [words, cased]);
+      opt('case'); opt('word');
+      opt('regex'); findIn('N(ichi)rin\\b'); await settle();
+      ok('a regular expression finds', /of/.test(count()), count());
+      findIn('(['); await settle();
+      ok('and a broken one says so', count() === 'Not a pattern' && $('#fb-find').classList.contains('bad'), count());
+      opt('regex');
+      findIn('nichirin'); opt('word'); await settle();
+      const first = count();
+      $('#fb-find').dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      ok('Enter steps to the next match', count() !== first && /^2 of/.test(count()), [first, count()]);
+      $('#fb-find').dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: true, bubbles: true }));
+      ok('Shift+Enter steps back', count() === first, count());
+      $('#fb-expand').click();
+      ok('the arrow shows the replace row', !$('#fb-replace-row').hidden, $('#fb-replace-row').hidden);
+      $('#fb-repl').value = 'shogunate';
+      opt('keep');
+      $('#fb-all').click(); await settle();
+      ok('Replace all, keeping each match\'s capitals', paras()[0].textContent.startsWith('Shogunate met SHOGUNATE and shogunate at Nichirinsk.'), paras()[0].textContent);
+      ok('and the replacement is saved', md().includes('Shogunate met SHOGUNATE and shogunate'), (md().match(/\w+ met [\s\S]{0,40}/) || [''])[0]);
+      undo(); await settle();
+      ok('one undo takes every replacement back', paras()[0].textContent.startsWith('Nichirin met NICHIRIN and nichirin'), paras()[0].textContent);
+      opt('keep');
+      findIn('NICHIRIN'); opt('case'); await settle();
+      $('#fb-repl').value = 'X';
+      $('#fb-one').click(); await settle();
+      ok('Replace changes only the current match', paras()[0].textContent.startsWith('Nichirin met X and nichirin'), paras()[0].textContent);
+      opt('case');
+      undo();
+      // The lines of a sidebar cell are lines: find does not run one into the next.
+      const cell = document.querySelector('.ib-edit .ce.outline');
+      if (cell) {
+        cell.innerHTML = '<div data-level="0">Makinami</div><div data-level="0">Kanade</div>';
+        findIn('MakinamiKanade'); await settle();
+        ok('two lines of a sidebar cell are not read as one word', count() === 'No results', count());
+        $('[data-scope="article"]').click();
+        findIn('Kanade'); await settle();
+        ok('Look in Article leaves the sidebar out', count() === 'No results', count());
+        $('[data-scope="sidebar"]').click(); await settle();
+        ok('Look in Sidebar finds it there', /^1 of 1$/.test(count()), count());
+        $('[data-scope="all"]').click();
+        cell.innerHTML = '';
+      }
+      $('#findbar').dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      ok('Escape closes it', $('#findbar').hidden, $('#findbar').hidden);
+      paras()[0].innerHTML = '';
+      paras()[0].dispatchEvent(new Event('input', { bubbles: true }));
+    }
 
     // Bold that took its trailing space along is saved with the space outside the
     // marks; **word ** does not close, and printed on the page as it stands.
@@ -621,21 +757,29 @@
     shelved = await until((all) => all.some((d) => d.key.startsWith('new:') && d.title === 'Draft Test Page'));
     ok('a new page has a draft of its own', shelved.some((d) => d.key.startsWith('new:') && d.title === 'Draft Test Page'), keys(shelved));
     ok('and starting it threw nothing away', shelved.some((d) => d.key === 'article:nichirin'), keys(shelved));
-    $('#file').click();
-    for (let i = 0; i < 40 && $('#draft-box').hidden; i++) await sleep(50);
-    const draftRows = () => [...document.querySelectorAll('#draft-list .draft-row')];
-    ok('the File menu lists the drafts, newest first', draftRows()[0]?.textContent.startsWith('Draft Test Page')
-      && draftRows().some((r) => r.textContent.startsWith('Nichirin')), draftRows().map((r) => r.textContent));
-    draftRows().find((r) => r.textContent.startsWith('Nichirin')).querySelector('button').click();
+    // Every page with changes is in Publish, where each opens or resets.
+    const pubRows = () => [...document.querySelectorAll('#pub-list .pr-row')];
+    const rowOf = (t) => pubRows().find((r) => r.querySelector('.pr-top b')?.textContent === t);
+    const openPub = async (t) => { $('#publish').click(); for (let i = 0; i < 60 && !rowOf(t); i++) await sleep(50); };
+    await openPub('Nichirin');
+    ok('Publish lists every page with changes, newest first', pubRows()[0]?.querySelector('.pr-top b')?.textContent === 'Draft Test Page'
+      && !!rowOf('Nichirin'), pubRows().map((r) => r.querySelector('.pr-top b')?.textContent));
+    ok('and the toolbar counts them', $('#pub-n').textContent === String(pubRows().length), [$('#pub-n').textContent, pubRows().length]);
+    rowOf('Nichirin').querySelector('[title="Open"]').click();
     for (let i = 0; i < 40 && $('#f-title').value !== 'Nichirin'; i++) await sleep(50);
-    ok('and one opens from there', $('#f-title').value === 'Nichirin' && txt(0).includes('Draftmark'), [$('#f-title').value, txt(0).slice(-30)]);
-    $('#file').click();
-    for (let i = 0; i < 40 && !draftRows().length; i++) await sleep(50);
-    draftRows().find((r) => r.textContent.startsWith('Nichirin')).querySelector('.draft-x').click();
+    ok('and one opens from there', $('#f-title').value === 'Nichirin' && txt(0).includes('Draftmark') && $('#pub-panel').hidden,
+      [$('#f-title').value, txt(0).slice(-30)]);
+    await openPub('Nichirin');
+    const confirmWas = window.confirm;
+    window.confirm = () => true;
+    rowOf('Nichirin').querySelector('[title="Reset"]').click();
     shelved = await until((all) => !all.some((d) => d.key === 'article:nichirin'));
     for (let i = 0; i < 100 && txt(0).includes('Draftmark'); i++) await sleep(50);
-    ok('thrown away, it is gone and the page is as the site has it', !shelved.some((d) => d.key === 'article:nichirin') && !txt(0).includes('Draftmark'),
+    window.confirm = confirmWas;
+    ok('reset, it is gone and the page is as the site has it', !shelved.some((d) => d.key === 'article:nichirin') && !txt(0).includes('Draftmark'),
       [keys(shelved), txt(0).slice(-30)]);
+    ok('and it leaves the list', !rowOf('Nichirin'), pubRows().map((r) => r.querySelector('.pr-top b')?.textContent));
+    $('#pub-close').click();
   } catch (err) {
     out.push('FAIL threw: ' + err.message);
   }

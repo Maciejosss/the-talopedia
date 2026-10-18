@@ -8,6 +8,8 @@
   --band: #2a2d32;
   --lift: #202122;
   --link: #6485d1;
+  /* The corner of the favicon. */
+  --accent: #7fa8ff;
   --link-new: #fd7865;
   --paper: #101418;
   --shell: #101418;
@@ -368,6 +370,22 @@ figcaption:empty { display: none; }
 .notice {
   border: 1px solid var(--rule); border-left: 4px solid #c8952a; background: #2a2418;
   padding: 9px 13px; font-size: 13px; margin: 0 0 18px;
+}
+
+/* ---- numbered lists ----
+   Each level down counts 1, a, i and round again, as Google Docs numbers them. A list
+   the editor marked for it counts by outline instead: 1., 1.1., 1.2.1. */
+.article ol ol { list-style-type: lower-alpha; }
+.article ol ol ol { list-style-type: lower-roman; }
+.article ol ol ol ol { list-style-type: decimal; }
+.article ol ol ol ol ol { list-style-type: lower-alpha; }
+.article ol ol ol ol ol ol { list-style-type: lower-roman; }
+.article ol.num-outline, .article ol.num-outline ol { list-style: none; counter-reset: num; }
+.article ol.num-outline ol { padding-left: 3em; }
+.article ol.num-outline li { counter-increment: num; position: relative; }
+.article ol.num-outline li::before {
+  content: counters(num, ".") "."; position: absolute; right: 100%; margin-right: .45em;
+  white-space: nowrap; font-variant-numeric: tabular-nums;
 }
 
 /* ---- navbox ---- */
