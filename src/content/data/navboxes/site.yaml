@@ -11,7 +11,7 @@ groups:
         items: [alemannia, arverne, cortesia, east-astriya, elvester, karjania, kemet, livonia,
                 rudania, selmira, shivon, sidanya, skjarnland, slytlia, turulia, vicily, varahmehr]
       - label: Valtheria
-        items: [axerfreditenshin, cahaya, furan, giathka, guandong, nichirin, nozhnorstan,
+        items: [axerfreditenshin, cahaya, furan, giathka, guandong, nichirin,
                 perovska, seignid]
       - label: Elysia
         items: [auritania, esu, hollosend, ponurvia, salishia]

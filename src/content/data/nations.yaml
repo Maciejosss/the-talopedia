@@ -31,7 +31,6 @@
 - { id: furan, name: Furan, adjective: Furanese, continent: Valtheria, flag: /assets/flags/furan.jpg }
 - { id: giathka, name: Giathka, adjective: Giathkan, continent: Valtheria, flag: /assets/flags/giathka.png }
 - { id: guandong, name: Guandong, adjective: Guandongese, continent: Valtheria, flag: /assets/flags/guandong.png }
-- { id: nozhnorstan, name: Nozhnorstan, adjective: Nozhnorstani, continent: Valtheria, portal: true, flag: /assets/flags/nozhnorstan.png }
 - { id: perovska, name: Perovska, adjective: Perovskan, continent: Valtheria, flag: /assets/flags/perovska.png }
 - { id: seignid, name: Seignid, adjective: Seignidian, continent: Valtheria, flag: /assets/flags/seignid.png }
 
