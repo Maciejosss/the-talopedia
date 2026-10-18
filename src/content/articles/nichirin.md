@@ -7,6 +7,7 @@ nation: nichirin
 icon: "/assets/flags/nichirin.png"
 infobox:
   - { image: "/assets/flags/nichirin.png", caption: "Flag" }
+  - { image: "/assets/old-media/emblems/nichirin.png", caption: "Coat of Arms" }
   - { image: "/assets/old-media/media/nichirin-location.jpg", caption: "Location of Mainland Nichirin" }
   - label: "Motto"
     value:
