@@ -1,6 +1,6 @@
 ---
 title: "Jasmine Petrova"
-type: overview
+type: character
 nation: esu
 infobox:
   - { image: "https://lh3.googleusercontent.com/d/1T-ROpDoqv0mZUd7yGScCNw1z_2EL3dgt=w2000", caption: "" }
