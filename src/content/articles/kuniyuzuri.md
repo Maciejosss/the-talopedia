@@ -9,7 +9,7 @@ The **Kuniyuzuri** (国譲り, “transfer of the land”) is the episode of the
 
 ## Narrative
 
-<figure class="float float-right" style="width:274px"><img src="https://lh3.googleusercontent.com/pw/AP1GczOQFdgO-WpdLPbpNbJiBnIu7dxp4iqEx1MIjSGrWxhvIzE7Q-PD9W_Z6oykDNufeu-LQzLPVdNPXGderfCoMhwflAvjrxLgDyibzyiXK-LkQdLP2oW3g-BK2O4U5Zit61Sf5shUsfkf5K2f9nArJPwh=w2000" alt="Takeminakata carrying a great rock as a display of strength"><figcaption>Takeminakata carrying a great rock as a display of strength</figcaption></figure>
+<figure class="float float-left" style="width:274px"><img src="https://lh3.googleusercontent.com/pw/AP1GczOQFdgO-WpdLPbpNbJiBnIu7dxp4iqEx1MIjSGrWxhvIzE7Q-PD9W_Z6oykDNufeu-LQzLPVdNPXGderfCoMhwflAvjrxLgDyibzyiXK-LkQdLP2oW3g-BK2O4U5Zit61Sf5shUsfkf5K2f9nArJPwh=w2000" alt="Takeminakata carrying a great rock as a display of strength"><figcaption>Takeminakata carrying a great rock as a display of strength</figcaption></figure>
 
 Amaterasu declared from Sōten that the land, governed by Ōkuninushi (大国主) from his palace on the shore of Inasa, should pass to her descendants. Her first two envoys took Ōkuninushi’s side. Ame-no-Hohi (天穂日) sent no report for three years, while Ame-no-Wakahiko (天若日子) married Ōkuninushi’s daughter and was killed by an arrow cast down from heaven. The third embassy was entrusted to Takemikazuchi (建御雷) and Futsunushi (経津主), who descended onto the shore of Inasa and put Amaterasu’s demand to Ōkuninushi. He referred them to his sons. Kotoshironushi (事代主) consented to the transfer. Takeminakata (建御名方) challenged Takemikazuchi to a trial of strength, lost, and fled.
 
