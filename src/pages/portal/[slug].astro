@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { url, coordsFor, nation, mapUrl, navbox } from '../../lib/registry.mjs';
 import { resolveHtml, renderNavbox } from '../../lib/navbox.mjs';
-import { flagColour } from '../../lib/flag-colour.mjs';
+import { colourOf } from '../../lib/flag-colour.mjs';
 
 export async function getStaticPaths() {
   const all = await getCollection('portals');
@@ -28,8 +28,7 @@ const lede = resolveHtml((overview?.rendered?.html ?? '').match(/<p>[\s\S]*?<\/p
 // editing is its navbox. A nation without one falls back to the portal file itself.
 const hasNavbox = !!navbox(d.nation);
 const found = coordsFor(nation(d.nation)?.name, d.nation);
-const flag = nation(d.nation)?.flag;
-const bar = flag ? await flagColour(`public${flag}`) : null;
+const bar = colourOf(d.nation);
 const coords = found && { ...found, href: found.type === 'nation' ? mapUrl(nation(d.nation)?.name ?? d.nation) : null };
 ---
 <Base title={d.title} image={d.banner} headings={headings} coords={coords} nationId={d.nation} slug={`portal:${entry.id}`}

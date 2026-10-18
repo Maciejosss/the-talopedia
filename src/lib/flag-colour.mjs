@@ -1,7 +1,8 @@
 import sharp from 'sharp';
+import { nations } from './registry.mjs';
 
 /**
- * A portal's welcome bar takes the colour of the nation's flag: the commonest colour
+ * A nation's portal bar and navbox take the colour of its flag: the commonest colour
  * in it that white lettering can sit on. White and pale fields are passed over, and so
  * is black, unless the flag has nothing else. A colour covering less than a twentieth
  * of the flag is only the blurred edge between two others, and does not count.
@@ -11,7 +12,7 @@ const lum = (c) => {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 
-export async function flagColour(file) {
+async function flagColour(file) {
   const data = await sharp(file).resize(64, 40, { fit: 'fill' }).removeAlpha().raw().toBuffer();
   const bins = new Map();
   for (let i = 0; i < data.length; i += 3) {
@@ -29,3 +30,10 @@ export async function flagColour(file) {
   const pick = readable.find((c) => Math.max(...c) > 40) ?? readable[0];
   return pick && '#' + pick.map((v) => v.toString(16).padStart(2, '0')).join('');
 }
+
+// Read once per build, so the navbox can ask for a colour without waiting on it.
+const COLOURS = new Map(await Promise.all(nations().filter((n) => n.flag)
+  .map(async (n) => [n.id, await flagColour(`public${n.flag}`).catch(() => null)])));
+
+/** The colour of a nation's flag, or null for a nation with none. */
+export const colourOf = (id) => COLOURS.get(id) ?? null;
