@@ -780,6 +780,29 @@
       [keys(shelved), txt(0).slice(-30)]);
     ok('and it leaves the list', !rowOf('Nichirin'), pubRows().map((r) => r.querySelector('.pr-top b')?.textContent));
     $('#pub-close').click();
+
+    // A navbox's History rows are its history series' periods, and take dates.
+    await openFile(['title: "Test Articles"', 'groups:', '  - label: "History"', '    rows:',
+      '      - label: "Antiquity"', '        dates: "100–500"', '        items:', '          - "great-war"',
+      '      - label: "Modern"', '        items:', '          - "elysian-civil-war"',
+      '  - label: "Politics"', '    rows:', '      - label: "Government"', '        items:', '          - "nichirin"', ''].join('\n'), 'test-nav.yaml');
+    const rowsNamed = (t) => [...document.querySelectorAll('#body .blk-subsection')].find((b) => b.querySelector('.ce').textContent === t);
+    ok('a History row shows its dates', rowsNamed('Antiquity')?.classList.contains('dated') && rowsNamed('Antiquity').querySelector('.blk-dates').value === '100–500',
+      rowsNamed('Antiquity')?.querySelector('.blk-dates')?.value);
+    ok('a row outside History has none', !rowsNamed('Government')?.classList.contains('dated'));
+    const modern = rowsNamed('Modern').querySelector('.blk-dates');
+    click(modern);
+    modern.focus();
+    modern.value = '1900–1950';
+    modern.dispatchEvent(new Event('input', { bubbles: true }));
+    await sleep(100);
+    ok('dates typed are written under their row', /- label: "Modern"\n {8}dates: "1900–1950"/.test($('#preview').textContent), $('#preview').textContent.slice(0, 300));
+    ok('and the stored ones are kept', /- label: "Antiquity"\n {8}dates: "100–500"/.test($('#preview').textContent));
+    await sleep(1200);
+    undo();
+    await sleep(100);
+    ok('undo takes typed dates back out', rowsNamed('Modern').querySelector('.blk-dates').value === '' && rowsNamed('Antiquity').classList.contains('dated'),
+      rowsNamed('Modern').querySelector('.blk-dates').value);
   } catch (err) {
     out.push('FAIL threw: ' + err.message);
   }

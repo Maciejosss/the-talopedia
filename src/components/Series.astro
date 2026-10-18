@@ -1,0 +1,36 @@
+---
+import { url, exists } from '../lib/registry.mjs';
+import { asset } from '../lib/inline.mjs';
+
+/**
+ * "Part of a series on the History of …": the nation's periods, the one this page is in
+ * open and the rest folded, each with its dates and its articles. This page is set in
+ * bold rather than linked.
+ */
+const { s, here, steps = false } = Astro.props;
+const home = s.portal ? url(`/portal/${s.id}`) : url(`/${s.id}`);
+---
+<aside class="series">
+  <div class="hs-head">
+    <span>Part of a series on the</span>
+    <a class="hs-title" href={home}>History of {s.name}</a>
+    {s.flag && <a href={home} tabindex="-1"><img class="hs-flag" src={asset(s.flag)} alt="" /></a>}
+  </div>
+  {s.periods.map((p, i) => (
+    <details class="hs-period" open={i === s.at}>
+      <summary><span class="hs-label">{p.label}</span>{p.dates && <span class="hs-dates">{p.dates}</span>}</summary>
+      <ul>
+        {p.items.map((it) => (
+          <li>{it.slug === here ? <b>{it.name}</b>
+            : <a class:list={['wl', !exists(it.slug) && 'new']} href={url('/' + it.slug)}>{it.name}</a>}</li>
+        ))}
+      </ul>
+    </details>
+  ))}
+  {steps && (s.prev || s.next) && (
+    <div class="hs-steps">
+      {s.prev ? <a class="hs-prev" href={url('/' + s.prev.slug)}>{s.prev.name}</a> : <span />}
+      {s.next && <a class="hs-next" href={url('/' + s.next.slug)}>{s.next.name}</a>}
+    </div>
+  )}
+</aside>

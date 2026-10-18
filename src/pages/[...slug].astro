@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Infobox from '../components/Infobox.astro';
+import Series from '../components/Series.astro';
+import { seriesOf } from '../lib/series.mjs';
 import { coordsFor, nation, mapUrl, url, navbox } from '../lib/registry.mjs';
 import { categoryOf } from '../lib/categories.mjs';
 import { resolveHtml, renderNavbox } from '../lib/navbox.mjs';
@@ -39,6 +41,8 @@ const href = found?.type === 'nation' ? mapUrl(nation(d.nation)?.name ?? d.title
   : null;
 const coords = found && { ...found, href };
 const category = categoryOf(d.type);
+// The history series this page is part of, through its nation's navbox.
+const series = seriesOf(entry.id);
 // A nation with no navbox of its own is shown the site's. The editor writes no `navbox:`
 // line for a page that has a nation, so the `navbox: site` put on such overviews by hand
 // went with the first save from the editor, and Giathka's page lost its navbox that way.
@@ -53,8 +57,10 @@ const navId = d.navbox ?? (d.nation && (navbox(d.nation) ? d.nation : 'site'));
   )}
   <article class="article" data-pagefind-body>
     {d.infobox.length > 0 && (
-      <Infobox title={d.sidebarTitle || d.title} nativeTitle={d.nativeTitle} romaji={d.romaji} rows={d.infobox} />
+      <Infobox title={d.sidebarTitle || d.title} nativeTitle={d.nativeTitle} romaji={d.romaji} rows={d.infobox} steps={series} />
     )}
+    {/* Under the infobox; on a page without one, the steps go at the foot of the series instead. */}
+    {series.map((s) => <Series s={s} here={entry.id} steps={d.infobox.length === 0} />)}
     <Fragment set:html={html} />
   </article>
   {navId && <Fragment set:html={renderNavbox(navId, 'Navigation')} />}

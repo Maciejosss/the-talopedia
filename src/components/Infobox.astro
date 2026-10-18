@@ -1,6 +1,8 @@
 ---
 import { renderInline, asset } from '../lib/inline.mjs';
-const { title, nativeTitle, romaji, rows = [] } = Astro.props;
+import { url } from '../lib/registry.mjs';
+// `steps`: for a page in a history series, the articles before and after it there.
+const { title, nativeTitle, romaji, rows = [], steps = [] } = Astro.props;
 // Italics mark a transliteration. When the native name is already in Latin script
 // the second line is another language's name, not a romanisation, so it stays upright.
 const transliterated = /[^\u0000-\u024F]/.test([].concat(nativeTitle ?? '').join(''));
@@ -87,6 +89,13 @@ const view = rows.map((r) => (r.tree && r.value == null ? { ...r, value: r.tree 
           </tr>
         )
       )}
+      {steps.filter((s) => s.prev || s.next).map((s) => (
+        <tr class="ib-steps"><td colspan="2"><div class="hs-steps">
+          {s.prev ? <a class="hs-prev" href={url('/' + s.prev.slug)}>{s.prev.name}</a> : <span />}
+          {steps.length > 1 && s.flag && <img class="ico" src={asset(s.flag)} alt={s.name} title={`History of ${s.name}`} />}
+          {s.next ? <a class="hs-next" href={url('/' + s.next.slug)}>{s.next.name}</a> : <span />}
+        </div></td></tr>
+      ))}
     </tbody>
   </table>
 </aside>
