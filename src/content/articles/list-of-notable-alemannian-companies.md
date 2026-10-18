@@ -1,5 +1,5 @@
 ---
-title: "List of Notable Alemannian companies"
+title: "List of notable Alemannian companies"
 type: list
 nation: alemannia
 authors: [alemannia]
