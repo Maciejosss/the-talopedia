@@ -82,7 +82,7 @@ Metropolitan Giathka has been continuously inhabited by anatomically modern huma
 
 Around the 4th century CE, a small clan known as Xerhnem began to dominate the region. Hundreds of smaller clans and tribes were subjugated by them, which resulted in the empire consisting of more than 30 unique people groups.
 
-The newly established Xerhnem empire was ruled by the Kharkovich dynasty until 1124 CE. Between 600 and 700 CE, wars were fought against the Kingdom of Glorinna, in an attempt to conquer the regions around Qorğantep (mordern day Morozinsk). The war ended in defeat, with Xerhnemite forces failing to reach the city. However, King Tömür of Glorinna agreed to redraw the border at Altuntaş (modern day Archtessa).
+The newly established Xerhnem empire was ruled by the Kharkovich dynasty until 1124 CE. Between 600 and 700 CE, wars were fought against the Kingdom of Glorinna, in an attempt to conquer the regions around Qorğantep (modern day Morozinsk). The war ended in defeat, with Xerhnemite forces failing to reach the city. However, King Tömür of Glorinna agreed to redraw the border at Altuntaş (modern day Archtessa).
 
 For centuries, relations between the two would remain tense. Tensions reached a breaking point in 1117 CE, when king Beşbaliq of Glorinna declared a holy war to reclaim the lands around Qorğantep. After several years of conquest, Glorinnian troops arrived at the gates of Svyatogorsk. The siege of Svyatogorsk lasted for several weeks, with casualties exceeding 50,000. Eventually, the city gates were breached. During the battle, Emperor Janybek III of Xerhnem was killed by an arrow to the eye.
 
@@ -114,4 +114,4 @@ Giathka borders Perovska and Rudania to the north, and the Himalayan sea to the 
 
 Giathkas population is largely comprised of the Giathkik peoples. Giathka is an ethnostate, largely oppressing native populations such as the Burskite and Glorinnian peoples. The vast majority of the population speaks Giathkik and Rudanian, with Rudanian mostly used by the lower class.
 
-Systematic discrimination is common, with non-Giathkik people being excluded from political office, and Glorinnians being banned from recieving healthcare from Giathkik doctors.
+Systematic discrimination is common, with non-Giathkik people being excluded from political office, and Glorinnians being banned from receiving healthcare from Giathkik doctors.

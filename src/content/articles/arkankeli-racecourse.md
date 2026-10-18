@@ -21,7 +21,7 @@ infobox:
   - { label: "Most Races", value: ":flag[karjania]  Erityisviikko (11)" }
 ---
 
-Arkankeli Racecourse is a horse racing venue in Arkankeli, Eastern [[karjania]]. It is the largest horse racing track by capacity in Karjania that only hosts Thoroughbred races, also known as flat races. It was constructed in 1907, with the first race being held on the 28th of November. The most prestigious event is the G1 [[thousand-lakes-derby]], a race famed accross [[evria]].
+Arkankeli Racecourse is a horse racing venue in Arkankeli, Eastern [[karjania]]. It is the largest horse racing track by capacity in Karjania that only hosts Thoroughbred races, also known as flat races. It was constructed in 1907, with the first race being held on the 28th of November. The most prestigious event is the G1 [[thousand-lakes-derby]], a race famed across [[evria]].
 
 ## History
 

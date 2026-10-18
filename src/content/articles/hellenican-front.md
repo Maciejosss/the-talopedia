@@ -35,7 +35,7 @@ infobox:
   - label: "Territorial Changes"
     value:
       - "East Astriya becomes independent, including Aspadana"
-      - "Selmira loses all teritory west of the Straits"
+      - "Selmira loses all territory west of the Straits"
   - { section: "Belligerents" }
   - pair:
       - items:
@@ -178,7 +178,7 @@ Castellani crossed the Argyron at three points on 12 December "to restore order 
 
 The loss of the frontier ended the regency. The Aspadana garrison declared for the Officers' Council on 15 January 1914, and Nazım Hayri Pasha resigned. On 17 January the Council declared the dynasty deposed, and Ahmed IV left Aspadana by sea the same night.
 
-The state of Selmira was proclaimed at Iskenderiye on 3 February 1914, with İsmail Ferid Pasha at its head. It tooks its name from the country of the river Selm in the Astartolian interior, where the Council had found its first support. Neither government declared war. Vicily did not recognize the Council as a government against which war could be declared, and the Council, which was seeking foreign credit, preferred not to be the party that declared it.
+The state of Selmira was proclaimed at Iskenderiye on 3 February 1914, with İsmail Ferid Pasha at its head. It took its name from the country of the river Selm in the Astartolian interior, where the Council had found its first support. Neither government declared war. Vicily did not recognize the Council as a government against which war could be declared, and the Council, which was seeking foreign credit, preferred not to be the party that declared it.
 
 ### Sideron campaign and the encirclement of Adrianopolis
 
@@ -222,7 +222,7 @@ The Vicilian General Staff gave priority to the Southwestern front. In a memoran
 
 Adrianopolis stood where the Odrys turns south toward the Hellenican Sea, and both the road and the railroad from Odryssa to Aspadana passed under its guns. A ring of twenty-six forts and batteries on a perimeter of about 40 kilometers enclosed a garrison of some 52,000 men under Hüseyin Rıfat Pasha. The strongest works lay in the eastern sector, anchored on Fort Demirkapı ("Iron Gate") and Fort Akbayır ("White Slope"). The garrison had been cut off since 21 April and was living on the stores laid in before the investment.
 
-Castellani attempted to take the fortress by storm before his siege train arrived. Two Vicilian corps and an Astriyan division attacked the eastern sector on 24 August. The assualt reached the ditch of Fort Akbayır on the second day and was abandoned on 26 August with about 9,000 casualties. The Vicilian press called the attack "the Three Days".
+Castellani attempted to take the fortress by storm before his siege train arrived. Two Vicilian corps and an Astriyan division attacked the eastern sector on 24 August. The assault reached the ditch of Fort Akbayır on the second day and was abandoned on 26 August with about 9,000 casualties. The Vicilian press called the attack "the Three Days".
 
 #### Battle of Xerolophos
 
@@ -530,4 +530,4 @@ Each of the three countries names the war after its own experience of it. Astriy
 
 Historians differ on how to describe the outcome. For Astriya the front ended in victory: the Astriyan State gained its independence and Aspadana, the two aims set out in the Odryssa Declaration, and Astriyan histories present the war as the founding of the state. A minority tradition associated with the Torchbearers has called it the Unfinished Victory (Astriyan:
 Ημιτελής Νίκη,
-*Imitelís Níki*), because the Treaty of Pyrgos confimed the Argyron border and left West Astriya under Vicilian rule. Selmiran historians regard the war as a victory of survival: Selmira lost Hellenica and its former capital, but it defeated the invasion of Astartolia and preserved the state proclaimed in 1914. In Vicily the campaign is generally regarded as a failure, since it brought no territory and ended with the evacuation of Karashar. General histories of the Great War, which treat the front as a contest between Vicily and Selmira, usually describe it as inconclusive.
+*Imitelís Níki*), because the Treaty of Pyrgos confirmed the Argyron border and left West Astriya under Vicilian rule. Selmiran historians regard the war as a victory of survival: Selmira lost Hellenica and its former capital, but it defeated the invasion of Astartolia and preserved the state proclaimed in 1914. In Vicily the campaign is generally regarded as a failure, since it brought no territory and ended with the evacuation of Karashar. General histories of the Great War, which treat the front as a contest between Vicily and Selmira, usually describe it as inconclusive.

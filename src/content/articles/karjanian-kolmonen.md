@@ -21,7 +21,7 @@ The Karjanian Kolmonen (KK) (Routan: *Karjanmaan Kolmonen*) is a professional fo
 
 ## Structure
 
-The Karjanian Kolmonen has 16 teams, which means a total of 30 Matchdays. Every team plays eachother twice, all teams playing 15 games at home and 15 games away. Teams are awarded 3 points for a win, 1 for a draw and 0 for a loss. The teams also compete in the Karjanian Cup, where they play from the first round onwards. The winner of the Kolmonen is promoted to the Karjanian Secondary League, and there is no relegation from the Kolmonen. Seasons have been held every year since 1921 without exceptions.
+The Karjanian Kolmonen has 16 teams, which means a total of 30 Matchdays. Every team plays each other twice, all teams playing 15 games at home and 15 games away. Teams are awarded 3 points for a win, 1 for a draw and 0 for a loss. The teams also compete in the Karjanian Cup, where they play from the first round onwards. The winner of the Kolmonen is promoted to the Karjanian Secondary League, and there is no relegation from the Kolmonen. Seasons have been held every year since 1921 without exceptions.
 
 ## History
 

@@ -22,7 +22,7 @@ The Karjanian Secondary League (KSL) (Routan: *Karjanmaan Kakkosliiga*) is a pro
 
 ## Structure
 
-The KSL is played from early September to late May each year, with 18 total Matchdays. Each of the 10 teams play eachother twice, meaning 9 home and 9 away games for each of the 10 teams. A win gives 3 points, a draw 1, and a loss 0. At the end of the season, the two highest finishing teams are promoted to the KPL, and are replaced by the two lowest finishing teams from the first division. The 10th finisher of the KSL is relegated to the Karjanian Kolmonen, the bottom of the Karjanian football pyramid, and is replaced by the winner of the Kolmonen. Teams from the KSL compete in the Karjanian Cup, and have won it in the past. The record for most points under the current format is held by Tsirvakka JK in the 1927 season with 42 points.
+The KSL is played from early September to late May each year, with 18 total Matchdays. Each of the 10 teams play each other twice, meaning 9 home and 9 away games for each of the 10 teams. A win gives 3 points, a draw 1, and a loss 0. At the end of the season, the two highest finishing teams are promoted to the KPL, and are replaced by the two lowest finishing teams from the first division. The 10th finisher of the KSL is relegated to the Karjanian Kolmonen, the bottom of the Karjanian football pyramid, and is replaced by the winner of the Kolmonen. Teams from the KSL compete in the Karjanian Cup, and have won it in the past. The record for most points under the current format is held by Tsirvakka JK in the 1927 season with 42 points.
 
 ## History
 
