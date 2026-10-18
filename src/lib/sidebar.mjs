@@ -1,3 +1,4 @@
+import { bodyImage } from './featured.mjs';
 import { titleFor } from './registry.mjs';
 
 /**
@@ -64,7 +65,7 @@ export function imageOf(e) {
     const first = r.images?.find((i) => i.src || i.image);
     if (first) return first.src || first.image;
   }
-  return null;
+  return bodyImage(e.body) || null;
 }
 
 /** The nation a page belongs to: its own, or its first author's. */

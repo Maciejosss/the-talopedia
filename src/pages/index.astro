@@ -46,7 +46,7 @@ const pick = featured(articles);
 const featuredPanel = !pick ? '' : (() => {
   const title = (pick.data.title ?? pick.id).replace(/"/g, '&quot;');
   const fig = `<figure class="float float-right feat-pic">`
-    + `<img src="${asset(firstImage(pick.data))}" alt="${title}"></figure>`;
+    + `<img src="${asset(firstImage(pick.data, pick.body))}" alt="${title}"></figure>`;
   const href = url('/' + pick.id);
   const body = firstParagraph(resolveHtml(pick.rendered?.html));
   const linked = linkFirstMention(body, pick.data.title ?? pick.id, href);

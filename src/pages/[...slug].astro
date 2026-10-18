@@ -48,7 +48,7 @@ const series = seriesOf(entry.id);
 // went with the first save from the editor, and Giathka's page lost its navbox that way.
 const navId = d.navbox ?? (d.nation && (navbox(d.nation) ? d.nation : 'site'));
 ---
-<Base title={d.title} description={lede} image={firstImage(d)} headings={headings} coords={coords} nationId={d.nation} authorIds={d.authors} slug={entry.id} words={words}>
+<Base title={d.title} description={lede} image={firstImage(d, entry.body)} headings={headings} coords={coords} nationId={d.nation} authorIds={d.authors} slug={entry.id} words={words}>
   {d.ooc && (
     <p class="notice">
       This article contains out-of-character (OOC) information. Some details presented here are

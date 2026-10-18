@@ -30,9 +30,14 @@ export function firstParagraph(html = '') {
 }
 
 /** The first picture in an article's sidebar. */
-export function firstImage(data) {
+export function firstImage(data, body = '') {
   const row = (data.infobox || []).find((r) => r.image || r.images?.[0]?.src);
-  return row?.image || row?.images?.[0]?.src || '';
+  return row?.image || row?.images?.[0]?.src || bodyImage(body) || '';
+}
+
+/** The first picture in an article's text, for a page with no sidebar picture. */
+export function bodyImage(body = '') {
+  return String(body).match(/<img\b[^>]*\bsrc="([^"]+)"/)?.[1] || String(body).match(/!\[[^\]]*\]\(([^)\s]+)/)?.[1] || '';
 }
 
 /**
@@ -95,7 +100,7 @@ export function featured(entries, today = new Date()) {
   const opened = Date.parse(`${date}T00:00:00Z`);
   const pool = entries
     .filter((e) => e.id !== 'home')
-    .filter((e) => firstImage(e.data) && overview(e.rendered?.html || '').length > 300)
+    .filter((e) => firstImage(e.data, e.body) && overview(e.rendered?.html || '').length > 300)
     .filter((e) => !(Date.parse(createdAt(e.id)) >= opened));
   if (!pool.length) return null;
   const pinned = pool.find((e) => e.id === PINNED[date]);
