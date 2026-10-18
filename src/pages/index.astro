@@ -22,7 +22,8 @@ const portals = await getCollection('portals');
 for (const p of portals) {
   const box = navbox(p.data.nation);
   if (!box) continue;
-  const listed = new Set(box.groups.flatMap((g) => (g.rows || [g]).flatMap((r) => r.items || [])));
+  const listed = new Set(box.groups.flatMap((g) => (g.rows || [g]).flatMap((r) => (r.items || [])
+    .map((i) => String(i).trim().replace(/^\[\[|\]\]$/g, '').split('|')[0]))));
   for (const m of (box.crumb || '').matchAll(/\[\[([^\]|]+)/g)) listed.add(m[1]);
   const orphans = articles.filter((a) => a.data.nation === p.data.nation && !listed.has(a.id));
   if (orphans.length) {

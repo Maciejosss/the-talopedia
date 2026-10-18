@@ -803,6 +803,15 @@
     await sleep(100);
     ok('undo takes typed dates back out', rowsNamed('Modern').querySelector('.blk-dates').value === '' && rowsNamed('Antiquity').classList.contains('dated'),
       rowsNamed('Modern').querySelector('.blk-dates').value);
+
+    // An item indented under another keeps its level through opening and saving.
+    await openFile(['title: "Nest Articles"', 'groups:', '  - label: "History"', '    rows:',
+      '      - label: "Prehistory"', '        items:', '          - "nawame-period"', '          - "age-of-the-kami"',
+      '          - "  kuniyuzuri"', '          - "    deep-one"', '          - "hinode-period"', ''].join('\n'), 'nest-nav.yaml');
+    const nestLis = [...document.querySelectorAll("#body .blk-list li")];
+    ok("an indented navbox item opens indented", nestLis.map((li) => +li.dataset.level || 0).join() === "0,0,1,2,0", nestLis.map((li) => li.dataset.level));
+    ok('and saves at its level', /- "age-of-the-kami"\n {10}- "  kuniyuzuri"\n {10}- "    deep-one"\n {10}- "hinode-period"/.test($('#preview').textContent),
+      $('#preview').textContent.slice(-200));
   } catch (err) {
     out.push('FAIL threw: ' + err.message);
   }

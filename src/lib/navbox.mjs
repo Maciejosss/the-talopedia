@@ -22,6 +22,26 @@ function entry(raw) {
 
 const row = (cells) => `<tr>${cells.join('')}</tr>`;
 
+/** How deep an entry sits: two leading spaces a level, as the editor writes an indented item. */
+export const depthOf = (raw) => Math.floor((String(raw).length - String(raw).trimStart().length) / 2);
+
+/**
+ * A row's entries, each followed in brackets by the ones indented under it, as Wikipedia
+ * writes a period's sub-periods: Kamakura period (Kamakura shogunate) • Mongol invasions.
+ */
+function nest(items, level = 0) {
+  const out = [];
+  for (let i = 0; i < items.length; i++) {
+    if (depthOf(items[i]) > level) continue;
+    let j = i + 1;
+    while (j < items.length && depthOf(items[j]) > level) j++;
+    const under = items.slice(i + 1, j);
+    out.push(entry(String(items[i]).trim()) + (under.length ? ` (${nest(under, level + 1)})` : ''));
+    i = j - 1;
+  }
+  return out.join(' • ');
+}
+
 export function renderNavbox(id, fallbackTitle = '') {
   const box = read(id);
   if (!box) return '';
@@ -37,7 +57,7 @@ export function renderNavbox(id, fallbackTitle = '') {
         cells.push(`<td class="note" colspan="2">${renderInline(r.note)}</td>`);
       } else {
         if (r.label) cells.push(`<th class="row">${esc(r.label)}</th>`);
-        const list = (r.items || []).map(entry).join(' • ');
+        const list = nest(r.items || []);
         cells.push(`<td colspan="${r.label ? 1 : 2}">${renderInline(list)}</td>`);
       }
       body.push(row(cells));

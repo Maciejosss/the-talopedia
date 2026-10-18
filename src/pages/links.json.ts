@@ -30,7 +30,7 @@ export const GET: APIRoute = async () => {
     for (const g of box.groups || []) {
       for (const r of g.rows || [g]) {
         for (const item of r.items || []) {
-          const s = String(item);
+          const s = String(item).trim();
           if (!s.startsWith('[[') && !s.startsWith(':')) add(s.split('|')[0], from);
         }
       }

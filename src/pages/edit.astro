@@ -3370,10 +3370,12 @@ const ADMIN = REPO.split('/')[0];
           // A stored item is a slug, or "slug|Display"; either way it is a link here,
           // so it shows the article's real title and the link popover can edit it.
           if (r.items?.length) {
+            // Two leading spaces a level: an item indented under another, shown in its brackets.
+            const bare = r.items.map((i) => String(i).trim());
             out.push({
               kind: 'list',
-              items: r.items.map((i) => (String(i).startsWith('[[') || String(i).startsWith('[')
-                ? String(i) : `[[${i}]]`)),
+              items: bare.map((i) => (i.startsWith('[[') || i.startsWith('[') ? i : `[[${i}]]`)),
+              levels: r.items.map((i) => Math.floor((String(i).length - String(i).trimStart().length) / 2)),
             });
           }
         }
@@ -3416,10 +3418,12 @@ const ADMIN = REPO.split('/')[0];
           // A list with no subheading over it is a row with items and no label.
           if (!open) lines.push('      - items:');
           else lines.push('        items:');
-          for (const it of b.items.filter(Boolean)) {
+          b.items.forEach((it, n) => {
+            if (!it) return;
             const m = it.match(/^\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]$/);
-            lines.push(`          - ${q(m ? (m[2] ? `${m[1]}|${m[2]}` : m[1]) : it)}`);
-          }
+            const pad = '  '.repeat(b.levels?.[n] || 0);
+            lines.push(`          - ${q(pad + (m ? (m[2] ? `${m[1]}|${m[2]}` : m[1]) : it))}`);
+          });
           open = false;
         }
       }
@@ -5075,7 +5079,7 @@ const ADMIN = REPO.split('/')[0];
       let t = text.replace(new RegExp(`\\[\\[${o}(?=[\\]|#])`, 'g'), `[[${now}`)
         .replace(new RegExp(`:icon\\[${o}\\]`, 'g'), `:icon[${now}]`);
       if (kind === 'navbox' && !NATION_NAMES[old]) {
-        t = t.replace(new RegExp(`(^\\s*-\\s*["']?|[\\[,]\\s*["']?|^\\s+["']?)${o}(?=(?:\\|[^"'\\],\\n]*)?["']?\\s*(?:,|\\]|$))`, 'gm'), `$1${now}`);
+        t = t.replace(new RegExp(`(^\\s*-\\s*["']?\\s*|[\\[,]\\s*["']?|^\\s+["']?)${o}(?=(?:\\|[^"'\\],\\n]*)?["']?\\s*(?:,|\\]|$))`, 'gm'), `$1${now}`);
       }
       return t;
     }

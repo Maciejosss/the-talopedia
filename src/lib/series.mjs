@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import { navbox, nation, exists, titleFor, url } from './registry.mjs';
 import { asset, esc } from './inline.mjs';
+import { depthOf } from './navbox.mjs';
 
 /**
  * A nation's history as a Wikipedia series: the History group of its navbox, each row a
@@ -10,8 +11,8 @@ import { asset, esc } from './inline.mjs';
 
 /** A navbox entry, "slug", "slug|Name" or "[[slug|Name]]", as a slug and what to call it. */
 const entry = (raw) => {
-  const [slug, name] = String(raw).replace(/^\[\[|\]\]$/g, '').split('|');
-  return { slug: slug.trim(), name: (name || '').trim() || titleFor(slug.trim()) };
+  const [slug, name] = String(raw).trim().replace(/^\[\[|\]\]$/g, '').split('|');
+  return { slug: slug.trim(), name: (name || '').trim() || titleFor(slug.trim()), depth: depthOf(raw) };
 };
 
 const ids = fs.readdirSync('src/content/data/navboxes').filter((f) => f.endsWith('.yaml'))
@@ -56,7 +57,7 @@ export function seriesHtml(s, here, steps = false) {
   const home = s.portal ? url(`/portal/${s.id}`) : url(`/${s.id}`);
   const periods = s.periods.map((p, i) => `<details class="hs-period"${i === s.at ? ' open' : ''}>`
     + `<summary><span class="hs-label">${esc(p.label)}</span>${p.dates ? `<span class="hs-dates">${esc(p.dates)}</span>` : ''}</summary>`
-    + '<ul>' + p.items.map((it) => '<li>' + (it.slug === here ? `<b>${esc(it.name)}</b>`
+    + '<ul>' + p.items.map((it) => (it.depth ? `<li class="hs-sub" style="--d:${it.depth}">` : '<li>') + (it.slug === here ? `<b>${esc(it.name)}</b>`
       : `<a class="wl${exists(it.slug) ? '' : ' new'}" href="${url('/' + it.slug)}">${esc(it.name)}</a>`) + '</li>').join('')
     + '</ul></details>').join('');
   return '<aside class="series"><div class="hs-head"><span>Part of a series on the</span>'

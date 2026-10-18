@@ -183,6 +183,7 @@ a.ext::after {
 .hs-dates { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .hs-period ul { list-style: none; margin: 0; padding: 6px 10px 8px 26px; }
 .hs-period li { padding: 1px 0; }
+.hs-period li.hs-sub { padding-left: calc(var(--d) * 14px); font-size: 12.5px; }
 .hs-period li b { font-weight: 700; }
 /* The articles either side of this one in its series, at the foot of its infobox. */
 .hs-steps { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 700; }
