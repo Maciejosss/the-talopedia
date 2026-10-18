@@ -26,6 +26,19 @@ export const NAMES = {
   list: 'Lists',
 };
 
+/**
+ * The broad categories a reader explores by. Each gathers the types under it and has a
+ * page of its own, drawn from what those pages' sidebars say.
+ */
+export const BROAD = [
+  { slug: 'nations-and-places', name: 'Nations & Places', types: ['overview', 'subdivision', 'city', 'continent', 'geography'] },
+  { slug: 'history', name: 'History', types: ['event'] },
+  { slug: 'military', name: 'Military', types: ['military'] },
+  { slug: 'space', name: 'Space', types: ['celestial'] },
+  { slug: 'sport', name: 'Sport', types: ['national-team', 'league', 'cup', 'racecourse', 'horse-race'] },
+  { slug: 'society', name: 'Society', types: ['ideology', 'religion', 'ethnicity', 'organization', 'company'] },
+];
+
 /** The category a type files under. A type added without a name here still gets one. */
 export function categoryOf(type) {
   const name = NAMES[type] || type.charAt(0).toUpperCase() + type.slice(1);

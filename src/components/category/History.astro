@@ -1,0 +1,54 @@
+---
+import { url, nation } from '../../lib/registry.mjs';
+import { asset } from '../../lib/inline.mjs';
+import { field, plain, yearsOf, partOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
+
+/**
+ * History: events in the order they began, each with its result and location. A page
+ * whose sidebar says "Part of" a war hangs under that war as one of its theatres.
+ */
+const { entries } = Astro.props;
+const events = entries.filter((e) => e.data.type === 'event');
+const ids = new Set(events.map((e) => e.id));
+const span = (e) => yearsOf(field(e, 'date'));
+const start = (e) => +span(e)[0] || 9999;
+const place = (e) => plain(field(e, 'location')).split(' / ').join(', ');
+const picture = (e) => imageOf(e) || nation(ownerOf(e))?.flag || null;
+const theatres = new Map();
+for (const e of events) {
+  const p = partOf(e);
+  if (p && ids.has(p)) theatres.set(p, [...(theatres.get(p) || []), e].sort((a, b) => start(a) - start(b)));
+}
+const top = events.filter((e) => !(partOf(e) && ids.has(partOf(e)))).sort((a, b) => start(a) - start(b));
+const flagOf = (e) => nation(ownerOf(e))?.flag;
+---
+<ol class="cv-timeline">
+  {top.map((e) => {
+    const [y0, ...rest] = span(e);
+    const y1 = rest.at(-1);
+    const pic = picture(e);
+    return (
+      <li class="cv-ev">
+        <div class="cv-yr">{y0}{y1 && y1 !== y0 && <small>to {y1}</small>}</div>
+        <a class:list={['cv-thumb', !imageOf(e) && 'flag']} href={url('/' + e.id)}>{pic && <img src={asset(pic)} alt="" loading="lazy" />}</a>
+        <div class="cv-ev-body">
+          <h3>{flagOf(e) && <img class="cv-flag" src={asset(flagOf(e))} alt="" />}<a href={url('/' + e.id)}>{e.data.title}</a></h3>
+          <dl class="cv-meta">
+            {field(e, 'result') && <><dt>Result</dt><dd>{plain(field(e, 'result'))}</dd></>}
+            {place(e) && <><dt>Location</dt><dd>{place(e)}</dd></>}
+          </dl>
+          {(theatres.get(e.id) || []).map((t) => (
+            <div class="cv-theatre">
+              <a class:list={['cv-thumb small', !imageOf(t) && 'flag']} href={url('/' + t.id)}>{picture(t) && <img src={asset(picture(t))} alt="" loading="lazy" />}</a>
+              <div>
+                <span class="cv-k">Theatre</span>
+                <h4>{flagOf(t) && <img class="cv-flag" src={asset(flagOf(t))} alt="" />}<a href={url('/' + t.id)}>{t.data.title}</a></h4>
+                {place(t) && <dl class="cv-meta"><dt>Location</dt><dd>{place(t)}</dd></dl>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </li>
+    );
+  })}
+</ol>

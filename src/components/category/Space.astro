@@ -1,0 +1,62 @@
+---
+import { url } from '../../lib/registry.mjs';
+import { asset } from '../../lib/inline.mjs';
+import { field, plain, imageOf } from '../../lib/sidebar.mjs';
+
+/**
+ * Space: the system's bodies in order out from its stars, each placed by its distance
+ * and sized by its mass, then the same bodies as a table.
+ */
+const { entries } = Astro.props;
+const celestial = entries.filter((e) => e.data.type === 'celestial');
+const SUP = { '⁰': 0, '¹': 1, '²': 2, '³': 3, '⁴': 4, '⁵': 5, '⁶': 6, '⁷': 7, '⁸': 8, '⁹': 9, '⁻': '-' };
+/** "2.0890 × 10²⁷ kg" as a number. */
+const massOf = (v) => {
+  const m = String(v).match(/([\d.]+)\s*×\s*10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)/);
+  return m ? parseFloat(m[1]) * 10 ** parseInt([...m[2]].map((c) => SUP[c]).join(''), 10) : 0;
+};
+const bodies = celestial.map((e) => ({ e, au: parseFloat(field(e, 'semi-major axis')), mass: massOf(field(e, 'mass')) }))
+  .filter((b) => b.au > 0).sort((a, b) => a.au - b.au);
+const system = celestial.find((e) => field(e, 'stellar objects'));
+const stars = system ? field(system, 'stellar objects').split(' / ').map(plain) : [];
+// Distance on a log scale, so the inner planets do not crowd into the first inch.
+const lo = Math.log10((bodies[0]?.au || 0.3) / 1.6), hi = Math.log10((bodies.at(-1)?.au || 10) * 1.25);
+const at = (au) => 12 + ((Math.log10(au) - lo) / (hi - lo)) * 84;
+const masses = bodies.map((b) => Math.log10(b.mass || 1e24));
+const mlo = Math.min(...masses), mhi = Math.max(...masses);
+const diameter = (m) => Math.round(12 + ((Math.log10(m || 1e24) - mlo) / ((mhi - mlo) || 1)) * 70);
+const year = (e) => plain(field(e, 'orbital period').split(' / ')[0]).replace(/\s*\(sidereal\)/i, '');
+const home = 'avium';
+---
+<div class="cv-orbit">
+  <div class="cv-axis"></div>
+  <div class="cv-stars">
+    <span class="cv-star"></span><span class="cv-hole"></span>
+  </div>
+  {system && (
+    <a class="cv-stars-l" href={url('/' + system.id)}>
+      <b>{stars[0] || system.data.title}</b>{stars[1] && <span>{stars[1]}</span>}
+    </a>
+  )}
+  {bodies.map((b, i) => (
+    <>
+      <a class:list={['cv-pl', b.e.id === home && 'home']} href={url('/' + b.e.id)} title={b.e.data.title}
+        style={`left:${at(b.au)}%;width:${diameter(b.mass)}px;height:${diameter(b.mass)}px;${imageOf(b.e) ? `background-image:url('${asset(imageOf(b.e))}')` : ''}`}></a>
+      <div class:list={['cv-pl-l', i % 2 && 'up']} style={`left:${at(b.au)}%`}><b>{b.e.data.title}</b><span>{plain(field(b.e, 'semi-major axis'))}</span></div>
+    </>
+  ))}
+</div>
+<table class="nb cv-table">
+  <thead><tr><th>Body</th><th>Distance</th><th>Year (sidereal)</th><th>Mass</th><th>Moons</th></tr></thead>
+  <tbody>
+    {bodies.map(({ e }) => (
+      <tr>
+        <td class="cv-name"><a href={url('/' + e.id)}>{e.data.title}</a></td>
+        <td class="cv-num">{plain(field(e, 'semi-major axis'))}</td>
+        <td class="cv-num">{year(e)}</td>
+        <td class="cv-num">{plain(field(e, 'mass'))}</td>
+        <td class="cv-num">{plain(field(e, 'satellites')) || '0'}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

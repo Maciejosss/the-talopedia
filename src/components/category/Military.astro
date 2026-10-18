@@ -1,0 +1,48 @@
+---
+import { url, nation } from '../../lib/registry.mjs';
+import { asset } from '../../lib/inline.mjs';
+import { field, plain, yearOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
+
+/** Military: a row per nation, each force with its emblem, founding, commander and branches. */
+const { entries } = Astro.props;
+const byNation = new Map();
+for (const e of entries.filter((x) => x.data.type === 'military')) {
+  const id = ownerOf(e) || '';
+  byNation.set(id, [...(byNation.get(id) || []), e]);
+}
+const rows = [...byNation].map(([id, list]) => ({ n: nation(id), list: list.sort((a, b) => a.data.title.localeCompare(b.data.title)) }))
+  .sort((a, b) => b.list.length - a.list.length || (a.n?.name || '').localeCompare(b.n?.name || ''));
+const founded = (e) => yearOf(field(e, 'founded')) || plain(field(e, 'founded'));
+const commander = (e) => plain(field(e, 'supreme commander', 'commander'));
+const branches = (e) => field(e, 'service branches', 'branches').split(' / ').map(plain).filter(Boolean);
+---
+<table class="nb cv-rows">
+  <tbody>
+    {rows.map(({ n, list }) => (
+      <tr>
+        <th>
+          {n?.flag && <img src={asset(n.flag)} alt="" />}
+          <b>{n?.name || 'Unaffiliated'}</b>
+          <span>{list.length}</span>
+        </th>
+        <td>
+          <div class="cv-forces">
+            {list.map((e) => (
+              <div class="cv-force">
+                <a class="cv-emblem" href={url('/' + e.id)}><img src={asset(imageOf(e) || n?.flag || '')} alt="" loading="lazy" onerror={n?.flag ? `this.onerror=null;this.src='${asset(n.flag)}'` : undefined} /></a>
+                <div>
+                  <h3><a href={url('/' + e.id)}>{e.data.title}</a></h3>
+                  <dl class="cv-meta">
+                    {founded(e) && <><dt>Founded</dt><dd>{founded(e)}</dd></>}
+                    {commander(e) && <><dt>Commander</dt><dd>{commander(e)}</dd></>}
+                  </dl>
+                  <div class="cv-chips">{branches(e).map((b) => <span class="cv-chip">{b}</span>)}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

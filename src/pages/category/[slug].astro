@@ -1,15 +1,33 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { categories, categoryOf } from '../../lib/categories.mjs';
+import { categories, categoryOf, BROAD } from '../../lib/categories.mjs';
+import Nations from '../../components/category/Nations.astro';
+import History from '../../components/category/History.astro';
+import Military from '../../components/category/Military.astro';
+import Space from '../../components/category/Space.astro';
+import Sport from '../../components/category/Sport.astro';
+import Society from '../../components/category/Society.astro';
 import { url, nation, navbox, exists, hrefOf } from '../../lib/registry.mjs';
 import { pictureOf } from '../../lib/pictures.mjs';
 
 export async function getStaticPaths() {
-  return categories(await getCollection('articles')).map((c) => ({ params: { slug: c.slug }, props: c }));
+  const all = await getCollection('articles');
+  // A broad category has a page drawn from its pages' sidebars; one that shares its
+  // name with a single type (Military) takes that type's place.
+  const broad = BROAD.map((b) => ({
+    params: { slug: b.slug },
+    props: { name: b.name, slug: b.slug, broad: true,
+      pages: all.filter((e) => b.types.includes(e.data.type)).map((e) => ({ slug: e.id, title: e.data.title })) },
+  }));
+  const taken = new Set(BROAD.map((b) => b.slug));
+  return [...broad, ...categories(all).filter((c) => !taken.has(c.slug)).map((c) => ({ params: { slug: c.slug }, props: c }))];
 }
 
-const { name, slug, pages } = Astro.props;
+const { name, slug, pages, broad = false } = Astro.props;
+const VIEWS = { 'nations-and-places': Nations, history: History, military: Military, space: Space, sport: Sport, society: Society };
+const View = broad ? VIEWS[slug] : null;
+const entries = View ? await getCollection('articles') : [];
 
 /**
  * Characters only: every one as a portrait, a row per nation, largest first. Within a
@@ -64,6 +82,7 @@ for (const p of pages) {
 ---
 <Base title={`Category:${name}`}>
   <div class="article category">
+    {View && <div class="cv"><View entries={entries} /></div>}
     {gallery.length > 0 && (
       <table class="nb cg">
         <tbody>
@@ -102,7 +121,7 @@ for (const p of pages) {
         </tbody>
       </table>
     )}
-    <h2>Pages in category "{name}"<span class="cat-n">{pages.length}</span></h2>
+    <h2>Pages<span class="cat-n">{pages.length}</span></h2>
     <div class="cat-cols">
       {[...groups].map(([letter, list]) => (
         <div class="cat-group">

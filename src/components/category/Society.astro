@@ -1,0 +1,33 @@
+---
+import { url, nation } from '../../lib/registry.mjs';
+import { asset, ledeOf } from '../../lib/inline.mjs';
+import { field, plain, yearOf, imageOf, ownerOf, firstSentence } from '../../lib/sidebar.mjs';
+
+/** Society: a column for each kind there are pages of, each page with its emblem and first sentence. */
+const { entries } = Astro.props;
+const KINDS = [['religion', 'Religions'], ['ideology', 'Ideologies'], ['ethnicity', 'Ethnic groups'],
+  ['organization', 'Organizations'], ['company', 'Companies']];
+const cols = KINDS.map(([t, label]) => ({ label, list: entries.filter((e) => e.data.type === t)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title)) })).filter((c) => c.list.length);
+const founded = (e) => { const f = field(e, 'founded', 'established'); return f.startsWith(':date[') ? yearOf(f) : plain(f); };
+---
+<div class="cv-cols" style={`--cols:${cols.length}`}>
+  {cols.map((c) => (
+    <div class="cv-col">
+      <span class="cv-k cv-col-h">{c.label}<span>{c.list.length}</span></span>
+      {c.list.map((e) => {
+        const n = nation(ownerOf(e));
+        return (
+          <a class="cv-sc" href={url('/' + e.id)}>
+            <span class="cv-sc-pic">{imageOf(e) && <img src={asset(imageOf(e))} alt="" loading="lazy" />}</span>
+            <span class="cv-sc-body">
+              <b>{e.data.title}</b>
+              <span class="cv-sc-o">{n?.flag && <img class="cv-flag" src={asset(n.flag)} alt="" />}{n?.name}{founded(e) && ` · ${founded(e)}`}</span>
+              <span class="cv-sc-p">{firstSentence(ledeOf(e.body, 900))}</span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  ))}
+</div>

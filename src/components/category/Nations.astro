@@ -1,0 +1,63 @@
+---
+import { url, nation, nations } from '../../lib/registry.mjs';
+import { asset, renderInline } from '../../lib/inline.mjs';
+import { field, figure, imageOf, ownerOf } from '../../lib/sidebar.mjs';
+
+/**
+ * Nations & Places: each continent with its figures, then its nations by population,
+ * each with its capital and the subdivisions, cities and territories written about it.
+ */
+const { entries } = Astro.props;
+const of = (t) => entries.filter((e) => e.data.type === t);
+const size = (s) => parseFloat(String(s).replace(/[^\d.]/g, '')) || 0;
+const overviews = of('overview');
+/** A nation's own page: the overview named for it, or its only one. */
+const homeOf = (id) => {
+  const c = overviews.filter((e) => e.data.nation === id);
+  return c.find((e) => e.id === id) || (c.length === 1 ? c[0] : null);
+};
+const homes = new Set(nations().map((n) => homeOf(n.id)?.id).filter(Boolean));
+const placesOf = (id) => [...of('subdivision'), ...of('city'), ...overviews.filter((e) => !homes.has(e.id))]
+  .filter((e) => ownerOf(e) === id)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+/** The capital as written, its first entry, without the flags that sit beside it. */
+const capital = (e) => renderInline(field(e, 'capital').split(' / ')[0].replace(/:(?:img|flag|icon)\[[^\]]*\]\s*/g, ''));
+const population = (e) => figure(field(e, 'total') || field(e, 'population'));
+
+const continents = of('continent').map((c) => ({
+  e: c,
+  pop: figure(field(c, 'total') || field(c, 'population')),
+  area: field(c, 'land area', 'area').replace(/:(?:up|down)\d*\s*/g, ''),
+  rows: nations().filter((n) => n.continent === c.data.title)
+    .map((n) => ({ n, e: homeOf(n.id) })).filter((x) => x.e)
+    .sort((a, b) => size(population(b.e)) - size(population(a.e))),
+})).sort((a, b) => size(b.pop) - size(a.pop));
+---
+{continents.map((c) => (
+  <section class="cv-cont">
+    <div class="cv-cont-head">
+      <h2><a href={url('/' + c.e.id)}>{c.e.data.title}</a></h2>
+      {c.pop && <span><span class="cv-k">Population</span>{c.pop}</span>}
+      {c.area && <span><span class="cv-k">Area</span>{c.area}</span>}
+    </div>
+    {c.rows.length > 0 && (
+      <table class="nb cv-table cv-nations">
+        <colgroup><col class="c1" /><col class="c2" /><col class="c3" /><col class="c4" /></colgroup>
+        <thead><tr><th>Nation</th><th>Capital</th><th>Population</th><th>Places</th></tr></thead>
+        <tbody>
+          {c.rows.map(({ n, e }) => (
+            <tr>
+              <td class="cv-name">{n.flag && <img class="cv-flag" src={asset(n.flag)} alt="" />}<a href={url('/' + e.id)}>{n.name}</a></td>
+              <td set:html={capital(e)} />
+              <td class="cv-num">{population(e)}</td>
+              <td>{placesOf(n.id).map((p) => {
+                const pic = imageOf(p);
+                return <a class="cv-chip" href={url('/' + p.id)}>{pic && <img src={asset(pic)} alt="" loading="lazy" />}{p.data.title}</a>;
+              })}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+  </section>
+))}

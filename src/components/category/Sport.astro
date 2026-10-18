@@ -1,0 +1,89 @@
+---
+import { url, nation } from '../../lib/registry.mjs';
+import { asset } from '../../lib/inline.mjs';
+import { field, plain, yearOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
+
+/**
+ * Sport: football by nation (national teams, leagues by their level on the pyramid,
+ * cups), then horse racing, each racecourse leading to the races run there.
+ */
+const { entries } = Astro.props;
+const of = (t) => entries.filter((e) => e.data.type === t);
+const level = (e) => parseInt(field(e, 'level on pyramid', 'level', 'tier'), 10) || 99;
+const founded = (e) => yearOf(field(e, 'founded', 'inaugurated', 'established'));
+const football = ['national-team', 'league', 'cup'];
+const owners = (types) => [...new Set(types.flatMap(of).map(ownerOf))]
+  .map((id) => ({ id, n: nation(id) })).sort((a, b) => (a.n?.name || '').localeCompare(b.n?.name || ''));
+const mine = (t, id) => of(t).filter((e) => ownerOf(e) === id);
+const racesAt = (course) => of('horse-race').filter((r) => {
+  const where = field(r, 'location');
+  return where.includes(`[[${course.id}`) || plain(where) === course.data.title;
+});
+---
+{owners(football).length > 0 && (
+  <>
+    <h2 class="cv-sec">Football</h2>
+    <table class="nb cv-rows">
+      <tbody>
+        {owners(football).map(({ id, n }) => {
+          const teams = mine('national-team', id), leagues = mine('league', id).sort((a, b) => level(a) - level(b)), cups = mine('cup', id);
+          return (
+            <tr>
+              <th>{n?.flag && <img src={asset(n.flag)} alt="" />}<b>{n?.name}</b><span>{teams.length + leagues.length + cups.length}</span></th>
+              <td>
+                {[['National team', teams], ['Leagues', leagues], ['Cups', cups]].filter(([, l]) => l.length).map(([label, list]) => (
+                  <div class="cv-group">
+                    <span class="cv-k">{label}</span>
+                    <div class="cv-cards">
+                      {list.map((e) => (
+                        <a class="cv-card" href={url('/' + e.id)}>
+                          <span class="cv-badge">{imageOf(e) && <img src={asset(imageOf(e))} alt="" loading="lazy" />}</span>
+                          <span>
+                            {e.data.type === 'league' && level(e) < 99 && <span class="cv-tier">Tier {level(e)}</span>}
+                            <b>{e.data.title}</b>
+                            {founded(e) && <small>Founded {founded(e)}</small>}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </>
+)}
+{of('racecourse').length > 0 && (
+  <>
+    <h2 class="cv-sec">Horse racing</h2>
+    <table class="nb cv-rows">
+      <tbody>
+        {owners(['racecourse', 'horse-race']).map(({ id, n }) => (
+          <tr>
+            <th>{n?.flag && <img src={asset(n.flag)} alt="" />}<b>{n?.name}</b><span>{mine('racecourse', id).length + mine('horse-race', id).length}</span></th>
+            <td>
+              {mine('racecourse', id).sort((a, b) => (+founded(a) || 0) - (+founded(b) || 0)).map((c) => (
+                <div class="cv-course">
+                  <a class="cv-card" href={url('/' + c.id)}>
+                    <span class="cv-badge">{imageOf(c) && <img src={asset(imageOf(c))} alt="" loading="lazy" />}</span>
+                    <span><b>{c.data.title}</b>{founded(c) && <small>Founded {founded(c)}</small>}</span>
+                  </a>
+                  {racesAt(c).length > 0 && <span class="cv-to">→</span>}
+                  {racesAt(c).map((r) => (
+                    <a class="cv-card" href={url('/' + r.id)}>
+                      <span class="cv-badge">{imageOf(r) && <img src={asset(imageOf(r))} alt="" loading="lazy" />}</span>
+                      <span>{field(r, 'class') && <span class="cv-tier">{plain(field(r, 'class'))}</span>}<b>{r.data.title}</b>{founded(r) && <small>Since {founded(r)}</small>}</span>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </>
+)}
