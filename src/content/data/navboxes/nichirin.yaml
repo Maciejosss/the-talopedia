@@ -6,25 +6,11 @@ crumb: "[[portal:nichirin|Portal:Nichirin]] • [[nichirin|Overview]]"
 groups:
   - label: "History"
     rows:
-      - label: "Antiquity"
+      - label: "Prehistory"
         items:
-          - "proto-nichirian-chiefdoms|Proto-Nichirian Chiefdoms"
-      - label: "Imperial Era"
-        items:
-          - "chukyo-confederation|Chūkyō Confederation"
-          - "yamashiro-code"
-      - label: "Three Shogunates"
-        items:
-          - "hayakawa-clan"
-          - "kuronami-clan"
-          - "age-of-chaos"
-          - "miyamoto-clan"
-          - "manshuan-campaigns"
-          - "bakuraku-war"
-          - "shinseiki-reforms"
-      - label: "Events of the Roleplay"
-        items:
-          - "1923-succession-crisis"
+          - "nawame-period|Nawame period"
+          - "hinode-period|Hinode period"
+          - "founding-myth-of-nichirin|Founding myth of Nichirin"
   - label: "Politics"
     rows:
       - label: "Government"
