@@ -16,6 +16,8 @@ infobox:
   - { label: "Formation", value: ":date[1822-08-14|ago]" }
   - { section: "Demographics" }
   - { label: "Population", value: "1930 Census" }
+  - { label: "Total", sub: true, value: "16,100,000" }
+  - { label: "Density", sub: true, value: "24.1 / km²" }
   - label: "Ethnic Groups"
     value:
       - "86% Salishian"
@@ -28,6 +30,8 @@ infobox:
       - "5% Other"
   - { label: "Demonym", value: "Salishian" }
   - { label: "GDP (PPP)", value: "1930 Census" }
+  - { label: "Total", sub: true, value: "$1,294,200,000,000" }
+  - { label: "Per Capita", sub: true, value: "$80,385" }
   - { label: "Currency", value: "Salishian Crown’s / ₡" }
   - { label: "Date Format", value: "mm/dd/yyyy" }
   - { label: "Driving Side", value: "Right" }
@@ -135,9 +139,7 @@ Salishia experiences a varied climate. The western coastal regions are character
 
 ### Ethnic Groups
 
-Although the Republic of Salishia aims to promote heavy tourism and foreign funding, many of the native populations who once lived on the lands remain. Although they have been persecuted, with many given the chance to convert to the Salishian majority, or face possible relocation or in extreme cases, exile.
-
-Many foreign settlers who move to Salishia are considered Salishian, however the settlers bring their religions, causing Salishia to be a cesspool of several religions, the big three remaining Nazarism, Atheism, and the native religions.
+Although the Republic of Salishia aims to promote heavy tourism and foreign funding, many of the native populations who once lived on the lands remain. Although, they are largely persecuted. Many forced to either convert to the Salishian majority, or face possible relocation or in extreme cases, exile.
 
 ### Citizenship
 
