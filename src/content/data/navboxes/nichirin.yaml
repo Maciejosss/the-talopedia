@@ -40,6 +40,8 @@ groups:
           - "tenkyo-restoration|Tenkyō Restoration"
           - "nisshoku-period|Nisshoku period"
           - "battle-of-hikaeshi"
+      - label: "Early Modern"
+      - label: "Modern"
   - label: "Politics"
     rows:
       - label: "Government"
