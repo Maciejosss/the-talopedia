@@ -7,7 +7,7 @@ authors: [nichirin]
 
 The **Age of the Kami** (神代, *Kamiyo*) is the period of [[kaiseido]] mythology from the creation of the world to the accession of the first sovereign of the human line, as recorded in the *Sōtenki* and the *Nichirin Shoki*. Its narrative accounts for the inclination of the heavens and the transfer of the earthly realm to the descendants of the sun kami Amaterasu. It is also the origin of the three imperial regalia: the mirror, the sword Kusanagi, and the seal of the land. Court calendricists of the [[hokyo-era|Hōkyō era]] dated the descent of Amaterasu’s grandson onto [[mount-soten|Mount Sōten]] to 2399 BCE and the conclusion of the age to the late 2nd century CE. Whether any part of the narrative corresponds to an archaeological culture has been disputed since the 1890s.
 
-<figure class="float float-left" style="width:128px"><img src="https://lh3.googleusercontent.com/pw/AP1GczMlVJcpZQrhA9crGTZZN_DOkhA8eOv0LoN7dr0w-7W3SjCkKKCHWaJuA4hvlUsNgtLUK25HKXvdeD2Ul3q9q_A6d9Smu2NkWrM3ka34XDIEgZ-dyzPYRZUGneoWzz3XsLOdUYIYs2fMj31I-6616XpB=w2000" alt="*A page from a 14th-century manuscript of the* Sōtenki*, the oldest surviving copy*"><figcaption>*A page from a 14th-century manuscript of the* Sōtenki *, the oldest surviving copy*</figcaption></figure>
+<figure class="float float-left" style="width:135px"><img src="https://lh3.googleusercontent.com/pw/AP1GczMlVJcpZQrhA9crGTZZN_DOkhA8eOv0LoN7dr0w-7W3SjCkKKCHWaJuA4hvlUsNgtLUK25HKXvdeD2Ul3q9q_A6d9Smu2NkWrM3ka34XDIEgZ-dyzPYRZUGneoWzz3XsLOdUYIYs2fMj31I-6616XpB=w2000" alt="*A page from a 14th-century manuscript of the* Sōtenki*, the oldest surviving copy*"><figcaption>*A page from a 14th-century manuscript of the* Sōtenki *, the oldest surviving copy*</figcaption></figure>
 
 ## Sources
 
