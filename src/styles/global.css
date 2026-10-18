@@ -705,6 +705,7 @@ a.cv-chip:hover { border-color: var(--rule); }
 .cv-ev::before { content: ''; position: absolute; left: -38px; top: 10px; width: 10px; height: 10px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); }
 .cv-yr { position: absolute; left: -152px; top: 2px; width: 100px; text-align: right; font: 400 20px/1.15 var(--display); color: var(--ink); }
 .cv-yr small { display: block; font: 12px var(--body); color: var(--muted); }
+.cv-era { margin-left: 3px; font: 11px var(--body); color: var(--muted); letter-spacing: .04em; }
 .cv-thumb { display: block; width: 120px; height: 80px; background: var(--lift); border: 1px solid var(--hair); overflow: hidden; }
 .cv-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cv-thumb.flag { display: grid; place-items: center; }

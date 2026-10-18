@@ -1,7 +1,7 @@
 ---
 import { url, nation } from '../../lib/registry.mjs';
-import { asset } from '../../lib/inline.mjs';
-import { field, plain, yearsOf, partOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
+import { asset, ledeOf } from '../../lib/inline.mjs';
+import { field, plain, spanOf, yearLabel, partOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
 
 /**
  * History: events in the order they began, each with its result and location. A page
@@ -10,8 +10,10 @@ import { field, plain, yearsOf, partOf, imageOf, ownerOf } from '../../lib/sideb
 const { entries } = Astro.props;
 const events = entries.filter((e) => e.data.type === 'event');
 const ids = new Set(events.map((e) => e.id));
-const span = (e) => yearsOf(field(e, 'date'));
-const start = (e) => +span(e)[0] || 9999;
+// The sidebar's date, or for a page with none, the span its opening sentence gives.
+const span = (e) => spanOf(plain(field(e, 'date'))) || spanOf(ledeOf(e.body, 600), true);
+// Undated pages go last.
+const start = (e) => span(e)?.from ?? 1e9;
 const place = (e) => plain(field(e, 'location')).split(' / ').join(', ');
 const picture = (e) => imageOf(e) || nation(ownerOf(e))?.flag || null;
 const theatres = new Map();
@@ -24,12 +26,13 @@ const flagOf = (e) => nation(ownerOf(e))?.flag;
 ---
 <ol class="cv-timeline">
   {top.map((e) => {
-    const [y0, ...rest] = span(e);
-    const y1 = rest.at(-1);
+    const s = span(e);
+    const y0 = s && yearLabel(s.from);
+    const y1 = s?.to != null && s.to !== s.from ? yearLabel(s.to) : null;
     const pic = picture(e);
     return (
       <li class="cv-ev">
-        <div class="cv-yr">{y0}{y1 && y1 !== y0 && <small>to {y1}</small>}</div>
+        <div class="cv-yr">{y0?.replace(' BCE', '')}{y0?.endsWith('BCE') && <span class="cv-era">BCE</span>}{y1 && <small>to {y1}</small>}</div>
         <a class:list={['cv-thumb', !imageOf(e) && 'flag']} href={url('/' + e.id)}>{pic && <img src={asset(pic)} alt="" loading="lazy" />}</a>
         <div class="cv-ev-body">
           <h3>{flagOf(e) && <img class="cv-flag" src={asset(flagOf(e))} alt="" />}<a href={url('/' + e.id)}>{e.data.title}</a></h3>

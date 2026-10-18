@@ -49,6 +49,40 @@ export function yearOf(v) {
 /** Every year a value names, in order: a war's start and end. */
 export const yearsOf = (v) => String(v || '').match(/\d{4}/g) || [];
 
+const ERA = String.raw`\s*(BCE|BC|CE|AD)?`;
+const RANGE = new RegExp(String.raw`(?:approximately|circa|c\.)?\s*(\d{1,3}(?:,\d{3})+|\d{1,5})` + ERA
+  + String.raw`\s*(?:to|until|–|-)\s*(?:approximately|circa|c\.)?\s*(\d{1,3}(?:,\d{3})+|\d{1,5})` + ERA, 'i');
+const TOKEN = /(AD|CE)?\s*(\d{1,3}(?:,\d{3})+|\d+)(?:\s*(BCE|BC|CE|AD)\b)?/gi;
+const num = (s) => +String(s).replace(/,/g, '');
+const bce = (era) => /^BC/i.test(era || '');
+
+/**
+ * When something began and ended, as signed years (BCE below zero), read from a date as
+ * written: "1914 – 1918", "14,000 to 800 BCE", "c. 300 BC – AD 250". A start with no era
+ * of its own takes the end's when it is the larger number, as "14,000 to 800 BCE" means.
+ * `loose` is for running text, where a bare number is only a year in a range or with an era.
+ */
+export function spanOf(v, loose = false) {
+  const t = String(v || '');
+  if (loose) {
+    const r = t.match(RANGE);
+    if (!r || !(r[2] || r[4] || (r[1].length === 4 && r[3].length === 4))) return null;
+    let [a, b] = [num(r[1]), num(r[3])];
+    if (r[2] ? bce(r[2]) : bce(r[4]) && a > b) a = -a;
+    if (bce(r[4])) b = -b;
+    return { from: a, to: b };
+  }
+  // A year is a number with an era, four digits, or thousands: never a day of the month.
+  const ys = [...t.matchAll(TOKEN)].map((m) => ({ n: num(m[2]), era: m[3] || m[1] || '', raw: m[2] }))
+    .filter((y) => y.era || y.raw.length === 4 || y.raw.includes(','));
+  if (!ys.length) return null;
+  const signed = ys.map((y, k) => (bce(y.era) || (!y.era && ys.slice(k + 1).some((z) => bce(z.era) && y.n > z.n)) ? -y.n : y.n));
+  return { from: signed[0], to: signed.length > 1 ? signed.at(-1) : null };
+}
+
+/** A signed year as written: 14,000 BCE, or 1914. */
+export const yearLabel = (y) => (y < 0 ? `${(-y).toLocaleString('en-US')} BCE` : String(y));
+
 /** The page a "Part of [[x]]" row names, for a theatre of a larger war. */
 export function partOf(e) {
   for (const r of e.data.infobox || []) {
