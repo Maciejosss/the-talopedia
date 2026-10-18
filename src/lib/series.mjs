@@ -1,5 +1,6 @@
 import fs from 'node:fs';
-import { navbox, nation, exists, titleFor } from './registry.mjs';
+import { navbox, nation, exists, titleFor, url } from './registry.mjs';
+import { asset, esc } from './inline.mjs';
 
 /**
  * A nation's history as a Wikipedia series: the History group of its navbox, each row a
@@ -43,4 +44,33 @@ export function seriesOf(slug) {
     out.push({ ...s, at, prev: line[k - 1] || null, next: line[k + 1] || null });
   }
   return out;
+}
+
+/**
+ * "Part of a series on the History of …" as HTML: the nation's periods, the one this page
+ * is in open and the rest folded, each with its dates and its articles, this page in bold
+ * rather than linked. `steps` puts the articles either side at its foot, for a page with
+ * no infobox to carry them. The page and the editor's preview both draw it from here.
+ */
+export function seriesHtml(s, here, steps = false) {
+  const home = s.portal ? url(`/portal/${s.id}`) : url(`/${s.id}`);
+  const periods = s.periods.map((p, i) => `<details class="hs-period"${i === s.at ? ' open' : ''}>`
+    + `<summary><span class="hs-label">${esc(p.label)}</span>${p.dates ? `<span class="hs-dates">${esc(p.dates)}</span>` : ''}</summary>`
+    + '<ul>' + p.items.map((it) => '<li>' + (it.slug === here ? `<b>${esc(it.name)}</b>`
+      : `<a class="wl${exists(it.slug) ? '' : ' new'}" href="${url('/' + it.slug)}">${esc(it.name)}</a>`) + '</li>').join('')
+    + '</ul></details>').join('');
+  return '<aside class="series"><div class="hs-head"><span>Part of a series on the</span>'
+    + `<a class="hs-title" href="${home}">History of ${esc(s.name)}</a>`
+    + (s.flag ? `<a href="${home}" tabindex="-1"><img class="hs-flag" src="${asset(s.flag)}" alt=""></a>` : '')
+    + '</div>' + periods + (steps ? stepsHtml(s) : '') + '</aside>';
+}
+
+/** The articles before and after this one in its series, as a row of two links. */
+export function stepsHtml(s, flag = false) {
+  if (!s.prev && !s.next) return '';
+  return '<div class="hs-steps">'
+    + (s.prev ? `<a class="hs-prev" href="${url('/' + s.prev.slug)}">${esc(s.prev.name)}</a>` : '<span></span>')
+    + (flag && s.flag ? `<img class="ico" src="${asset(s.flag)}" alt="${esc(s.name)}" title="History of ${esc(s.name)}">` : '')
+    + (s.next ? `<a class="hs-next" href="${url('/' + s.next.slug)}">${esc(s.next.name)}</a>` : '<span></span>')
+    + '</div>';
 }

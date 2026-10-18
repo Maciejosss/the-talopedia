@@ -382,8 +382,12 @@ const ADMIN = REPO.split('/')[0];
                 data-ph="Romanisation" title="Shift ↵ for another language"></span>
             </td></tr>
           </tbody></table>
+          <div id="ib-steps"></div>
           <div class="ib-add"><button id="ib-first" type="button">+ Add a field</button></div>
         </aside>
+        {/* The history series this page is in, as the page will show it, so pictures
+            and tables are placed knowing what sits down the right-hand side. */}
+        <div id="ed-series"></div>
         <div class="portal-note" id="portal-note" hidden>
           <h2>A portal is a template</h2>
           <p>Three things are yours to set: the <b>banner</b> and the <b>welcome line</b>,
@@ -3570,6 +3574,30 @@ const ADMIN = REPO.split('/')[0];
     }
 
     /* ---------- canvas mirrors the settings ---------- */
+    /**
+     * The series boxes and steps the published page carries, drawn from the site as it is
+     * built. Shown only, never edited here: the series comes from the nation's navbox.
+     */
+    let seriesIndex = null;
+    let seriesShown = '';
+    function paintSeries(infobox) {
+      seriesIndex ||= fetch(`${BASE.replace(/\/$/, '')}/series.json`).then((r) => (r.ok ? r.json() : {})).catch(() => ({}));
+      seriesIndex.then((all) => {
+        const s = pageKind === 'article' ? all[pageSlug] : null;
+        const key = JSON.stringify([pageSlug, !!s, infobox]);
+        if (key === seriesShown) return;
+        seriesShown = key;
+        $('#ed-series').innerHTML = s ? s.boxes.join('') : '';
+        $('#ib-steps').innerHTML = s && infobox ? s.steps.join('') : '';
+        // A page with no infobox carries its steps at the foot of the series instead.
+        if (s && !infobox) $('#ed-series').querySelector('.series:last-child')?.insertAdjacentHTML('beforeend', s.steps.join(''));
+      });
+    }
+    // Its links would leave the editor; its periods still fold and open.
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#ed-series a, #ib-steps a')) e.preventDefault();
+    });
+
     /** In a navbox, the rows under History are the history series' periods: they get dates. */
     function paintDates() {
       let history = false;
@@ -3819,6 +3847,7 @@ const ADMIN = REPO.split('/')[0];
       // off, so turning it back on before saving brings them back untouched.
       const sidebar = $('#f-sidebar-on').checked;
       document.querySelector('.ib-edit').hidden = !art || !sidebar;
+      paintSeries(art && sidebar);
       // Only the types that sit somewhere on the map.
       const PLACED = ['overview', 'city', 'subdivision', 'continent', 'geography'];
       $('#coords-field').hidden = !art || !PLACED.includes(t);
@@ -7214,6 +7243,11 @@ const ADMIN = REPO.split('/')[0];
     .blk-image { display: flow-root; }
     .blk-section .ce { font: 400 24px/1.3 var(--display); padding-bottom: 5px; border-bottom: 1px solid var(--rule); }
     .blk-subsection .ce { font: 700 17px/1.3 var(--body); }
+    /* The series preview is the page's, not something to edit. */
+    #ed-series .series, #ib-steps { user-select: none; -webkit-user-select: none; }
+    #ed-series a, #ib-steps a { cursor: default; }
+    #ib-steps .hs-steps { padding: 7px 10px; border-top: 1px solid var(--hair); }
+    #ed-series .series > .hs-steps { padding: 7px 10px; border-top: 1px solid var(--hair); }
     /* A history period's dates, on its heading's line at the right. */
     .blk-dates { display: none; }
     .blk-subsection.dated { display: flex; align-items: baseline; gap: 14px; }

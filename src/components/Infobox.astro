@@ -1,6 +1,6 @@
 ---
 import { renderInline, asset } from '../lib/inline.mjs';
-import { url } from '../lib/registry.mjs';
+import { stepsHtml } from '../lib/series.mjs';
 // `steps`: for a page in a history series, the articles before and after it there.
 const { title, nativeTitle, romaji, rows = [], steps = [] } = Astro.props;
 // Italics mark a transliteration. When the native name is already in Latin script
@@ -90,11 +90,7 @@ const view = rows.map((r) => (r.tree && r.value == null ? { ...r, value: r.tree 
         )
       )}
       {steps.filter((s) => s.prev || s.next).map((s) => (
-        <tr class="ib-steps"><td colspan="2"><div class="hs-steps">
-          {s.prev ? <a class="hs-prev" href={url('/' + s.prev.slug)}>{s.prev.name}</a> : <span />}
-          {steps.length > 1 && s.flag && <img class="ico" src={asset(s.flag)} alt={s.name} title={`History of ${s.name}`} />}
-          {s.next ? <a class="hs-next" href={url('/' + s.next.slug)}>{s.next.name}</a> : <span />}
-        </div></td></tr>
+        <tr class="ib-steps"><td colspan="2" set:html={stepsHtml(s, steps.length > 1)} /></tr>
       ))}
     </tbody>
   </table>
