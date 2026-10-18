@@ -146,6 +146,9 @@ a.ext::after {
   font: 400 24px/1.3 var(--display);
   margin: 28px 0 0; padding-bottom: 5px; border-bottom: 1px solid var(--rule);
   clear: none;
+  /* Its own box beside a picture or the sidebar, so the rule under it stops at their
+     edge instead of running on beneath them. */
+  display: flow-root;
 }
 .article h3 { font: 700 17px/1.3 var(--body); margin: 20px 0 0; }
 /* Wikipedia's fourth level: bold at the size of the text it heads, and nothing else. */
