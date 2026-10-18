@@ -27,6 +27,8 @@ const mlo = Math.min(...masses), mhi = Math.max(...masses);
 const diameter = (m) => Math.round(12 + ((Math.log10(m || 1e24) - mlo) / ((mhi - mlo) || 1)) * 70);
 const year = (e) => plain(field(e, 'orbital period').split(' / ')[0]).replace(/\s*\(sidereal\)/i, '');
 const home = 'avium';
+/** Every mass to the same four places, so the column reads as one scale. */
+const mass = (e) => plain(field(e, 'mass')).replace(/^[\d.]+/, (n) => parseFloat(n).toFixed(4));
 ---
 <div class="cv-orbit">
   <div class="cv-axis"></div>
@@ -54,7 +56,7 @@ const home = 'avium';
         <td class="cv-name"><a href={url('/' + e.id)}>{e.data.title}</a></td>
         <td class="cv-num">{plain(field(e, 'semi-major axis'))}</td>
         <td class="cv-num">{year(e)}</td>
-        <td class="cv-num">{plain(field(e, 'mass'))}</td>
+        <td class="cv-num">{mass(e)}</td>
         <td class="cv-num">{plain(field(e, 'satellites')) || '0'}</td>
       </tr>
     ))}
