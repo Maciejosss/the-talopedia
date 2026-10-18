@@ -1,5 +1,5 @@
 ---
-title: "Ignis system"
+title: "Ignis System"
 type: celestial
 authors: [nichirin, alemannia]
 navbox: site
