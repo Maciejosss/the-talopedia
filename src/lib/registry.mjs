@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { slugTitle } from './slug-title.mjs';
-import { categoryOf } from './categories.mjs';
+import { categoryOf, retired } from './categories.mjs';
 
 const ROOT = path.resolve('src/content');
 const BASE = (process.env.BASE_PATH || '/').replace(/\/+$/, '');
@@ -86,6 +86,8 @@ function categoryNames() {
     const c = categoryOf(a.type);
     out.set(c.slug, c.name);
   }
+  // An old per-type name still resolves, and its address forwards to the broad page.
+  for (const r of retired()) if (out.has(r.to) && !out.has(r.from)) out.set(r.from, out.get(r.to));
   return out;
 }
 

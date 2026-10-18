@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { categories, categoryOf, BROAD } from '../../lib/categories.mjs';
+import { categories, categoryOf, BROAD, retired } from '../../lib/categories.mjs';
 import Nations from '../../components/category/Nations.astro';
 import History from '../../components/category/History.astro';
 import Military from '../../components/category/Military.astro';
@@ -21,10 +21,14 @@ export async function getStaticPaths() {
       pages: all.filter((e) => b.types.includes(e.data.type)).map((e) => ({ slug: e.id, title: e.data.title })) },
   }));
   const taken = new Set(BROAD.map((b) => b.slug));
-  return [...broad, ...categories(all).filter((c) => !taken.has(c.slug)).map((c) => ({ params: { slug: c.slug }, props: c }))];
+  // The old per-type pages forward to the broad category that took them in.
+  const gone = retired().filter((r) => !taken.has(r.from))
+    .map((r) => ({ params: { slug: r.from }, props: { forward: r.to, name: '', slug: r.from, pages: [] } }));
+  return [...broad, ...categories(all).filter((c) => !taken.has(c.slug)).map((c) => ({ params: { slug: c.slug }, props: c })), ...gone];
 }
 
-const { name, slug, pages, broad = false } = Astro.props;
+const { name, slug, pages, broad = false, forward = null } = Astro.props;
+if (forward) return Astro.redirect(url(`/category/${forward}`), 301);
 const VIEWS = { 'nations-and-places': Nations, history: History, military: Military, space: Space, sport: Sport, society: Society };
 const View = broad ? VIEWS[slug] : null;
 const entries = View ? await getCollection('articles') : [];

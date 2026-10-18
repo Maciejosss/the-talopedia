@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import remarkTalopedia from './src/lib/remark-talopedia.mjs';
 import { sync } from './scripts/sync.mjs';
+import { retired } from './src/lib/categories.mjs';
 
 const ARTICLES = path.resolve('src/content/articles');
 const PORTALS = path.resolve('src/content/portals');
@@ -245,6 +246,9 @@ const MOVED = new Set(fs.readdirSync('src/content/articles').filter((f) => f.end
   .flatMap((f) => (fs.readFileSync(`src/content/articles/${f}`, 'utf8').match(/^movedFrom:\s*\[([^\]]*)\]/m)?.[1] || '')
     .split(',').map((x) => x.trim()).filter(Boolean)));
 
+// Old per-type category addresses, which forward to the broad categories.
+const RETIRED = new Set(retired().map((r) => `/category/${r.from}`).map((p) => (process.env.BASE_PATH || '/').replace(/\/$/, '') + p));
+
 export default defineConfig({
   site: process.env.SITE_URL || 'https://example.github.io',
   base: process.env.BASE_PATH || '/',
@@ -258,8 +262,11 @@ export default defineConfig({
   integrations: [sitemap({
     filter: (page) => {
       const where = new URL(page).pathname;
-      return !/\/(edit|history|source|connections|raw|search|random|wanted)(\/|$)/.test(where)
-        && !MOVED.has(where.replace(/\/$/, '').split('/').pop());
+      // Only a tool at the top of the address: /category/history is a page to list.
+      const top = where.slice((process.env.BASE_PATH || '/').length).split('/')[0];
+      return !['edit', 'history', 'source', 'connections', 'raw', 'search', 'random', 'wanted'].includes(top)
+        && !MOVED.has(where.replace(/\/$/, '').split('/').pop())
+        && !RETIRED.has(where.replace(/\/$/, ''));
     },
   })],
   vite: { plugins: [autoPull(), devSave(), devSearch()] },

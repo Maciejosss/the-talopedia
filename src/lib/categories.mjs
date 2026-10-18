@@ -1,7 +1,7 @@
 /**
- * An article's type is its category, named the way a Wikipedia category would be.
- * Every page of a type is listed at /category/<slug>, and each article links there
- * from its foot.
+ * An article's type, named the way a Wikipedia category would be. Most types now file
+ * under one of the broad categories below; these names are the old per-type pages,
+ * whose addresses forward to the broad one.
  */
 export const NAMES = {
   overview: 'Nations and territories',
@@ -39,10 +39,29 @@ export const BROAD = [
   { slug: 'society', name: 'Society', types: ['ideology', 'religion', 'ethnicity', 'organization', 'company'] },
 ];
 
-/** The category a type files under. A type added without a name here still gets one. */
-export function categoryOf(type) {
+/** The type's own category, as it had a page before the broad ones. */
+export function typeCategory(type) {
   const name = NAMES[type] || type.charAt(0).toUpperCase() + type.slice(1);
   return { name, slug: name.toLowerCase().replace(/\s+/g, '-') };
+}
+
+/** The category a type files under: its broad category, or its own when it has none
+    (Characters, Lists). A type added without a name here still gets one. */
+export function categoryOf(type) {
+  const b = BROAD.find((x) => x.types.includes(type));
+  return b ? { name: b.name, slug: b.slug } : typeCategory(type);
+}
+
+/** Old per-type addresses and the broad category each now forwards to. */
+export function retired() {
+  const out = [];
+  for (const b of BROAD) {
+    for (const t of b.types) {
+      const old = typeCategory(t).slug;
+      if (old !== b.slug) out.push({ from: old, to: b.slug });
+    }
+  }
+  return out;
 }
 
 /**
