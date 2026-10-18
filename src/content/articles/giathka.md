@@ -70,7 +70,7 @@ infobox:
   - { label: "Alpha-3 Code", value: "GKA" }
 ---
 
-The Armed Republic of **Giathka** (Giathkik: *Armei Republicav Giathka*; вооружённая республика Гиатка) is a medium sized authoritarian republic. It borders [[rudania]] and Perovska to the north.
+The Armed Republic of **Giathka** (Giathkik: *Armei Republicav Giathka*; вооружённая республика Гиатка) is a medium sized authoritarian republic. It borders [[rudania]] and [[perovska]] to the north.
 
 ## Etymology
 
@@ -92,7 +92,9 @@ The Meshkavits dynasty would rule peacefully until 1932, when a revolution insta
 
 ## Military
 
-The Giathkan Armed Forces (Oružane snage Giathkana) serve as the military of the Armed Republic of Giathka. It is organized into four principal branches: the Ground Forces, the Naval Forces, and the Aerial Forces. Supreme command is vested in the Grand Military Command, chaired by the Minister of Defence, who holds absolute authority as Commander-in-Chief.
+The Giathkan Armed Forces (Oružane snage Giathka) serve as the military of the Armed Republic of Giathka. It is organized into four principal branches: the Ground Forces, the Naval Forces, and the Aerial Forces. Supreme command is vested in the Grand Military Command, chaired by the Minister of Defence, who holds absolute authority as Commander-in-Chief.
+
+Giathka is yet to participate in a major conflict.
 
 ## Government
 
@@ -104,14 +106,24 @@ The legislative function is carried out by decree, with laws and regulations iss
 
 The Giathkik economy is largely dominated by manufacturing and agriculture, with its main income being from exporting aluminum, electricity, cotton, and minerals. Giathka maintains a trade deficit, importing large amounts of machinery, petroleum products, and foodstuffs.
 
+### Infrastructure
+
+Giathka's infrastructure is mainly revolved around efficiency, with housing blocs being built as oppose to individual houses, and transport largely revolving around trains, with cars mainly being used for short distance travel.
+
 ## Geography
 
 Giathka is a medium sized nation, at 1,731,481 km². It ranks #12 in the world in terms of land area, and 38th in terms of population density. Summers can range from 30**°** to 40°C, with winters ranging between 9°C and 24°C.
 
-Giathka borders Perovska and Rudania to the north, and the Himalayan sea to the east
+Giathka borders Perovska and Rudania to the north, and the Himalayan sea to the east.
 
 ## Demographics
 
 Giathkas population is largely comprised of the Giathkik peoples. Giathka is an ethnostate, largely oppressing native populations such as the Burskite and Glorinnian peoples. The vast majority of the population speaks Giathkik and Rudanian, with Rudanian mostly used by the lower class.
 
 Systematic discrimination is common, with non-Giathkik people being excluded from political office, and Glorinnians being banned from receiving healthcare from Giathkik doctors.
+
+The population of Giathka is largely rural, with 76% of Giathkans living in rural areas. The largest city is Korolevskygorod, with a population of 4 million.
+
+### Religion
+
+The vast majority of the Giathkik population is [Orthodox Christian](https://en.wikipedia.org/wiki/Eastern_Orthodox_Church), with around 80% of the population identifying with the religion as of the 1930 cencus. Non-christians are treated as second class citizens, with freedoms and rights restricted, such as being banned from owning businesses. Liberal opposition have consistently demanded a separation of religion and government, but the the supreme leader has rejected all such proposals. Non-christian religious buildings and public gatherings are illegal, punnishable by up to 20 years in prison.
