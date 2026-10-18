@@ -1,7 +1,7 @@
 import { navbox as read, nation, url } from './registry.mjs';
 import { renderInline, esc, unesc, link, icon, CUSTOM, custom } from './inline.mjs';
 import { keyOf } from './sort-key.mjs';
-import { colourOf } from './flag-colour.mjs';
+import { colourOf, inkOn } from './flag-colour.mjs';
 
 /**
  * A navbox entry may be a bare slug, an explicit [[link]], or a nation id.
@@ -51,7 +51,7 @@ export function renderNavbox(id, fallbackTitle = '') {
     ? `<div class="navbox-head">${esc(title)}${crumb}</div>` : '';
   // A nation's navbox wears its flag's colour, as the portals did in the documents.
   const tint = colourOf(id);
-  const open = tint ? `<nav class="navbox tinted" style="--nb:${tint}">` : '<nav class="navbox">';
+  const open = tint ? `<nav class="navbox tinted" style="--nb:${tint};--nb-ink:${inkOn(tint)}">` : '<nav class="navbox">';
   return `${open}${head}<table class="nb"><tbody>${body.join('')}</tbody></table></nav>`;
 }
 

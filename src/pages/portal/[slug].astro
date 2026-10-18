@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { url, coordsFor, nation, mapUrl, navbox } from '../../lib/registry.mjs';
 import { resolveHtml, renderNavbox } from '../../lib/navbox.mjs';
-import { colourOf } from '../../lib/flag-colour.mjs';
+import { colourOf, inkOn } from '../../lib/flag-colour.mjs';
 
 export async function getStaticPaths() {
   const all = await getCollection('portals');
@@ -34,7 +34,7 @@ const coords = found && { ...found, href: found.type === 'nation' ? mapUrl(natio
 <Base title={d.title} image={d.banner} headings={headings} coords={coords} nationId={d.nation} slug={`portal:${entry.id}`}
   editSlug={hasNavbox ? `navbox:${d.nation}` : `portal:${entry.id}`}
   editLabel={hasNavbox ? 'Edit navbox' : 'Edit'}>
-  {d.welcome && <p class="portal-welcome" style={bar ? `background:${bar}` : undefined}>{d.welcome}</p>}
+  {d.welcome && <p class="portal-welcome" style={bar ? `background:${bar};color:${inkOn(bar)}` : undefined}>{d.welcome}</p>}
   {d.banner && <img class="portal-banner" src={url(d.banner)} alt={d.title} />}
   <div class="portal-lede article">
     {lede && <Fragment set:html={lede} />}

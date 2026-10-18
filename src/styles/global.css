@@ -404,11 +404,11 @@ figcaption:empty { display: none; }
 /* A nation's navbox, in its flag's colour: the title a shade darker, the labels in the
    colour itself, each cell parted from the next by a strip of the page. */
 .navbox.tinted { border-color: var(--nb); }
-.navbox.tinted .navbox-head { background: color-mix(in srgb, var(--nb) 82%, #000); color: #fff; font-size: 16px; }
+.navbox.tinted .navbox-head { background: color-mix(in srgb, var(--nb) 82%, #000); color: var(--nb-ink, #fff); font-size: 16px; }
 .navbox.tinted .navbox-head .crumb { font-size: 13px; }
-.navbox.tinted .navbox-head a { color: #fff; }
-.navbox.tinted th.grp, .navbox.tinted th.row { background: var(--nb); color: #fff; }
-.navbox.tinted th.grp a, .navbox.tinted th.row a { color: #fff; }
+.navbox.tinted .navbox-head a { color: var(--nb-ink, #fff); }
+.navbox.tinted th.grp, .navbox.tinted th.row { background: var(--nb); color: var(--nb-ink, #fff); }
+.navbox.tinted th.grp a, .navbox.tinted th.row a { color: var(--nb-ink, #fff); }
 .navbox.tinted th { border: 3px solid var(--paper); border-left: 0; }
 
 /* ---- categories ---- */
