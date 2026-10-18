@@ -7,7 +7,7 @@ groups:
   - label: "History"
     rows:
       - label: "Prehistory"
-        dates: "14000 BCE – 200 CE"
+        dates: "14000 BCE–189 CE"
         items:
           - "nawame-period"
           - "age-of-the-kami"
@@ -16,7 +16,7 @@ groups:
           - "hinode-period|Hinode period"
           - "  war-of-the-hundred-chiefdoms"
       - label: "Imperial"
-        dates: "200 – 1185"
+        dates: "189–1180"
         items:
           - "okutsuki-period|Okutsuki period"
           - "raising-of-the-asuka-amenomihashira"
@@ -29,6 +29,7 @@ groups:
           - "  shogen-concordat|Shōgen Concordat"
           - "  rebellion-of-tsunemori-hayakawa"
       - label: "Medieval"
+        dates: "1180–1603"
         items:
           - "sundering-of-the-regalia"
           - "hayakawa-shogunate"
@@ -41,6 +42,7 @@ groups:
           - "nisshoku-period|Nisshoku period"
           - "  battle-of-hikaeshi"
       - label: "Early Modern"
+        dates: "1603–1868"
         items:
           - "nichirin|Miyamoto Shogunate"
           - "  noto-edict|Nōtō Edict"
@@ -50,6 +52,7 @@ groups:
           - "  famine-of-the-falling-heaven"
           - "bakuraku-war"
       - label: "Modern"
+        dates: "1868–present"
         items:
           - "shinseiki-reforms"
           - "  treaty-of-korihama|Treaty of Kōrihama"
