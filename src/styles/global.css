@@ -455,8 +455,8 @@ figcaption:empty { display: none; }
 }
 
 /* ---- portal ---- */
-.portal-banner { width: 100%; height: 200px; object-fit: cover; display: block; }
-.portal-welcome { font: 400 24px/1.3 var(--display); text-align: center; margin: 18px 0; }
+.portal-banner { width: 100%; height: 200px; object-fit: cover; display: block; margin-bottom: 18px; }
+.portal-welcome { font: 700 21px/1.2 var(--body); color: #fff; background: var(--lift); text-align: center; padding: 9px 16px; margin: 0 0 12px; }
 .portal-lede { border: 1px solid var(--rule); background: var(--lift); padding: 16px 20px; }
 .portal-lede .portal-more { text-align: right; margin: 4px 0 0; font-weight: 600; }
 

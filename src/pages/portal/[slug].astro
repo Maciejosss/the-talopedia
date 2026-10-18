@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { url, coordsFor, nation, mapUrl, navbox } from '../../lib/registry.mjs';
 import { resolveHtml, renderNavbox } from '../../lib/navbox.mjs';
+import { flagColour } from '../../lib/flag-colour.mjs';
 
 export async function getStaticPaths() {
   const all = await getCollection('portals');
@@ -27,13 +28,15 @@ const lede = resolveHtml((overview?.rendered?.html ?? '').match(/<p>[\s\S]*?<\/p
 // editing is its navbox. A nation without one falls back to the portal file itself.
 const hasNavbox = !!navbox(d.nation);
 const found = coordsFor(nation(d.nation)?.name, d.nation);
+const flag = nation(d.nation)?.flag;
+const bar = flag ? await flagColour(`public${flag}`) : null;
 const coords = found && { ...found, href: found.type === 'nation' ? mapUrl(nation(d.nation)?.name ?? d.nation) : null };
 ---
 <Base title={d.title} image={d.banner} headings={headings} coords={coords} nationId={d.nation} slug={`portal:${entry.id}`}
   editSlug={hasNavbox ? `navbox:${d.nation}` : `portal:${entry.id}`}
   editLabel={hasNavbox ? 'Edit navbox' : 'Edit'}>
+  {d.welcome && <p class="portal-welcome" style={bar ? `background:${bar}` : undefined}>{d.welcome}</p>}
   {d.banner && <img class="portal-banner" src={url(d.banner)} alt={d.title} />}
-  {d.welcome && <p class="portal-welcome">{d.welcome}</p>}
   <div class="portal-lede article">
     {lede && <Fragment set:html={lede} />}
     {own && <Fragment set:html={own} />}
