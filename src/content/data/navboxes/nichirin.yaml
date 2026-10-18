@@ -11,10 +11,10 @@ groups:
         items:
           - "nawame-period"
           - "age-of-the-kami"
-          - "  kuniyuzuri"
-          - "  descent-onto-s-ten|Descent onto Sōten"
+          - "kuniyuzuri"
+          - "descent-onto-s-ten|Descent onto Sōten"
           - "hinode-period|Hinode period"
-          - "  war-of-the-hundred-chiefdoms"
+          - "war-of-the-hundred-chiefdoms"
       - label: "Imperial"
         dates: "200 – 1185"
         items:
@@ -40,6 +40,8 @@ groups:
           - "tenkyo-restoration|Tenkyō Restoration"
           - "nisshoku-period|Nisshoku period"
           - "battle-of-hikaeshi"
+      - label: "Early Modern"
+      - label: "Modern"
   - label: "Politics"
     rows:
       - label: "Government"
