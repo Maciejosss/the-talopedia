@@ -8,11 +8,15 @@ authors: [nichirin]
 
 The **Nawame period** (縄目時代, *Nawame jidai*) covers the prehistory of [[metropolitan-nichirin]] from approximately 14,000 to 800 BCE, named for cord-marked pottery (縄目土器, *nawame doki*) prominent at the time. It follows the Nichirian Paleolithic and precedes the [[hinode-period|Hinode period]], whose onset is marked by the appearance of bronze, iron, and wet-rice cultivation. The period is divided into six subperiods: Incipient, Initial, Early, Middle, Late, and Final.
 
+<figure class="float float-left" style="width:159px"><img src="https://lh3.googleusercontent.com/pw/AP1GczORybCVQvY-JCpUVt0xUgkkKbYZxQYwS0s72bBAuwRdVUxfr23IT0TQE-YqPHwdVQG-cNmMK0AJOad9ofT9hDj7ooAX29nQ5aKXvAB4fc1fXqKL33Wi3UNddvoYi2VDDz8IIWuLB3oI8RGnzjBPbs3P=w2000" alt="Middle Nawame storage jar from the Kaigarazaka shell mound, Shinkeisei, 1922"><figcaption>Middle Nawame storage jar from the Kaigarazaka shell mound, Shinkeisei, 1922</figcaption></figure>
+
 As of 1934, approximately 9,000 sites from the Nawame period had been registered with the Office of Historical Documentation. Contemporaneous assemblages in [[tohanto]] and [[manshu]] are assigned to separate traditions and are known from fewer sites, as many of those in Tohanto were destroyed during the [[pacification-of-tohanto]] and many of those in Manshu during [[the-koin-war|the Kōin War]]. Nawame material has also been recovered on the coast of [[hyperborea]], where it is the earliest known evidence of human presence.
 
 ## Chronology
 
 Shell mounds in Metropolitan Nichirin were recorded by antiquarians of the [[miyamoto-period|Miyamoto period]], who collected ground stone axes from them as “thunder axes” (雷斧, *raifu*), but were not systematically excavated before the 20th century. The period was conceived with the uncovering of the Kaigarazaka shell mound in [[shinkeisei]] during the construction of the Shinkeisei Metro between 1917 and 1923.
+
+<figure class="float float-right" style="width:300px"><img src="https://lh3.googleusercontent.com/pw/AP1GczNLrpoF23WCtk57GffpUo6yKpTX9JdLnJpMSf7j8K_BkfztH_Szh2gkRNxLnmBtZAxrSFKyEd5XEZI8q1qx0Ppst4kfudbTv4iWIEF6bndMnx8Y-T4LCt5sJRXmZm222mHlLpJFnH1ejEX1tTwoYmoT=w2000" alt="Salvage excavation of the Kaigarazaka shell mound during construction of the Shinkeisei Metro, 1920"><figcaption>Salvage excavation of the Kaigarazaka shell mound during construction of the Shinkeisei Metro, 1920</figcaption></figure>
 
 From 1919 to 1921, Professor Tokuzō Kirihara of the Kugayama Institute of Historical Studies at [[kyowa-university|Kyōwa University]] directed salvage excavations at the site. Over a depth of 6.2 meters, the excavations recovered a stratified sequence of pottery, lithics, faunal remains, and 41 burials. Kirihara introduced the term *nawame doki* in his report of 1922. Between 1923 and 1931, he and his students used the stratigraphy of Kaigarazaka as the basis of a seriation of pottery styles, known as the Kugayama sequence, which remains the standard chronology of the period.
 
@@ -48,6 +52,8 @@ Pit dwellings first appeared in the Initial subperiod, in clusters of three to t
 Threshold burial, the interment of infants and young children in jars beneath the entrances of dwellings, is recorded in 312 instances at 47 sites. Older members of Middle and Late villages were buried in the central plaza. Communities also deposited whole vessels, polished axes, and red-pigmented stones at river fords. At [[futagawa]], the largest of the eleven such deposits recovered on the rivers of the northern seaboard, the deposit held 214 vessels.
 
 ## Hyperborean sites
+
+<figure class="float float-right" style="width:300px"><img src="https://lh3.googleusercontent.com/pw/AP1GczN1UIlXduzUDu_kytdScEd_xSwjwkCzsECUlTUVDA0-od5g4YzaNI4CiIfZD5f2G6yHZr7JWA0ePubO5uzd3if1-FPkkBqP9BvlxMrud0NUzkldXjvHQ6bQBH1eJstTitVdxkxoEg55N4DkKCR89mmH=w2000" alt="The Hyperborean midden during excavation by researchers from Forward Operating Base Keter, 1931"><figcaption>The Hyperborean midden during excavation by researchers from Forward Operating Base Keter, 1931</figcaption></figure>
 
 In 1931, researchers from [[forward-operating-base-keter]] collected cord-marked sherds from a shell midden on a raised beach of the coastal plain. The material, published by Kirihara in 1933, comprises 63 sherds of Early type, 2 obsidian blades, and the faunal remains of seal, walrus, and seabirds. The obsidian has been matched to the island sources that supplied mainland Early assemblages. No dwellings were identified, and the midden has been interpreted as a seasonal sealing camp. Kirihara proposed that voyages to Hyperborea began after the Ko-Sōten eruption had displaced the population of the central coastal plain.
 
