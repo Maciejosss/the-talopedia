@@ -6,9 +6,9 @@ nation: nichirin
 authors: [nichirin]
 ---
 
-The **Nawame period** (縄目時代, *Nawame jidai*) covers the prehistory of [[metropolitan-nichirin]] from approximately 14,000 to 800 BCE, named for cord-marked pottery (縄目土器, *nawame doki*) prominent at the time. It follows the Nichirian Paleolithic and precedes the [[hinode-period|Hinode period]], whose onset is marked by the appearance of bronze, iron, and wet-rice cultivation. The period is divided into six subperiods: Incipient, Initial, Early, Middle, Late, and Final.
-
 <figure class="float float-left" style="width:159px"><img src="https://lh3.googleusercontent.com/pw/AP1GczORybCVQvY-JCpUVt0xUgkkKbYZxQYwS0s72bBAuwRdVUxfr23IT0TQE-YqPHwdVQG-cNmMK0AJOad9ofT9hDj7ooAX29nQ5aKXvAB4fc1fXqKL33Wi3UNddvoYi2VDDz8IIWuLB3oI8RGnzjBPbs3P=w2000" alt="Middle Nawame storage jar from the Kaigarazaka shell mound, Shinkeisei, 1922"><figcaption>Middle Nawame storage jar from the Kaigarazaka shell mound, Shinkeisei, 1922</figcaption></figure>
+
+The **Nawame period** (縄目時代, *Nawame jidai*) covers the prehistory of [[metropolitan-nichirin]] from approximately 14,000 to 800 BCE, named for cord-marked pottery (縄目土器, *nawame doki*) prominent at the time. It follows the Nichirian Paleolithic and precedes the [[hinode-period|Hinode period]], whose onset is marked by the appearance of bronze, iron, and wet-rice cultivation. The period is divided into six subperiods: Incipient, Initial, Early, Middle, Late, and Final.
 
 As of 1934, approximately 9,000 sites from the Nawame period had been registered with the Office of Historical Documentation. Contemporaneous assemblages in [[tohanto]] and [[manshu]] are assigned to separate traditions and are known from fewer sites, as many of those in Tohanto were destroyed during the [[pacification-of-tohanto]] and many of those in Manshu during [[the-koin-war|the Kōin War]]. Nawame material has also been recovered on the coast of [[hyperborea]], where it is the earliest known evidence of human presence.
 
