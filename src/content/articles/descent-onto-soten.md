@@ -13,7 +13,7 @@ Amaterasu first chose her son Ame-no-Oshihomimi to rule the land, but he decline
 
 ## The five attendants
 
-The five attendant kami (五伴緒, *Itsutomonoo*) are the ancestors of the court lineages of the [[mihashira-period|Mihashira period]]:
+The five attendant kami (五伴緒, *Itsutomonoo*) are said to be the ancestors of the court lineages of the [[mihashira-period|Mihashira period]]:
 
 - Ame-no-Koyane (天児屋) of the court ritualists
 - Futodama (太玉) of the keepers of offerings
