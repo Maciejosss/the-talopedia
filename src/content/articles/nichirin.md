@@ -7,7 +7,6 @@ nation: nichirin
 icon: "/assets/flags/nichirin.png"
 infobox:
   - { image: "/assets/flags/nichirin.png", caption: "Flag" }
-  - { image: "/assets/old-media/emblems/nichirin.png", caption: "Coat of Arms" }
   - { image: "/assets/old-media/media/nichirin-location.jpg", caption: "Location of Mainland Nichirin" }
   - label: "Motto"
     value:
@@ -19,8 +18,8 @@ infobox:
       - "[「旭日昇天」](https://www.youtube.com/watch?v=fOsAyzzPLGE)"
       - "*Kyokujitsu Shōten*"
       - "\"Ascension of the Rising Sun\""
-  - { label: "Capital", value: ":img[/assets/flags/shinkeisei.png] [[shinkeisei]]" }
-  - { label: "Largest City", value: ":img[/assets/flags/shinkeisei.png] Shinkeisei" }
+  - { label: "Capital", value: ":img[/assets/flags/shinkeisei.png] [[shinkeisei]]" }
+  - { label: "Largest City", value: ":img[/assets/flags/shinkeisei.png] Shinkeisei" }
   - { section: "Administration" }
   - { label: "Government", value: "Unitary hereditary military dictatorship" }
   - { label: "Sei'i Tai Shogun", sub: true, value: "[[masashi-miyamoto]]" }
@@ -76,7 +75,7 @@ infobox:
   - { label: "Alpha-3 Code", value: "NCH" }
 ---
 
-**Nichirin** (日輪, *nee-chee-rin*), officially the **Miyamoto Shogunate** (宮本幕府, Aldrige: *Miyamoto Bakufu*, *MEE-yah-moh-toh BAH-koo-foo*), is a country in Northern [[valtheria]]. Bounded by the [[hyperborean-ocean]] to the north and the [[bay-of-serica]] to the east, it borders [[rudania]] to the south and [[guandong]] to the east. With a population exceeding 371 million on its mainland and 167 million in the wider [[Aureate Co-Prosperity Sphere|Aureate Co-Prosperity Sphere]], it is the third-most populous country. Mainland Nichirin is divided into 4 specially administered regions (SARs), 44 prefectures, and 15 autonomous prefectures. The capital of Nichirin and its largest city is [[shinkeisei]], located in the world's largest metropolitan area, which has a population exceeding 38 million.
+**Nichirin** (日輪, *nee-chee-rin*), officially the **Miyamoto Shogunate** (宮本幕府, Aldrige: *Miyamoto Bakufu*, *MEE-yah-moh-toh BAH-koo-foo*), is a country in Northern [[valtheria]]. Bounded by the [[hyperborean-ocean]] to the north and the [[bay-of-serica]] to the east, it borders [[rudania]] to the south and [[guandong]] to the east. With a population exceeding 371 million on its mainland and 167 million in the wider [[Aureate Co-Prosperity Sphere|Aureate Co-Prosperity Sphere]], it is the third-most populous country. Mainland Nichirin is divided into 4 specially administered regions (SARs), 44 prefectures, and 15 autonomous prefectures. The capital of Nichirin and its largest city is [[shinkeisei]], located in the world's largest metropolitan area, which has a population exceeding 38 million.
 
 ## Etymology
 
