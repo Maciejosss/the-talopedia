@@ -9,14 +9,6 @@ The Talopedia is a collaborative encyclopedia for [[avium]], Talonia's worldbuil
 
 ## Featured Article
 
-## Trending Characters
-
-- [[kriemhilt-von-bismarck]]
-- [[george-elwood]]
-- [[cassandra-conway]]
-- [[kenzo-kamiya]]
-- [[gendo-takahashi]]
-
-[[category:characters|All characters]]
+## Categories
 
 ## Latest Articles

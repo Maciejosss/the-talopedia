@@ -485,7 +485,19 @@ figcaption:empty { display: none; }
 .portal-banner { width: 100%; height: 200px; object-fit: cover; display: block; margin-bottom: 18px; }
 .portal-welcome { font: 700 21px/1.2 var(--body); color: #fff; background: var(--lift); text-align: center; padding: 9px 16px; margin: 0 0 12px; }
 .portal-lede { border: 1px solid var(--rule); background: var(--lift); padding: 16px 20px; }
-.portal-lede .portal-more { text-align: right; margin: 4px 0 0; font-weight: 600; }
+.portal-lede .portal-more { text-align: right; margin: 16px 0 0; }
+/* A link out of a panel: the way on to the whole of something, set as a button. */
+.btn-more {
+  display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 14px;
+  font: 600 13.5px/1 var(--body); color: var(--ink) !important; text-decoration: none !important;
+  background: var(--band); border: 1px solid var(--rule); border-radius: 2px;
+  transition: border-color .12s, background-color .12s;
+}
+.btn-more::after { content: "\2192"; color: var(--accent); font-size: 15px; transition: transform .12s; }
+.btn-more:hover { background: var(--hair); border-color: var(--accent); }
+.btn-more:hover::after { transform: translateX(2px); }
+.btn-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .btn-more, .btn-more::after { transition: none; } }
 
 @media (max-width: 1000px) {
   .shell { flex-direction: column; align-items: stretch; }
@@ -561,13 +573,28 @@ figcaption:empty { display: none; }
 .hbox-body > :last-child { margin-bottom: 0; }
 .hbox-body > .navbox { border: 0; margin: -14px -16px; }
 .hbox-body .more { clear: both; margin-bottom: 0; font-size: 13px; }
-/* The panels under the featured article, two to a row wherever there is room and
-   stacked on a phone. Level heights, with each one's link out along the bottom. */
-.home-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0 0 18px; }
+/* The panels under the featured article, Categories taking most of the row and Latest
+   Articles the rest, stacked on a phone. Level heights, with each one's link out along the bottom. */
+.home-split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: 18px; margin: 0 0 18px; }
 .home-split > .hbox { margin: 0; display: flex; flex-direction: column; }
 .home-split .hbox-body { flex: 1; display: flex; flex-direction: column; }
 .home-split .hbox-body > .more { margin-top: auto; padding-top: 12px; }
-@media (max-width: 639px) { .home-split { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .home-split { grid-template-columns: minmax(0, 1fr); } }
+/* The category tiles: a drawing over the name and how many pages it holds. The tiles
+   grow to keep the panel level with Latest Articles, the drawing centred in the extra room. */
+.cats { flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 12px; }
+.cat {
+  display: flex; flex-direction: column; overflow: hidden; text-decoration: none !important;
+  background: var(--lift); border: 1px solid var(--hair); border-radius: 3px; transition: border-color .12s;
+}
+.cat svg { display: block; flex: 1; width: 100%; height: auto; min-height: 0; border-bottom: 1px solid var(--hair); }
+.cat-l { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 8px 9px; }
+.cat-l b { font: 400 13.5px/1.3 var(--body); color: var(--link); white-space: nowrap; }
+.cat-l span { font: 400 14px/1 var(--display); color: var(--muted); font-variant-numeric: tabular-nums; }
+.cat:hover { border-color: var(--rule); }
+.cat:hover b { text-decoration: underline; }
+.cats-more { text-align: right; margin: 16px 0 0; }
+@media (max-width: 520px) { .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
 /* Five pages: a rank, a square picture, the title and one line under it. */
 .tops { list-style: none; margin: 0; padding: 0; }
 .tops li { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-top: 1px solid var(--hair); }

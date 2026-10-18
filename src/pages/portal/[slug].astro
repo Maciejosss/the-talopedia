@@ -39,7 +39,7 @@ const coords = found && { ...found, href: found.type === 'nation' ? mapUrl(natio
   <div class="portal-lede article">
     {lede && <Fragment set:html={lede} />}
     {own && <Fragment set:html={own} />}
-    {overview && <p class="portal-more"><a href={url('/' + overview.id)}>Read the full article &rarr;</a></p>}
+    {overview && <p class="portal-more"><a class="btn-more" href={url('/' + overview.id)}>Read the Full Article</a></p>}
   </div>
   <Fragment set:html={renderNavbox(d.nation)} />
 </Base>

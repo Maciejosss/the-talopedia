@@ -6,7 +6,8 @@ import { resolveHtml, renderNavbox } from '../lib/navbox.mjs';
 import { asset, icon, esc } from '../lib/inline.mjs';
 import { lastWritten } from '../lib/revisions.mjs';
 import { pictureOf } from '../lib/pictures.mjs';
-import { categoryOf } from '../lib/categories.mjs';
+import { categoryOf, categories } from '../lib/categories.mjs';
+import { ART } from '../lib/category-art.mjs';
 import { featured, firstParagraph, firstImage, linkFirstMention } from '../lib/featured.mjs';
 
 // The front page is an ordinary article, so it opens in the editor like any other.
@@ -57,12 +58,9 @@ const featuredPanel = !pick ? '' : (() => {
 })();
 
 /**
- * The panels of five under the featured article: Trending Characters, picked by hand
- * on the front page, and Latest Articles, the pages most recently written or rewritten. Each row is a
- * rank, a square picture, the title and one line under it, the same in both so the
- * two sit level beside each other.
+ * Latest Articles, under the featured article: the five pages most recently written or
+ * rewritten, each a rank, a square picture, the title and one line under it.
  */
-const byId = new Map(articles.map((e) => [e.id, e]));
 const origin = (e) => {
   const n = nation(e.data.nation);
   return n ? `${icon(e.data.nation)} ${esc(n.name)}` : esc(categoryOf(e.data.type).name);
@@ -81,18 +79,6 @@ function tops(rows) {
   }).join('') + '</ol>';
 }
 
-/** The list written under the heading, as pages; whatever follows it is the link out. */
-function trendingPanel(rest) {
-  const root = url('/');
-  const end = Math.max(rest.lastIndexOf('</ul>'), rest.lastIndexOf('</ol>'));
-  const list = end < 0 ? '' : rest.slice(0, end);
-  const picked = [...list.matchAll(/<li>[\s\S]*?<a\b[^>]*href="([^"]+)"/g)]
-    .map((m) => byId.get(decodeURI(m[1]).slice(root.length).replace(/\/$/, '')))
-    .filter(Boolean);
-  const after = end < 0 ? rest : rest.slice(end + 5);
-  return tops(picked.map((e) => ({ e, meta: origin(e) }))) + after.replace(/<p>/g, '<p class="more">');
-}
-
 const day = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 const latest = articles
   .map((e) => ({ e, w: lastWritten(e.id) }))
@@ -101,9 +87,18 @@ const latest = articles
   .slice(0, 5);
 // The date is only what shows before the script at the foot of the page puts "3 hours
 // ago" in its place, which it has to do in the reader's own clock.
-const latestPanel = tops(latest.map(({ e, w }) => ({ e, meta: `${origin(e)} \u00b7 `
-  + `${w.updated ? 'updated' : 'created'} <time datetime="${w.at}" data-ago>${day(w.at)}</time>` })))
-  + `<p class="more"><a href="${url('/categories')}">All categories</a></p>`;
+const latestPanel = tops(latest.map(({ e, w }) => ({ e, meta: `${origin(e)}</span><span class="tops-meta">`
+  + `${w.updated ? 'Updated' : 'Created'} <time datetime="${w.at}" data-ago>${day(w.at)}</time>` })));
+
+/** Categories, beside it: the broad categories as tiles, each with its drawing and its count. */
+const ORDER = ['nations-and-places', 'characters', 'history', 'military', 'society', 'sport', 'space', 'lists'];
+const counted = new Map(categories(articles).map((c) => [c.slug, c]));
+const categoriesPanel = '<div class="cats">' + ORDER.filter((s) => counted.has(s)).map((s) => {
+  const c = counted.get(s);
+  return `<a class="cat" href="${url('/category/' + s)}"><svg viewBox="0 0 160 112" aria-hidden="true">${ART[s] || ''}</svg>`
+    + `<span class="cat-l"><b>${esc(c.name)}</b><span>${c.pages.length}</span></span></a>`;
+}).join('') + '</div>'
+  + `<p class="cats-more"><a class="btn-more" href="${url('/categories')}">All Categories</a></p>`;
 
 /**
  * Each `## Section` of the front page becomes its own panel, as on Wikipedia's main page.
@@ -114,7 +109,7 @@ function splitHome(html = '') {
   const lede = parts[0].startsWith('<h2') ? '' : parts.shift() ?? '';
   let intro = '';
   const boxes = [];
-  // Every panel after the featured article sits two to a row.
+  // The panels after the featured article sit side by side.
   const pairs = [];
   let pastFeatured = false;
   for (const chunk of parts) {
@@ -126,7 +121,7 @@ function splitHome(html = '') {
     // under that heading is a leftover and is replaced.
     const isFeatured = /id="featured-article"/.test(head);
     const inner = isFeatured ? featuredPanel
-      : /id="trending-characters"/.test(head) ? trendingPanel(rest)
+      : /id="categories"/.test(head) ? categoriesPanel
       : /id="latest-articles"/.test(head) ? latestPanel
       : rest;
     // How long this one has left. Empty until the script at the foot of the page
