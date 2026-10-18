@@ -1,27 +1,57 @@
 ---
-import { url, nation } from '../../lib/registry.mjs';
+import { url, nation, nations } from '../../lib/registry.mjs';
+import { series } from '../../lib/series.mjs';
 import { asset, ledeOf } from '../../lib/inline.mjs';
 import { field, plain, spanOf, yearLabel, partOf, imageOf, ownerOf } from '../../lib/sidebar.mjs';
 
 /**
  * History: events in the order they began, each with its result and location. A page
- * whose sidebar says "Part of" a war hangs under that war as one of its theatres.
+ * whose sidebar says "Part of" a war hangs under that war as one of its theatres, and a
+ * page set under another in its nation's navbox hangs under that one the same way.
  */
 const { entries } = Astro.props;
 const events = entries.filter((e) => e.data.type === 'event');
 const ids = new Set(events.map((e) => e.id));
-// The sidebar's date, or for a page with none, the span its opening sentence gives.
-const span = (e) => spanOf(plain(field(e, 'date'))) || spanOf(ledeOf(e.body, 600), true);
-// Undated pages go last.
-const start = (e) => span(e)?.from ?? 1e9;
+// The sidebar's date, or for a page with none, what its opening paragraph gives.
+const span = (e) => spanOf(plain(field(e, 'date'))) || spanOf(ledeOf(e.body, 1500), true);
+
+// Each nation's history series in order, and which entry each indented one sits under.
+const lines = [];
+const nestedIn = new Map();
+for (const n of nations()) {
+  const flat = series(n.id)?.periods.flatMap((p) => p.items) || [];
+  if (!flat.length) continue;
+  lines.push(flat.map((i) => i.slug));
+  flat.forEach((it, k) => {
+    for (let j = k - 1; it.depth && j >= 0; j--) if (flat[j].depth < it.depth) { nestedIn.set(it.slug, flat[j].slug); break; }
+  });
+}
+/** A page with no date anywhere sits where its series puts it: just after the dated page
+    before it there, or just before the one after. Undated and in no series, it goes last. */
+const byId = new Map(events.map((e) => [e.id, e]));
+const dated = (id) => (byId.has(id) ? span(byId.get(id))?.from : undefined);
+function start(e) {
+  const own = span(e)?.from;
+  if (own != null) return own;
+  for (const line of lines) {
+    const k = line.indexOf(e.id);
+    if (k < 0) continue;
+    for (let d = 1; d < line.length; d++) {
+      if (dated(line[k - d]) != null) return dated(line[k - d]) + d / 1000;
+      if (dated(line[k + d]) != null) return dated(line[k + d]) - d / 1000;
+    }
+  }
+  return 1e9;
+}
+const parentOf = (e) => (ids.has(partOf(e)) ? partOf(e) : ids.has(nestedIn.get(e.id)) ? nestedIn.get(e.id) : null);
 const place = (e) => plain(field(e, 'location')).split(' / ').join(', ');
 const picture = (e) => imageOf(e) || nation(ownerOf(e))?.flag || null;
 const theatres = new Map();
 for (const e of events) {
-  const p = partOf(e);
-  if (p && ids.has(p)) theatres.set(p, [...(theatres.get(p) || []), e].sort((a, b) => start(a) - start(b)));
+  const p = parentOf(e);
+  if (p) theatres.set(p, [...(theatres.get(p) || []), e].sort((a, b) => start(a) - start(b)));
 }
-const top = events.filter((e) => !(partOf(e) && ids.has(partOf(e)))).sort((a, b) => start(a) - start(b));
+const top = events.filter((e) => !parentOf(e)).sort((a, b) => start(a) - start(b));
 const flagOf = (e) => nation(ownerOf(e))?.flag;
 ---
 <ol class="cv-timeline">
@@ -44,7 +74,7 @@ const flagOf = (e) => nation(ownerOf(e))?.flag;
             <div class="cv-theatre">
               <a class:list={['cv-thumb small', !imageOf(t) && 'flag']} href={url('/' + t.id)}>{picture(t) && <img src={asset(picture(t))} alt="" loading="lazy" />}</a>
               <div>
-                <span class="cv-k">Theatre</span>
+                {partOf(t) === e.id && <span class="cv-k">Theatre</span>}
                 <h4>{flagOf(t) && <img class="cv-flag" src={asset(flagOf(t))} alt="" />}<a href={url('/' + t.id)}>{t.data.title}</a></h4>
                 {place(t) && <dl class="cv-meta"><dt>Location</dt><dd>{place(t)}</dd></dl>}
               </div>

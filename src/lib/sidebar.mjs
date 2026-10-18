@@ -66,7 +66,11 @@ export function spanOf(v, loose = false) {
   const t = String(v || '');
   if (loose) {
     const r = t.match(RANGE);
-    if (!r || !(r[2] || r[4] || (r[1].length === 4 && r[3].length === 4))) return null;
+    if (!r || !(r[2] || r[4] || (r[1].length === 4 && r[3].length === 4))) {
+      // No span, but a year given with its era ("dated the descent to 2399 BCE") is a start.
+      const one = [...t.matchAll(TOKEN)].find((m) => m[1] || m[3]);
+      return one ? { from: bce(one[3] || one[1]) ? -num(one[2]) : num(one[2]), to: null } : null;
+    }
     let [a, b] = [num(r[1]), num(r[3])];
     if (r[2] ? bce(r[2]) : bce(r[4]) && a > b) a = -a;
     if (bce(r[4])) b = -b;
@@ -80,8 +84,8 @@ export function spanOf(v, loose = false) {
   return { from: signed[0], to: signed.length > 1 ? signed.at(-1) : null };
 }
 
-/** A signed year as written: 14,000 BCE, or 1914. */
-export const yearLabel = (y) => (y < 0 ? `${(-y).toLocaleString('en-US')} BCE` : String(y));
+/** A signed year as written: 14,000 BCE, 2399 BCE, or 1914. */
+export const yearLabel = (y) => (y < 0 ? `${-y >= 10000 ? (-y).toLocaleString('en-US') : -y} BCE` : String(y));
 
 /** The page a "Part of [[x]]" row names, for a theatre of a larger war. */
 export function partOf(e) {
