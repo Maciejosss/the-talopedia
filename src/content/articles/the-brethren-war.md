@@ -3,6 +3,7 @@ title: "The Brethren War"
 type: event
 nation: esu
 infobox:
+  - { value: "Part of [[great-war]]" }
   - images:
       - { src: "https://lh3.googleusercontent.com/d/1-2fMfyT6Yhhs5ayxdE4dK6_-FDS1lF5K=w2000", caption: "" }
       - { src: "https://lh3.googleusercontent.com/d/1SckGsBmoGhlWA0T_SKw0PMtpw6va38FG=w2000", caption: "" }
