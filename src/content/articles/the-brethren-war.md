@@ -30,7 +30,7 @@ infobox:
   - pair:
       - items: []
       - items:
-          - "Nicholas A. Andersen"
+          - ":img[/assets/flags/use.png] Nicholas A. Andersen"
 ---
 
 **The Brethren War** is the given name for the Elysian theater of the [[great-war|Great War]], fought from September 25th, 1914, to April 21st, 1916, in Eastern Elysia, the Acadian, as well as the Sahara Sea. It was primarily fought between the [[hollosend|Kingdom of Hollosend]], a member of the Winscor Accord, and the [[united|United States of Elysia]], a member of the [[eisenpakt]]. The war came about following decades of tension between Hollosend and Elysia, exploding following Hollosend's entrance into the Great War and the beginning of raids on Eisenpakt convoys. The USE, having been sympathetic to the Eisenpakt cause since the beginning of the war on the continent, officially denounced Hollosend's actions and declared war.

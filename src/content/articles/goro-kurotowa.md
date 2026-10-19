@@ -16,7 +16,7 @@ infobox:
       - "Goro Kurotowa"
       - ":date[1898-07-04|age]"
       - "Port of Muscovite, United States of Elysia"
-  - { label: "Nationality", value: "Elysian" }
+  - { label: "Nationality", value: "[[elysian-state-of-unity|:flag[esu] Elysian]]" }
   - { label: "Alias", value: "GK, Tanaka Taro, Lancelot" }
   - label: "Parents"
     value:
@@ -28,13 +28,13 @@ infobox:
   - { label: "Aldrige Rōmaji", value: "Kurotowa Goro" }
 ---
 
-Goro Kurotowa (クロトワ五郎, born July 4, 1898) is an Elysian-born special forces and former espionage operative and mercenary commander. He served as an espionage operative for the USE’s Military Intelligence Service, the Unity State’s Office of Naval Intelligence, and later its Special Recon Service Branch No.12, also known as [[majesty]]. He was instrumental in the founding of MAJESTY as a separate entity from the Unity State, having made many deals with multiple foreign governments, and was the founder of the private military company [[sold|Soldiers Without Borders]]. With a service record stretching across multiple decades, he remains a ghost story to the wider world, his existence and defection to the Miyamoto Shogunate being masked by his supposed death.
+Goro Kurotowa (クロトワ五郎, born July 4, 1898) is an Elysian-born special forces and former espionage operative and mercenary commander. He served as an espionage operative for the USE’s Military Intelligence Service, the Unity State’s Office of Naval Intelligence, and later its Special Recon Service Branch No.12, also known as [[majesty]]. He was instrumental in the founding of MAJESTY as a separate entity from the Unity State, having made many deals with multiple foreign governments, and was the founder of the private military company [[soldiers-without-borders]]. With a service record stretching across multiple decades, he remains a ghost story to the wider world, his existence and defection to the Miyamoto Shogunate being masked by his supposed death.
 
 ## Early Life
 
 Born on the 4th of July, 1898, in Port of Muscovite, United States of Elysia, Kurotowa was the eldest son of Kazuhira Kurotowa, a dockworker and Nichirian immigrant originally from the city of Makinohara, and Alice Campbell, a nurse and granddaughter of a semi-renowned Elysian Volunteer fighter in Evria during the rebellions against Napolyon II’s rule of the continent. The two would have 2 other children, one of which, his younger brother, died at age 3 from complications related to Polio.
 
-The death of his youngest sibling caused great strife at home, with her mother entering a depressive state which would lead to her taking her own life in 1909. His wife’s death would cause Kurotowa’s father to turn to liquor, a habit which would leave the family nearly penniless were it not for Kurotowa picking up odd jobs around town to help his remaining family. When he turned 17, his father would succumb to his addiction, leaving Kurotowa to provide for his younger sister and himself. He would receive an end all be all offer from a mysterious benefactor working for the government. His sister and himself would be provided for, if he were to enlist with the Specialist Training Program in the Maplestone Military Academy.  With practically nothing else to lose, Kurotowa accepted almost immediately. He would clear the entrance examinations with high grades, eventually graduating as an espionage operative for the Elysian Military Intelligence Service in May of 1916.
+The death of his youngest sibling caused great strife at home, with her mother entering a depressive state which would lead to her taking her own life in 1909. His wife’s death would cause Kurotowa’s father to turn to liquor, a habit which would leave the family nearly penniless were it not for Kurotowa picking up odd jobs around town to help his remaining family. When he turned 17, his father would succumb to his addiction, leaving Kurotowa to provide for his younger sister and himself. He would receive an end all be all offer from a mysterious benefactor working for the government. His sister and himself would be provided for, if he were to enlist with the Specialist Training Program in the Maplestone Military Academy.  With practically nothing else to lose, Kurotowa accepted almost immediately. He would clear the entrance examinations with high grades, eventually graduating as an espionage operative for the Elysian Military Intelligence Service in May of 1916.
 
 ## Service in MIS
 
@@ -52,7 +52,7 @@ Kurotowa would remain in a domestic counter-intelligence role for the next few y
 
 Kurotowa was assigned as aide-de-camp to Conway in her various operations. Besides the tasks assigned directly by Conway, Kurotowa was responsible for ferrying vital information from the global intel networks to the relevant departments within the government. He stayed much more under the radar compared to Conway, who began rising through the ONI's ranks. With her rise through the ranks, she began steadily becoming more politically involved, with Kurotowa accompanying her to many social events with other members of the party. Eventually, she began approaching members of her own department with ideas of rebellion, justifying the possibility with the ESU's treatment of those openly resisting the more oppressive policies of the government. Kurotowa, much more open to the idea, began assisting Conway in accruing more allies throughout the agency and wider military apparatus.
 
-Kurotowa accompanied Conway during the ONI expedition into Hyperborea, as well as during the first set of talks between the ESU and Nichirin regarding the findings the Elysians had stumbled upon alongside the Nichirians. While Conway's meeting was nothing more than a thinly veiled attempt at blackmail, Kurotowa was attempting to maintain cordiality with the Nichirian delegation. Langley, while not directly involved in the meeting, was still a part of the delegation and began connecting the dots regarding what Conway was planning to do with the information the Elysians had gathered. Before she could definitively expose MAJESTY to the Nichirians during a meeting with Chief Liaison Officer Akane Shikinami-Hoffmann, she was silenced by a Guangdongese mercenary acting on Conway's personal orders. Her assassination left Kurotowa conflicted, planting a seed of doubt about Conway's plans in his mind which would remain until his later defection from MAJESTY itself.
+Kurotowa accompanied Conway during the ONI expedition into Hyperborea, as well as during the first set of talks between the ESU and Nichirin regarding the findings the Elysians had stumbled upon alongside the Nichirians. While Conway's meeting was nothing more than a thinly veiled attempt at blackmail, Kurotowa was attempting to maintain cordiality with the Nichirian delegation. Langley, while not directly involved in the meeting, was still a part of the delegation and began connecting the dots regarding what Conway was planning to do with the information the Elysians had gathered. Before she could definitively expose MAJESTY to the Nichirians during a meeting with Chief Liaison Officer [[akane-shikinami-hoffmann]], she was silenced by a Guangdongese mercenary acting on Conway's personal orders. Her assassination left Kurotowa conflicted, planting a seed of doubt about Conway's plans in his mind which would remain until his later defection from MAJESTY itself.
 
 ### As Vice-Director
 
@@ -70,6 +70,6 @@ He would personally begin following up on leads on the locations of MAJESTY's ot
 
 ## Personal Life
 
-Kurotowa's life has necessitated him to often be on the move, meaning he's spent long periods of time in various residences across the globe. Currently, he lives in SWB's complex at Mt. Campbell, named after his late mother.
+Kurotowa's life has necessitated him to often be on the move, meaning he's spent long periods of time in various residences across the globe. Currently, he lives in SWB's complex at [[mt-campbell|Mt. Campbell]], named after his late mother.
 
 He maintains an active lifestyle, often accompanying those under his command on morning runs and, at other times, spending time at the gym. Despite this, he's an active smoker, often preferring to import cigars for his own use. He's also a fan of cinema, taking any possible excuse to visit one during trips to foreign countries.

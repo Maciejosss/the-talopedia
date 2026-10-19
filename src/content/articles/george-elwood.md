@@ -21,7 +21,7 @@ infobox:
   - { label: "Preceded by", value: "Myron Lowry" }
   - { label: "Succeeded by", value: "Office Defunct" }
   - { section: "Personal Details" }
-  - { label: "Nationality", value: "Elysian" }
+  - { label: "Nationality", value: "[[elysian-state-of-unity|:flag[esu] Elysian]]" }
   - label: "Born"
     value:
       - "George Elwood"

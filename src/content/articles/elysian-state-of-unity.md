@@ -10,13 +10,13 @@ infobox:
   - { label: "Largest City", value: "[[axiom]] (Formerly Metro Regima)" }
   - { section: "Administration" }
   - { label: "Government", value: "Totalitarian [[gestaltist]] dictatorship" }
-  - { label: "Supreme Protector", sub: true, value: "[[archer-maine]]" }
+  - { label: "Supreme Protector", sub: true, value: "[[arianne-malloran]]" }
   - label: "Ministers of Note"
     sub: true
     value:
       - "[[gabriel-snipes]] (Interior)"
-      - "[[elias-gray]] (Foreign Affairs)"
-      - "Arianne Malloran (Defense)"
+      - "[[sandra-elwood]] (Foreign Affairs)"
+      - "[[anton-torres]] (Defense)"
   - { label: "Legislature", value: "Parliament, via the Party Congress and Party Politburo" }
   - { label: "Formation", value: ":date[1922-07-25|ago]" }
   - { section: "Demographics" }
@@ -50,7 +50,7 @@ infobox:
   - { label: "Alpha-3 Code", value: "ESU" }
 ---
 
-**The Elysian State of Unity** (abbreviated as the **E.S.U**), commonly known as the **Unity State**, is a country in Northeastern [[elysia]]. It is bordered on the North by Acadia and the Thule Governorate, Hollosend to the West and South, and the Sahara Sea to the East. The Unity State covers over 3 million square kilometers and has an estimated population of over 151 million people, making it the second most populous single nation in Elysia after Hollosend. The Unity State is a one-party state ruled by [[archer-maine]], acting as the flagship [[gestaltist]] state in the world. Its capital city is Nexus.
+**The Elysian State of Unity** (abbreviated as the **E.S.U**), commonly known as the **Unity State**, is a country in Northeastern [[elysia]]. It is bordered on the North by Acadia and the Thule Governorate, Hollosend to the West and South, and the Sahara Sea to the East. The Unity State covers over 3 million square kilometers and has an estimated population of over 151 million people, making it the second most populous single nation in Elysia after Hollosend. The Unity State is a one-party state ruled by [[arianne-malloran]], acting as the flagship [[gestaltist]] state in the world. Its capital city is Nexus.
 
 The earliest signs of human settlementation in North-Eastern Elysia date back to around 4200 BCE with the arrival and settlement of hunter-gatherer tribes in the region, which would later go on to form the native tribes of the area, most prominently the Thram. Remaining isolated and without much advancement, the earliest signs of agricultural practices in the region date only to around 200 BCE, only a few centuries before Rumaic settlement and colonization of the region. With the collapse of the Rumaic Empire, and the waning authority of the Triumvirate, any remnants of former Rumaic authority in the region collapsed with the arrival of Evrian refugees escaping the Black Death’s subsequent chaos to Elysia. The chaos was exploited by multiple Evrian powers to establish colonies and authority in the region, most notably for Northeastern Elysia being [[elvester]], who founded the Commonwealth of Elysia in 1582. However, over the years, ideas of self-governance and Enlightenment era ideas began taking root in the Commonwealth, eventually culminating in a total revolt against their Elvesterian overlords in the Elysian Revolutionary War. Following their independence from Elvester, the newly founded United States of Elysia saw an incredible era of economic growth, eventually becoming one of the foremost nations spearheading the industrial revolution. And while not yet a great power by 1900, the USE still maintained great power and influence over Northern Elysia and the world stage at large.
 
