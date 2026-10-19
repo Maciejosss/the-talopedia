@@ -18,7 +18,7 @@ groups:
       - label: "Events of the Roleplay"
         items:
           - "karjanian-civil-war"
-          - "free-esti-state"
+          - "esti-free-state"
   - label: "Politics"
     rows:
       - label: "Government"
