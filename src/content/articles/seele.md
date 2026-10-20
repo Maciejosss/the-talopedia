@@ -17,10 +17,10 @@ infobox:
   - { label: "Right Pillar", value: "Gendo Takahashi" }
   - label: "Heads of Foreign Theaters"
     value:
-      - "[[yachimata|Yachimata]]"
-      - "[[uzume|Uzume]]"
-      - "[[futsunushi|Futsunushi]]"
-      - "[[takemikazuchi|Takemikazuchi]]"
+      - "[[yachimata]]"
+      - "[[uzume]]"
+      - "[[futsunushi]]"
+      - "[[takemikazuchi]]"
   - label: "Special Operatives"
     value:
       - "Sae Kujō"
@@ -45,7 +45,7 @@ SEELE is directly adopted from the Alemannian noun *Seele*, meaning "soul". It o
 
 A Nichirian name, in the organization's account, would have implied that SEELE is owned by the Nichirian state, a proposition the organization rejects. The three attributes of its gloss correspond to three tenets of its doctrine: eternal, in that nothing is held to be finished but only stopped, the record of an ending being treated as a document separate from the person or thing it describes; uncreated, in that what a government creates by instrument it may dissolve by instrument, so that an institution the state did not make cannot be unmade by it, a principle the doctrine states as "to be counted is to be able to die"; and indestructible, in that whatever is salvaged from the state's accounting is kept and not returned.
 
-The organization's internal geography takes its names from the [Kabbalistic](https://en.wikipedia.org/wiki/Kabbalah) [Tree of Life](https://en.wikipedia.org/wiki/Tree_of_life_(Kabbalah)), whose three columns give the three directorial offices their titles of Severity, Equilibrium and Mercy, held from the Left, Center and Right Pillars. Field designations derive instead from Kaiseido scripture, from the single passage of the [kuniyuzuri](https://en.wikipedia.org/wiki/Kuni-yuzuri) (国譲り, "the transfer of the land"), in which a realm passes from the god holding it to another power.
+The organization's internal geography takes its names from the [Kabbalistic](https://en.wikipedia.org/wiki/Kabbalah) [Tree of Life](https://en.wikipedia.org/wiki/Tree_of_life_(Kabbalah)), whose three columns give the three directorial offices their titles of Severity, Equilibrium and Mercy, held from the Left, Center and Right Pillars. Field designations derive instead from Kaiseido scripture, from the single passage of the [[kuniyuzuri|kuniyuzuri]] (国譲り, "the transfer of the land"), in which a realm passes from the god holding it to another power.
 
 ## History
 
