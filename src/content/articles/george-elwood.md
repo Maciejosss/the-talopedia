@@ -37,7 +37,7 @@ infobox:
       - "(BMil)"
 ---
 
-**George Elwood** (born June 4, 1894) is an [[elysian]] military officer and government official serving as Director of the State Intelligence Service and Member of the Politburo under Supreme Protector [[archer-maine]] and [[arianne-malloran]]. He previously served as Director of the SIS’ predecessor, the Military Intelligence Service, from October 1922 to June 1929 when it was incorporated into the SIS. He is notable for being among the highest ranking Elysian officers to defect to the Revolutionary Guard during the [[elysian-civil-war]].
+**George Elwood** (born June 4, 1894) is an [[elysian-state-of-unity|Elysian]] military officer and government official serving as Director of the State Intelligence Service and Member of the Politburo under Supreme Protector [[archer-maine]] and [[arianne-malloran]]. He previously served as Director of the SIS’ predecessor, the Military Intelligence Service, from October 1922 to June 1929 when it was incorporated into the SIS. He is notable for being among the highest ranking Elysian officers to defect to the Revolutionary Guard during the [[elysian-civil-war]].
 
 As director of the State Intelligence Service, Elwood handles all foreign intelligence and counterterrorism operations of the Unity State. During a brief period of time following an attempt on his life by the clandestine paramilitary organization [[majesty]], he avoided most public appearances, however has mostly sprung back into a more public role following multiple reconstructive surgeries.
 

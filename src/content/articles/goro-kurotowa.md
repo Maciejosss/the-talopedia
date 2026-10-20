@@ -16,7 +16,7 @@ infobox:
       - "Goro Kurotowa"
       - ":date[1898-07-04|age]"
       - "Port of Muscovite, United States of Elysia"
-  - { label: "Nationality", value: "[[elysian-state-of-unity|:flag[esu] Elysian]]" }
+  - { label: "Nationality", value: ":flag[esu] [[elysian-state-of-unity|Elysian]]" }
   - { label: "Alias", value: "GK, Tanaka Taro, Lancelot" }
   - label: "Parents"
     value:

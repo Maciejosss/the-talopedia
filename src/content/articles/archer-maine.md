@@ -12,7 +12,7 @@ infobox:
   - { label: "Preceded by", value: "Lisa May" }
   - { label: "Succeeded by", value: "*Party disbanded*" }
   - { section: "Personal Details" }
-  - { label: "Nationality", value: "[[elysian]]" }
+  - { label: "Nationality", value: "[[elysian-state-of-unity|Elysian]]" }
   - label: "Born"
     value:
       - "Archer Sisu Aalto"
@@ -27,7 +27,7 @@ infobox:
   - { label: "Alma Mater", value: "University of Ganshowe (MA)" }
 ---
 
-**Archer Sisu Maine** (né **Aalto**; June 9, 1888) is an Elysian revolutionary, Gestaltist politician, writer and political theorist. He was the first head of government of the [[unity-state]] since its founding in 1922, acting as the State’s Supreme Protector. A former member, and chairman of, the Communist Party of [[elysia]], he led the Revolutionary Guard as an important figure in the [[elysian-civil-war]], later going on to found the ideology of [[gestaltism]], and the world’s first Gestaltist state. His government won the ensuing power struggle, establishing a one-party state under the Gestaltist Party. His writings and ideas, derived from many Leftist schools of thought, gave rise to Gestaltism.
+**Archer Sisu Maine** (né **Aalto**; June 9, 1888) is an Elysian revolutionary, Gestaltist politician, writer and political theorist. He was the first head of government of the [[elysian-state-of-unity|Unity State]] since its founding in 1922, acting as the State’s Supreme Protector. A former member, and chairman of, the Communist Party of [[elysia]], he led the Revolutionary Guard as an important figure in the [[elysian-civil-war]], later going on to found the ideology of [[gestaltism]], and the world’s first Gestaltist state. His government won the ensuing power struggle, establishing a one-party state under the Gestaltist Party. His writings and ideas, derived from many Leftist schools of thought, gave rise to Gestaltism.
 
 Maine’s career in politics began during his time studying history at the University of New Winscor, known today as Foundry. He gained an interest in socialism through personal connections of his on-campus, namely his future wife Emilie Henderson. He soon became a member of, and prominent writer for, the Democratic Socialist Party of Elysia, where he began accruing many followers. However, he was soon kicked out due to his increasingly radicalized view on the position of socialist movements and parties in the world, going on to join the Communist Party of Elysia with his followers, eventually becoming chairman. He and his family fled to [[karjania]] to escape from the national crackdowns on socialists during the Great War, eventually returning after the USE signed the Remington-Wesley treaty with Hollosend. He was one of the many socialist writers imprisoned during the Years of Oppression, and would later lead the ensuing wave of prison riots to establish the Spartacus Division of the Elysian Civil War, becoming a key figure on the side of the Revolutionary Guard.
 
