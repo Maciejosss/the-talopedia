@@ -43,7 +43,7 @@ infobox:
     value:
       - "[[saint-testudera]]"
       - "[[alemannia]]"
-      - "Sidanya"
+      - "Sylezyjo"
   - { label: "Annual Imports", value: "$2,608,000,000" }
   - { label: "Annual Exports", value: "$6,259,230,000" }
 ---
@@ -64,7 +64,7 @@ Following the Revolutionary Guard’s victory in the Civil War and the establish
 
 The newly appointed Minister of Defense, Arianne Malloran, campaigned long for military reform during the Unity State’s early years; however was often sidelined by more important projects in the opinion of the rest of the Politburo. It was only after the end of the Reconstruction period and Elysia’s reopening of official diplomatic relations with the rest of the world that rearmament and reorganization efforts began to be seriously discussed. With the perceived possible threats from Hollosend’s initial posturing towards the newly founded Unity State acting as the state’s largest focus for its initial few years on the world stage, Supreme Protector [[archer-maine]], alongside approval from the Politburo, announced the official creation of the Grand Army of Unity on the 5th anniversary of the founding of the Unity State.
 
-Operationally, the Grand Army’s first proper engagement was Elysia’s expeditionary force sent to assist the United Socialist States of Sidanya in their civil war against nationalist rebels.
+Operationally, the Grand Army’s first proper engagement was Elysia’s expeditionary force sent to assist the United Socialist States of Sylezyjo in their civil war against nationalist rebels.
 
 ## Structure
 
@@ -72,7 +72,7 @@ The Grand Army comprises 3 principal service branches: the Unity State’s Army,
 
 Archer Maine, the Supreme Protector, serves as Commander-In-Chief of the Grand Army, holding supreme constitutional authority over all military matters. The Civilian Military Authority runs from the Supreme Protector to the government-level Minister of Defense, [[arianne-malloran]]. The Supreme Protector and Minister of Defense are advised by the three Branch Commanders who collectively form the Joint Chiefs of Staff: General of the Army Arianne Malloran, Admiral of the Navy Anton Torres, and General of the Air Force Jack Bartlett. The Branch Commanders serve as chiefs of staff for their respective branches and hold the highest military rank in the Grand Army. Only one officer per branch may hold the designation of Branch Commander at any given time. Each service branch operates under its respective Commander's administrative control.
 
-<figure><img src="/assets/old-media/media/grand-army-of-unity-3.png" alt="Members of the 1st Elysian Armored Cavalry Division in Grovingard, Sidanya. Circa 1930."><figcaption>Members of the 1st Elysian Armored Cavalry Division in Grovingard, Sidanya. Circa 1930.</figcaption></figure>
+<figure><img src="/assets/old-media/media/grand-army-of-unity-3.png" alt="Members of the 1st Elysian Armored Cavalry Division in Grovingard, Sylezyjo. Circa 1930."><figcaption>Members of the 1st Elysian Armored Cavalry Division in Grovingard, Sylezyjo. Circa 1930.</figcaption></figure>
 
 
 The Grand Army operates through 5 unified combatant commands, each comprising forces from multiple military departments. Each service organizes, trains, and equips forces that are then presented to the unified combatant commands through service component commands. Each unified combatant command is responsible for the strategy, planning, operations, and policy within its designated area of operations. The Grand Army maintains 5 unified combatant commands:
@@ -83,7 +83,7 @@ The **U.S. Southern Command** (SOUTHCOM), headquartered in Fort Freedom and comm
 
 The **U.S. Northern Command** (NORCOM) is headquartered in Charlotte and commanded by General William Peoples. It is responsible for the defense and management of the nation’s northern parts, including coordinating with Saint Testudera in the defense of the Sargassum Straits and management of the land border with the Thule Governorate.
 
-The **U.S. Expeditionary Command** (EXPOCOM), headquartered in the Port of Muscovite and commanded by Admiral of the Navy Anton Torres, is responsible for all Elysian expeditionary missions outside of its own borders. Most recently, it has been in charge of overseeing the expeditionary forces sent to assist Sidanya in its civil war.
+The **U.S. Expeditionary Command** (EXPOCOM), headquartered in the Port of Muscovite and commanded by Admiral of the Navy Anton Torres, is responsible for all Elysian expeditionary missions outside of its own borders. Most recently, it has been in charge of overseeing the expeditionary forces sent to assist Sylezyjo in its civil war.
 
 The **U.S. Special Operations Command** (SOCOM), headquartered in Nexus and commanded by General [[george-elwood]], is responsible for developing and employing special forces for the Unity State. Territorially, SOCOM also oversees all bases in extreme polar environments. Uniquely, SOCOM is attached to the State Intelligence Service's command.
 

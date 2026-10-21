@@ -64,7 +64,7 @@ infobox:
   - { label: "Alpha-2 Code", value: "RD" }
   - { label: "Alpha-3 Code", value: "RUD" }
 ---
-**Rudania (Рудания**, *Roo-dah-nee-ya*) officially known as the People's Republic of Rudania, is a country that lies in both [[valtheria]] and [[evria]]. It is bound by the Arctic Ocean to the west and the Hyperborean Ocean to the north-west. It shares land borders with [[karjania]], Livonia, [[cortesia]], Sidanya, and Polabiny to the south, and with [[nichirin]] and Axerfreditenshin in the North. It is the largest country in the world by land area, and is divided into 9 Provinces. It has a population of 111 million. Its capital city is Radagorsk, with a population of 11 million.
+**Rudania (Рудания**, *Roo-dah-nee-ya*) officially known as the People's Republic of Rudania, is a country that lies in both [[valtheria]] and [[evria]]. It is bound by the Arctic Ocean to the west and the Hyperborean Ocean to the north-west. It shares land borders with [[karjania]], Livonia, [[cortesia]], Sylezyjo, and Polabiny to the south, and with [[nichirin]] and Axerfreditenshin in the North. It is the largest country in the world by land area, and is divided into 9 Provinces. It has a population of 111 million. Its capital city is Radagorsk, with a population of 11 million.
 
 ## Etymology
 

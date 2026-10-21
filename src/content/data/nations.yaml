@@ -10,6 +10,7 @@
 - { id: alemannia, name: Alemannia, adjective: Alemannian, continent: Evria, portal: true, flag: /assets/flags/alemannia.png }
 - { id: arverne, name: Arverne, adjective: Arvernois, continent: Evria, portal: true, flag: /assets/flags/arverne.png }
 - { id: cortesia, name: Cortesia, adjective: Cortesian, continent: Evria, portal: true, flag: /assets/flags/cortesia.jpg }
+- { id: demaruz, name: Demâruz, adjective: Demâruzi, continent: Evria, flag: /assets/flags/demaruz.png }
 - { id: east-astriya, name: East Astriya, adjective: Astriyan, continent: Evria, flag: /assets/flags/east-astriya.png }
 - { id: elvester, name: Elvester, adjective: Elvesterian, continent: Evria, portal: true, flag: /assets/flags/elvester.png }
 - { id: karjania, name: Karjania, adjective: Karjanian, continent: Evria, portal: true, flag: /assets/flags/karjania.jpg }
@@ -19,8 +20,8 @@
 - { id: rudania, name: Rudania, adjective: Rudanian, continent: Evria, flag: /assets/flags/rudania.png }
 - { id: selmira, name: Selmira, adjective: Selmiran, continent: Evria, flag: /assets/flags/selmira.png }
 - { id: shivon, name: Shivon, adjective: Shivonite, continent: Evria, portal: true, flag: /assets/flags/shivon.png }
-- { id: sidanya, name: Sidanya, adjective: Sidanyan, continent: Evria, flag: /assets/flags/sidanya.png }
 - { id: skjarnland, name: Skjarnland, adjective: Skjarnish, continent: Evria, portal: true, flag: /assets/flags/skjarnland.jpg }
+- { id: sylezyjo, name: Sylezyjo, adjective: Sylezyan, continent: Evria, flag: /assets/flags/sylezyjo.png }
 - { id: slytlia, name: Slytlia, adjective: Slytlian, continent: Evria, flag: /assets/flags/slytlia.png }
 - { id: turulia, name: Turulia, adjective: Turulian, continent: Evria, flag: /assets/flags/turulia.png }
 - { id: vicily, name: Vicily, adjective: Vicilian, continent: Evria, flag: /assets/flags/vicily.png }
@@ -30,6 +31,7 @@
 - { id: cahaya, name: Cahaya, adjective: Cahayan, continent: Valtheria, flag: /assets/flags/cahaya.png }
 - { id: furan, name: Furan, adjective: Furanese, continent: Valtheria, flag: /assets/flags/furan.jpg }
 - { id: giathka, name: Giathka, adjective: Giathkan, continent: Valtheria, flag: /assets/flags/giathka.png }
+- { id: great-ai, name: Great Ai, adjective: Ai, continent: Valtheria, flag: /assets/flags/great-ai.png }
 - { id: guandong, name: Guandong, adjective: Guandongese, continent: Valtheria, flag: /assets/flags/guandong.png }
 - { id: perovska, name: Perovska, adjective: Perovskan, continent: Valtheria, flag: /assets/flags/perovska.png }
 - { id: seignid, name: Seignid, adjective: Seignidian, continent: Valtheria, flag: /assets/flags/seignid.png }
@@ -44,3 +46,4 @@
 - { id: eivorie, name: Eivorie, adjective: Eivorian, continent: Pelagonia, flag: /assets/flags/eivorie.png }
 - { id: noradia, name: Noradia, adjective: Noradian, continent: Pelagonia, flag: /assets/flags/noradia.png }
 - { id: recolotta, name: Recolotta, adjective: Recolottan, continent: Pelagonia, flag: /assets/flags/recolotta.png }
+- { id: sehreno, name: Sehreno, adjective: Sehrenese, continent: Pelagonia, flag: /assets/flags/sehreno.png }

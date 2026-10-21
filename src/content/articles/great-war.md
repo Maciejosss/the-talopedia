@@ -36,7 +36,7 @@ infobox:
           - ":flag[karjania] [[karjania]]"
           - "  :img[/assets/flags/frederikka-islands.png] [[frederikka-islands|Frederikka Islands]]"
           - "  :img[/assets/flags/kullanmaan.png] [[kullanmaan]]"
-          - ":img[/assets/flags/sidanya-tgw.png] [[sidanya]]"
+          - ":img[/assets/flags/sidanya-tgw.png] [[sylezyjo]]"
           - ":flag[slytlia] [[slytlia]]"
           - ":flag[east-astriya] [[east-astriya]]"
           - ":img[/assets/flags/shivon-tgw.png] [[shivon]]"

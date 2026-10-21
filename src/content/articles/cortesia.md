@@ -69,7 +69,7 @@ infobox:
   - { label: "Alpha-3 Code", value: "COR" }
 ---
 
-**Cortesia**, formally the Federated States of Cortesia, is a country in central [[evria]]. With its coastline restricted to a small section of the Lower Suebian Sea to the west, Cortesia shares land borders with several other Evrian nations. To the north across the Czernáwa River lies Livonia, to the northeast is [[rudania]], to the east just past the source of the Bystrawice River, one of the Modrawa River’s tributaries, lies Sidanya. To the southeast Cortesia shares a border with Turulia, and then finally the nation’s southwestern border, easily its longest border, is shared with [[alemannia]]. With a population just shy of 56 million, Cortesia is nowhere near the most populous country, ranking 27th overall according to 1932 Census data. The nation of Cortesia consists of a collection of 26 individual states, each operating mostly independently save for any matters that affect the nation as a whole. The capital of Cortesia is Corslawa, with a population of 1.8 million people, while its largest city is Jelgawa with a population of 2.34 million people.
+**Cortesia**, formally the Federated States of Cortesia, is a country in central [[evria]]. With its coastline restricted to a small section of the Lower Suebian Sea to the west, Cortesia shares land borders with several other Evrian nations. To the north across the Czernáwa River lies Livonia, to the northeast is [[rudania]], to the east just past the source of the Bystrawice River, one of the Modrawa River’s tributaries, lies Sylezyjo. To the southeast Cortesia shares a border with Turulia, and then finally the nation’s southwestern border, easily its longest border, is shared with [[alemannia]]. With a population just shy of 56 million, Cortesia is nowhere near the most populous country, ranking 27th overall according to 1932 Census data. The nation of Cortesia consists of a collection of 26 individual states, each operating mostly independently save for any matters that affect the nation as a whole. The capital of Cortesia is Corslawa, with a population of 1.8 million people, while its largest city is Jelgawa with a population of 2.34 million people.
 
 ## Etymology
 
@@ -125,7 +125,7 @@ The judiciary system is independent of the Rada Federalna, with the Sąd Najwyż
 </div>
 
 <div class="imgrid">
-<figure style="flex:1.781"><img src="https://lh3.googleusercontent.com/d/1ygaTH3S84iOO9pq9fd6lpBtNk5o_YsD8=w2000" alt="*Sosnowieża Forest in eastern Cortesia, along the borders with Rudania and Sidanya; Cortesia’s largest old-growth forest.*"><figcaption>*Sosnowieża Forest in eastern Cortesia, along the borders with Rudania and Sidanya; Cortesia’s largest old-growth forest.*</figcaption></figure>
+<figure style="flex:1.781"><img src="https://lh3.googleusercontent.com/d/1ygaTH3S84iOO9pq9fd6lpBtNk5o_YsD8=w2000" alt="*Sosnowieża Forest in eastern Cortesia, along the borders with Rudania and Sylezyjo; Cortesia’s largest old-growth forest.*"><figcaption>*Sosnowieża Forest in eastern Cortesia, along the borders with Rudania and Sylezyjo; Cortesia’s largest old-growth forest.*</figcaption></figure>
 <figure style="flex:1.502"><img src="https://lh3.googleusercontent.com/d/1gT8JQjrDCIv0RvLh6wT-XauXelQYkbMK=w2000" alt="*One of the wide, sweeping curves of the Modrawa River just south of Corslawa.*"><figcaption>*One of the wide, sweeping curves of the Modrawa River just south of Corslawa.*</figcaption></figure>
 </div>
 

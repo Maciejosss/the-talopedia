@@ -27,6 +27,8 @@ export const ACCOUNT_OF = {
   giathka: 'the-giathster',
   auritania: 'michaelnguyen2803',
   salishia: 'evanjcov11-wq',
+  'great-ai': 'michaelnguyen2803',
+  demaruz: 'demaruzipatriot',
 };
 
 /**
