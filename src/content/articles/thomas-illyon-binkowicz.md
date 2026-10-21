@@ -60,7 +60,7 @@ By 1919, Binkowicz had gained a small but growing following. Supporters believed
 
 Around this time, he was invited to join an ultra-nationalist group known as *For a Greater Empirate*. The group helped spread his ideology, and membership increased into the thousands. Their support gave Binkowicz a larger platform and pushed him further into national politics.
 
-He then began planning, along with several close supporters, to overthrow the current government and replace it with one based on their own ideas. As these plans developed, the group reorganized itself into an underground criminal network called the Stukes. The Stukes became known for their leather jackets, coordinated attacks, and heavy use of intimidation to control neighborhoods and silence opposition.
+He then began planning, along with several close supporters, to overthrow the current government and replace it with one based on their own ideas. As these plans developed, the group reorganized itself into an underground criminal network called the Sons of Yishmael. The Sons of Yishmael became known for their leather jackets, coordinated attacks, and heavy use of intimidation to control neighborhoods and silence opposition.
 
 ## Reign
 
@@ -72,7 +72,7 @@ With the backing of bribed officials, Binkowicz convinced the public to elect hi
 
 Under his leadership, tensions with several nations increased, but he managed to avoid open war. His regime continued to grow more rigid and centralized as he tightened his authority across the country.
 
-Binkowicz was the mastermind behind the unjust persecution of the Nabataeans for years, before a blunder from his government exposed his policies, and he was therefore sent to trial before the ESU, where he was sentenced to Rivet for thirty-five years. Manechem Shneerson succeeded him as the new Supreme Director.
+Binkowicz was the mastermind behind the unjust persecution of the Nabataeans for years, before a blunder from his government exposed his policies, and he was therefore sent to trial before the ESU, where he was sentenced to Rivet for thirty-five years. Mendel Shneerson succeeded him as the new Supreme Director.
 
 ## Personal Life
 
