@@ -5,16 +5,16 @@ nativeTitle: "תומאס איילון בינקוביץ'"
 type: character
 nation: shivon
 infobox:
-  - { image: "/assets/old-media/media/thomas-illyon-binkowicz-1.jpg", caption: "Official Portrait, 1927 (colorized)" }
+  - { image: "/assets/old-media/media/thomas-illyon-binkowicz-1.jpg", caption: "Portrait." }
   - { label: "Deputy", value: "John Krul" }
   - { section: "Personal Details" }
-  - { label: "Nationality", value: "Shivonian" }
+  - { label: "Nationality", value: "Shivonite" }
   - { label: "Born", value: "December 14, 1882 Eshkarot, Empirate of Shivon" }
   - { label: "Parents", value: "Heir Binkowicz (father)Buba Binkowicz (mother)" }
   - { label: "Alma Mater", value: "Shivonite Military Academy" }
 ---
 
-**Thomas Illyon Binkowicz** (born December 14, 1882) is the current authoritarian ruler of [[shivon]]. Before taking power, he was a political revolutionary who helped turn the government into the ultra-Ordalist regime it is now. Before politics, he led a street gang called the Stukes, known for their leather jackets and violent behavior. These early years shaped how he thinks and how he uses fear and loyalty. Binkowicz is a strong nationalist and believes Shivon must stay strict, controlled, and unified under his rule.
+**Thomas Illyon Binkowicz** (born December 14, 1882) was the authoritarian ruler of Shivon. Before assuming power, he was a political revolutionary who helped transform the government into a nationalist regime. These early experiences shaped his ideology and influenced his use of fear and loyalty as tools of control. Binkowicz believed that Shivon had to remain strict, centralized, and unified under his rule. However, his reign was abruptly cut short when the Elysians arrested him and imprisoned him in Rivet.
 
 ## Early Life
 
@@ -62,31 +62,23 @@ Around this time, he was invited to join an ultra-nationalist group known as *Fo
 
 He then began planning, along with several close supporters, to overthrow the current government and replace it with one based on their own ideas. As these plans developed, the group reorganized itself into an underground criminal network called the Stukes. The Stukes became known for their leather jackets, coordinated attacks, and heavy use of intimidation to control neighborhoods and silence opposition.
 
-## Current Reign
+## Reign
 
-In 1926, when the *Prosperous Coast* forced the Empirate to scale back its harsh policies, Binkowicz saw his opening. Keeping himself and most of the Stukes hidden, he launched a series of coordinated terror attacks against senior government officials. These attacks increased the civil unrest already spreading across the country. The plan worked, and the Empirate collapsed shortly afterward.
-
-<div class="imgrid">
-<figure style="flex:1.501"><img src="/assets/old-media/media/thomas-illyon-binkowicz-2.jpg" alt="A 1926 image of Binkowicz supervising a military base in the Nabataean Desert. Here an assistant was pointing in the direction of a military exercise, but Binkowicz was more interested in the camera."><figcaption>A 1926 image of Binkowicz supervising a military base in the Nabataean Desert. Here an assistant was pointing in the direction of a military exercise, but Binkowicz was more interested in the camera.</figcaption></figure>
-</div>
+In 1926, when Selmora forced the Empirate to scale back its harsh policies, Binkowicz saw his opening. Keeping himself and most of the Stukes hidden, he launched a series of coordinated terror attacks against senior government officials. These attacks increased the civil unrest already spreading across the country. The plan worked, and the Empirate collapsed shortly afterward.
 
 A Provisional Government replaced the old regime, but Binkowicz viewed it as just another obstacle. He repeated the same tactics he had used before, targeting judges, spreading unauthorized propaganda, and using fear to undermine public trust. Within 90 days, the Provisional Government fell as well. The population, desperate for stability, turned to him.
 
-With the backing of the Stukes, Binkowicz convinced the public to elect him as the next leader. Once he won, he quickly consolidated his power. He introduced strict reforms to reshape the government, military, and economy. These reforms were difficult and unpopular, but over time they took effect and strengthened his control.
+With the backing of bribed officials, Binkowicz convinced the public to elect him as the next leader. Once he won, he quickly consolidated his power. He introduced strict reforms to reshape the government, military, and economy. These reforms were difficult and unpopular, but over time they took effect and strengthened his control.
 
 Under his leadership, tensions with several nations increased, but he managed to avoid open war. His regime continued to grow more rigid and centralized as he tightened his authority across the country.
 
-Today, Binkowicz rules Shivon with an iron fist, and doesn’t intend to give it up anytime soon.
+Binkowicz was the mastermind behind the unjust persecution of the Nabataeans for years, before a blunder from his government exposed his policies, and he was therefore sent to trial before the ESU, where he was sentenced to Rivet for thirty-five years. Manechem Shneerson succeeded him as the new Supreme Director.
 
 ## Personal Life
 
-Binkowicz’s main residence is the Directorate House of the Supreme Leader, a large secured complex where he works, writes, and spends his private time. The building holds his office, personal library, and several rooms reserved only for him and his inner circle.
+Binkowicz’s main residence was the Directorate House of the Supreme Leader, a large, secure complex where he worked, wrote, and spent his private time. The building holds his office, personal library, and several rooms reserved only for him and his inner circle.
 
-In private, he often smokes and listens to swing music. He drinks wine while reading newspapers and reviewing reports. His library contains rows of political manifestos, including his own earlier writings. During his free hours, he practices boxing to maintain his physical routine.
-
-He also keeps his religion, Hasmoneanism, active in his daily life. He does not work on Saturdays and leaves all duties to his Second in Command for the day. He regularly visits the Temple in [[eretz]] to take part in communions and religious gatherings.
-
-Binkowicz also follows dietary rules and checks that his food is kosher before eating.
+In private, he would often smoke and read. Nothing has changed since he was sent to Rivet.
 
 ## Characterization
 
