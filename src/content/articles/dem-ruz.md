@@ -82,5 +82,4 @@ infobox:
   - { label: "Alpha-3 Code", value: "DEM" }
 ---
 
-Demâruz (ᛞᛖᛗᚨᚱᚢᛉ), officially the Federation of Demâruz, is a country in Northern [[evria]], bordering Rudania to the north and west, [[sylezyjto]] to the west, the Caspian Gulf to the east, and the Tethys Sea to the south.
-Its population is concentrated in the south, where the climate is cold and windy and where cities and towns populate the valleys. In the north, the population is less dense, spread across vast hillsides and rocky plateaus.
+Demâruz (ᛞᛖᛗᚨᚱᚢᛉ), officially the Federation of Demâruz, is a country in Northern [[evria]], bordering Rudania to the north and west, [[sylezyjto]] to the west, the Caspian Gulf to the east, and the Tethys Sea to the south. Its population is concentrated in the south, where the climate is cold and windy and where cities and towns populate the mountain valleys. In the north, the population is less dense, spread across vast hillsides and rocky plateaus.
